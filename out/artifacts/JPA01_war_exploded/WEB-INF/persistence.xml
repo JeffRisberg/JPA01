@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<persistence>
+    <persistence-unit name="justgive" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>org.justgive.model.Charity</class>
+        <class>org.justgive.model.Category</class>
+        <class>org.justgive.model.CharityCategoryNode</class>
+        <class>org.justgive.model.Vendor</class>
+        <class>org.justgive.model.VendorAttributes</class>
+        <class>org.justgive.model.VendorParameter</class>
+
+        <properties>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.bytecode.use_reflection_optimizer" value="false"/>
+
+            <!-- Enable Hibernate's automatic session context management -->
+            <property name="hibernate.current_session_context_class" value="thread"/>
+            <property name="hibernate.cache.region.factory_class"
+                      value="net.sf.ehcache.hibernate.EhCacheRegionFactory"/>
+            <property name="hibernate.cache.use_second_level_cache" value="true"/>
+            <property name="hibernate.cache.use_query_cache" value="true"/>
+            <property name="hibernate.cache.use_structured_entries" value="true"/>
+            <property name="hibernate.generate_statistics" value="false"/>
+            <property name="hibernate.jdbc.batch_size" value="50"/>
+
+            <property name="hibernate.ejb.event.post-insert"
+                      value="org.hibernate.ejb.event.EJB3PostInsertEventListener"/>
+            <property name="hibernate.ejb.event.post-update"
+                      value="org.hibernate.ejb.event.EJB3PostUpdateEventListener"/>
+            <property name="hibernate.ejb.event.post-delete"
+                      value="org.hibernate.ejb.event.EJB3PostDeleteEventListener"/>
+
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="false"/>
+
+            <property name="javax.persistence.validation.mode" value="none"/>
+        </properties>
+    </persistence-unit>
+</persistence>
