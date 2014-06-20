@@ -36,7 +36,7 @@
             <c:forEach items="${users}" var="user">
                 <tr>
                     <td>
-                        <a href="<c:url value="/show/${user.id}" />">${user.lastName}, ${user.firstName}</a>
+                        <a href="<c:url value="/action?acton=browseUser&userId=${user.id}" />">${user.lastName}, ${user.firstName}</a>
                     </td>
                     <td>${user.email}</td>
                     <td>

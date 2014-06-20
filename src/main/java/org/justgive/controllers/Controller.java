@@ -17,20 +17,20 @@ import java.io.IOException;
 /**
  * Controller class represents the superclass of all JustGive Controller servlets.
  */
-@SuppressWarnings({"JavadocReference", "JavaDoc"})
 public abstract class Controller extends HttpServlet {
     private static Logger jgLog = LoggerFactory.getLogger(Controller.class);
+
     protected ActionFactory actionFactory;
 
     /**
-     * Initializes the servlet when it is loaded by the
-     * servlet engine.
+     * Initializes the servlet when it is loaded by the servlet engine.
      *
      * @param config the configuration as <code>ServletConfig</code>
      * @throws javax.servlet.ServletException if initialization fails.
      */
-    public void init(ServletConfig config)
-            throws ServletException {
+    public void init(ServletConfig config) throws ServletException {
+        System.out.println("Controller: init");
+
         try {
             jgLog.debug(getClass().getName() + " - init started");
             super.init(config);
@@ -46,7 +46,8 @@ public abstract class Controller extends HttpServlet {
 
     public void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("Controller:service " + request.getRequestURL());
+        System.out.println("Controller: service " + request.getRequestURL());
+
         HttpServletRequest customRequest = customizeRequest(request);
 
         delegate(customRequest, response);

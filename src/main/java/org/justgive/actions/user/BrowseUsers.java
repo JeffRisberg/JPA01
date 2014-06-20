@@ -25,6 +25,6 @@ public class BrowseUsers extends BaseAction {
         List<User> users = userManager.findAll();
         request.setAttribute("users", users);
 
-        return new ActionURL("view.simple.browse");
+        return new ActionURL("view.users");
     }
 }

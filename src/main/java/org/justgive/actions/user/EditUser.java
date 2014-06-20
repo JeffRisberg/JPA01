@@ -11,11 +11,11 @@ import org.justgive.services.UserManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class BrowseUser extends BaseAction {
-    private static Logger jgLog = LoggerFactory.getLogger(BrowseUser.class);
+public class EditUser extends BaseAction {
+    private static Logger jgLog = LoggerFactory.getLogger(EditUser.class);
     private UserManager userManager;
 
-    public BrowseUser() {
+    public EditUser() {
         this.userManager = UserManager.getInstance();
     }
 

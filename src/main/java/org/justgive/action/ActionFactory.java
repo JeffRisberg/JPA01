@@ -1,6 +1,6 @@
 package org.justgive.action;
 
-import org.justgive.actions.user.BrowseUsers;
+import org.justgive.actions.user.*;
 
 /**
  * Subset of the real action factory
@@ -20,14 +20,24 @@ public class ActionFactory {
     }
 
     public Action getAction(String servletPath, String actionClass) throws ActionNotFoundException {
-        System.out.println("servletPath " + servletPath);
-        System.out.println("actionClass " + actionClass);
+        System.out.println("finding action for: servletPath " + servletPath + ", actionClass " + actionClass);
 
-        return new BrowseUsers();
+        if (actionClass.equalsIgnoreCase("browseUsers"))
+            return new BrowseUsers();
+        if (actionClass.equalsIgnoreCase("browseUser"))
+            return new BrowseUser();
+        if (actionClass.equalsIgnoreCase("deleteUser"))
+            return new DeleteUser();
+        if (actionClass.equalsIgnoreCase("editUser"))
+            return new EditUser();
+        if (actionClass.equalsIgnoreCase("updateUser"))
+            return new UpdateUser();
+
+        throw new ActionNotFoundException("");
     }
 
     public Action getDefaultAction(String servletPath) throws ActionNotFoundException {
-        System.out.println("servletPath " + servletPath);
+        System.out.println("finding default action for: servletPath " + servletPath);
 
         return new BrowseUsers();
     }

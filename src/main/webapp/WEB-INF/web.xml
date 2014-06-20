@@ -7,7 +7,7 @@
 
     <servlet>
         <servlet-name>action</servlet-name>
-        <servlet-class>org.justgive.actions.user.ActionServlet</servlet-class>
+        <servlet-class>org.justgive.controllers.ActionController</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
@@ -18,7 +18,7 @@
 
     <servlet-mapping>
         <servlet-name>action</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/action</url-pattern>
     </servlet-mapping>
 
     <!-- default index page -->

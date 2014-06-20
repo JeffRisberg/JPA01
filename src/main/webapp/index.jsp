@@ -15,9 +15,9 @@
 
 <body>
 
-Example JPA Application
+<h2>Example JPA Application</h2>
 
-<a href="action">Users</a>
+<a href="action?acton=browseUsers" class="btn btn-primary">Users</a>
 
 </body>
 </html>
