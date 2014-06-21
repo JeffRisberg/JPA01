@@ -1,4 +1,4 @@
-package org.justgive.actions.user;
+package org.justgive.actions.basket;
 
 import org.justgive.action.ActionException;
 import org.justgive.action.ActionURL;
@@ -11,11 +11,11 @@ import org.justgive.services.UserManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class BrowseUser extends BaseAction {
-    private static Logger jgLog = LoggerFactory.getLogger(BrowseUser.class);
+public class DeleteUser extends BaseAction {
+    private static Logger jgLog = LoggerFactory.getLogger(DeleteUser.class);
     private UserManager userManager;
 
-    public BrowseUser() {
+    public DeleteUser() {
         this.userManager = UserManager.getInstance();
     }
 

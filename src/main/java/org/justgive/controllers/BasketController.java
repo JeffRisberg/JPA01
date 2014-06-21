@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  * Date: 4/1/13
  * Time: 12:02 PM
  */
-public class ActionController extends Controller {
-    private static Logger jgLog = LoggerFactory.getLogger(ActionController.class);
+public class BasketController extends Controller {
+    private static Logger jgLog = LoggerFactory.getLogger(BasketController.class);
 
     protected void delegate(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {

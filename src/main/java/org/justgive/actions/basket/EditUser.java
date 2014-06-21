@@ -1,4 +1,4 @@
-package org.justgive.actions.user;
+package org.justgive.actions.basket;
 
 import org.justgive.action.ActionException;
 import org.justgive.action.ActionURL;
@@ -10,21 +10,25 @@ import org.justgive.services.UserManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
-public class BrowseUsers extends BaseAction {
-    private static Logger jgLog = LoggerFactory.getLogger(BrowseUsers.class);
+public class EditUser extends BaseAction {
+    private static Logger jgLog = LoggerFactory.getLogger(EditUser.class);
     private UserManager userManager;
 
-    public BrowseUsers() {
+    public EditUser() {
         this.userManager = UserManager.getInstance();
     }
 
     @Override
     protected ActionURL execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
-        List<User> users = userManager.findAll();
-        request.setAttribute("users", users);
+        String userIdStr = (String) request.getParameter("userId");
+        System.out.println("userIdStr " + userIdStr);
 
-        return new ActionURL("view.users");
+        long userId = Long.parseLong(userIdStr);
+        User user = userManager.findOne(userId);
+
+        request.setAttribute("user", user);
+
+        return new ActionURL("view.user");
     }
 }

@@ -6,6 +6,7 @@ import org.justgive.action.ActionRouter;
 import org.justgive.action.ActionURL;
 import org.justgive.logger.Logger;
 import org.justgive.logger.LoggerFactory;
+import org.justgive.properties.JustGiveProperties;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -34,6 +35,7 @@ public abstract class Controller extends HttpServlet {
         try {
             jgLog.debug(getClass().getName() + " - init started");
             super.init(config);
+            JustGiveProperties.addPropertiesFile("config/app");
             jgLog.debug(getClass().getName() + " - init complete");
         } catch (Exception e) {
             jgLog.error("Caught Exception loading Servlet: " + e.getMessage());

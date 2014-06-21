@@ -111,15 +111,11 @@ public class ActionRouter {
             response.setContentType(url.getContentType());
 
             String dispatchPath = getDispatchPath(url, vendor, request);
-            System.out.println("Dispatch Path " + dispatchPath);
             RequestDispatcher dispatcher = servletContext.getRequestDispatcher(dispatchPath);
-            System.out.println(dispatcher);
 
             if (url.isInclude()) {
-                System.out.println("include");
                 dispatcher.include(request, response);
             } else {
-                System.out.println("forward");
                 dispatcher.forward(request, response);
             }
         } catch (Exception e) {

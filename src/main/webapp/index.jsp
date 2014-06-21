@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>JAP01</title>
+    <title>JPA01</title>
 
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,7 @@
 
 <h2>Example JPA Application</h2>
 
-<a href="action?acton=browseUsers" class="btn btn-primary">Users</a>
+<a href="basket?acton=browseUsers" class="btn btn-primary">Users</a>
 
 </body>
 </html>
