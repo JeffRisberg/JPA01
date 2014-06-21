@@ -1,8 +1,9 @@
 package org.justgive.services;
 
+import org.justgive.filters.DatabaseFilter;
 import org.justgive.models.User;
 
-import java.util.ArrayList;
+import javax.persistence.EntityManager;
 import java.util.List;
 
 /**
@@ -20,27 +21,24 @@ public class UserManager {
         return instance;
     }
 
-    // fetch a list
+    /**
+     * fetch a list
+     */
     public List<User> findAll() {
-        List<User> users = new ArrayList<>();
-        User user;
+        EntityManager em = DatabaseFilter.ENTITY_MANAGERS.get();
 
-        user = new User("John", "Smith", "");
-        user.setId(1L);
-        users.add(user);
+        List users = em.createQuery("select u from User u").getResultList();
 
-        user = new User("Bob", "Jones", "");
-        user.setId(2L);
-        users.add(user);
         return users;
     }
 
-    // fetch one
+    /**
+     * fetch one
+     */
     public User findOne(Long id) {
-        if (id == 0) {
-            return new User("John", "Smith", "");
-        } else {
-            return new User("Bob", "Jones", "");
-        }
+        EntityManager em = DatabaseFilter.ENTITY_MANAGERS.get();
+
+        User user = em.find(User.class, id);
+        return user;
     }
 }

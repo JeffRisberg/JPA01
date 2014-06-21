@@ -3,6 +3,10 @@ package org.justgive.filters;
 import org.justgive.logger.Logger;
 import org.justgive.logger.LoggerFactory;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.servlet.*;
 import java.io.IOException;
 
@@ -15,15 +19,19 @@ import java.io.IOException;
 public class DatabaseFilter implements Filter {
     private static Logger jgLog = LoggerFactory.getLogger(DatabaseFilter.class);
 
-    //@PersistenceUnit
-    //private EntityManagerFactory emf;
+    private EntityManagerFactory emf;
+    private EntityManager em;
+    private EntityTransaction tx;
 
     //private SessionFactory sf;
+    public static final ThreadLocal<EntityManager>
+            ENTITY_MANAGERS = new ThreadLocal<EntityManager>();
 
     public void init(FilterConfig filterConfig) throws ServletException {
         jgLog.debug("Initializing filter...");
-        jgLog.debug("Obtaining SessionFactory from static HibernateUtil singleton");
-        //sf = HibernateUtil.getSessionFactory();
+        jgLog.debug("Obtaining EntityManagerFactory");
+
+        emf = Persistence.createEntityManagerFactory("justgive");
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -33,7 +41,13 @@ public class DatabaseFilter implements Filter {
             jgLog.debug("Starting a database transaction");
             //sf.getCurrentSession().beginTransaction();
 
-            //EntityManager em = emf.createEntityManager();
+            em = emf.createEntityManager();
+            ENTITY_MANAGERS.set(em);
+
+            tx = em.getTransaction();
+            tx.begin();
+
+            jgLog.debug(em);
 
             // Call the next filter (continue request processing)
             chain.doFilter(request, response);
@@ -41,6 +55,10 @@ public class DatabaseFilter implements Filter {
             // Commit and cleanup
             jgLog.debug("Committing the database transaction");
             //sf.getCurrentSession().getTransaction().commit();
+            if (tx.isActive()) {
+                tx.commit();
+            }
+            em.close();
         } catch (Throwable ex) {
             // Rollback only
             ex.printStackTrace();
@@ -59,5 +77,9 @@ public class DatabaseFilter implements Filter {
     }
 
     public void destroy() {
+        jgLog.debug("destroy emf");
+        if (emf != null) {
+            emf.close();
+        }
     }
 }
