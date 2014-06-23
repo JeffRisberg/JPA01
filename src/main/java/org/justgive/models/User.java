@@ -21,16 +21,11 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email")
+    //@Column(name = "email") -- not needed, since all fields are persisted unless marked transient, and this field
+    // name is the same as the columm name.
     private String email;
 
     public User() {
-    }
-
-    public User(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
     }
 
     public Long getId() {
