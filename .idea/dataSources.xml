@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1376446241">
-    <data-source source="LOCAL" name="justgive" uuid="0b234873-53a0-4497-b588-1d3ecce2144d">
+  <component name="DataSourceManagerImpl" format="xml" hash="945387027">
+    <data-source source="LOCAL" name="justgive" uuid="573989e0-0a8b-445d-bd21-73ce38eff2ab">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:5432://localhost</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost/jpa01</jdbc-url>
       <user-name>postgres</user-name>
       <user-password>df9bdf98df99df9edf9fdf9c</user-password>
       <libraries>
         <library>
-          <url>file://C:\Users\Jeffrey Risberg\.m2\repository\org\postgresql\postgresql\9.2-1004-jdbc4\postgresql-9.2-1004-jdbc4.jar</url>
+          <url>file://$MAVEN_REPOSITORY$/postgresql/postgresql/9.0-801.jdbc3/postgresql-9.0-801.jdbc3.jar</url>
         </library>
       </libraries>
     </data-source>

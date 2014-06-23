@@ -6,7 +6,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
-          <factory-entry name="justgive" value="0b234873-53a0-4497-b588-1d3ecce2144d" />
+          <factory-entry name="justgive" value="573989e0-0a8b-445d-bd21-73ce38eff2ab" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes/META-INF/persistence.xml" />
       </configuration>
