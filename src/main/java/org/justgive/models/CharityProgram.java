@@ -9,7 +9,7 @@ import javax.persistence.*;
  * @since April 2014
  */
 @Entity
-@Table(name = "charity_program")
+@Table(name = "charity_programs")
 public class CharityProgram {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,6 +47,22 @@ public class CharityProgram {
 
     public void setCharity(Charity charity) {
         this.charity = charity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

@@ -1,10 +1,11 @@
 package org.justgive.models;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Set;
 
 /**
- * The <i>Campaign</i> entity stores...
+ * The <i>Charity</i> entity stores name, mission, revenue, and programs for a charity.
  *
  * @author Jeffrey Risberg
  * @since April 2014
@@ -19,22 +20,19 @@ public class Charity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "ein")
-    private String ein;
+    @Column(name = "mission")
+    private String mission;
 
-    @Column(name = "executive_director")
-    private String executiveDirector;
+    @Column(name = "revenue")
+    private BigDecimal revenue;
+
+    @Column(name = "has_chapters")
+    private Boolean hasChapters;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "charity")
     private Set<CharityProgram> charityPrograms;
 
     public Charity() {
-    }
-
-    public Charity(String name, String ein, String executiveDirector) {
-        this.name = name;
-        this.ein = ein;
-        this.executiveDirector = executiveDirector;
     }
 
     public Long getId() {
@@ -53,20 +51,28 @@ public class Charity {
         this.name = name;
     }
 
-    public String getEin() {
-        return ein;
+    public String getMission() {
+        return mission;
     }
 
-    public void setEin(String ein) {
-        this.ein = ein;
+    public void setMission(String mission) {
+        this.mission = mission;
     }
 
-    public String getExecutiveDirector() {
-        return executiveDirector;
+    public BigDecimal getRevenue() {
+        return revenue;
     }
 
-    public void setExecutiveDirector(String executiveDirector) {
-        this.executiveDirector = executiveDirector;
+    public void setRevenue(BigDecimal revenue) {
+        this.revenue = revenue;
+    }
+
+    public Boolean getHasChapters() {
+        return hasChapters;
+    }
+
+    public void setHasChapters(Boolean hasChapters) {
+        this.hasChapters = hasChapters;
     }
 
     public Set<CharityProgram> getCharityPrograms() {

@@ -1,4 +1,4 @@
-package org.justgive.actions.basket;
+package org.justgive.actions.charity;
 
 import org.justgive.action.ActionException;
 import org.justgive.action.ActionURL;
@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class BrowseCharities extends BaseAction {
-    private static Logger jgLog = LoggerFactory.getLogger(BrowseCharities.class);
+public class CharityAction extends BaseAction {
+    private static Logger jgLog = LoggerFactory.getLogger(CharityAction.class);
     private CharityManager charityManager;
 
-    public BrowseCharities() {
+    public CharityAction() {
         this.charityManager = CharityManager.getInstance();
     }
 

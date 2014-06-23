@@ -25,7 +25,7 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
-DROP TABLE IF EXISTS charity_program;
+DROP TABLE IF EXISTS charity_programs;
 DROP TABLE IF EXISTS charities;
 DROP TABLE IF EXISTS users;
 
@@ -61,6 +61,20 @@ CREATE SEQUENCE charity_id_seq
 
 ALTER TABLE public.charity_id_seq OWNER TO postgres;
 
+--
+-- Name: charity_program_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE charity_program_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.charity_program_id_seq OWNER TO postgres;
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -86,12 +100,29 @@ ALTER TABLE public.users OWNER TO postgres;
 CREATE TABLE charities (
     id integer DEFAULT nextval('charity_id_seq'::regclass) NOT NULL,
     name character varying(255),
-    ein character varying(255),
-    executive_director character varying(255)
+    mission character varying(255),
+    revenue decimal not null,
+    has_chapters bit not null
 );
 
 
 ALTER TABLE public.charities OWNER TO postgres;
+
+
+
+--
+-- Name: charity_programs; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+--
+
+CREATE TABLE charity_programs (
+    id integer DEFAULT nextval('charity_program_id_seq'::regclass) NOT NULL,
+    charity_id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description text
+);
+
+
+ALTER TABLE public.charity_programs OWNER TO postgres;
 
 
 --
@@ -107,10 +138,21 @@ Lando	Calrissian	lando@falcon.com
 -- Data for Name: charities; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY charities (name, ein, executive_director) FROM stdin;
-Red Cross	123456	Bob Smith
-United Way	6789	Hank Jones
-ASPCA	345678	Tom Hill
+COPY charities (name, mission, revenue, has_chapters) FROM stdin;
+Red Cross	Protect people	156986340	1
+United Way	Help those in need	148454256	1
+ASPCA	Protect animals	23447256	0
+\.
+
+--
+-- Data for Name: charity_programs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY charity_programs (charity_id, name, description) FROM stdin;
+1	RedCross Health	provides education
+1	RedCross Safety	provides training
+3	Dogs	protects dogs
+3	Cats	protects cats
 \.
 
 --

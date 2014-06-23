@@ -26,8 +26,14 @@
     </filter-mapping>
 
     <servlet>
-        <servlet-name>basket</servlet-name>
-        <servlet-class>org.justgive.controllers.BasketController</servlet-class>
+        <servlet-name>action</servlet-name>
+        <servlet-class>org.justgive.controllers.ActionController</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>path</servlet-name>
+        <servlet-class>org.justgive.controllers.PathController</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
@@ -37,8 +43,28 @@
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>basket</servlet-name>
+        <servlet-name>action</servlet-name>
         <url-pattern>/basket</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>action</servlet-name>
+        <url-pattern>/checkout</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>path</servlet-name>
+        <url-pattern>/simple/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>path</servlet-name>
+        <url-pattern>/charity/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>path</servlet-name>
+        <url-pattern>/donor/*</url-pattern>
     </servlet-mapping>
 
     <!-- default index page -->

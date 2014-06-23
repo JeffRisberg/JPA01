@@ -1,5 +1,7 @@
 <!doctype html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <html>
 <head>
@@ -23,13 +25,14 @@
     </div>
 
     <c:if test="${!empty charities}">
-        <h3>Charities</h3>
+        <h3>Your list</h3>
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Ein</th>
-                <th>E. D.</th>
+                <th>Mission</th>
+                <th>Revenue</th>
+                <th>Has Chapters</th>
             </tr>
             </thead>
             <tbody>
@@ -39,10 +42,23 @@
                             ${charity.name}
                     </td>
                     <td>
-                            ${charity.ein}
+                            ${charity.mission}
+                    </td>
+                    <td style="text-align: right">
+                        <fmt:formatNumber value="${charity.revenue}" type="currency"/>
                     </td>
                     <td>
-                            ${charity.executiveDirector}
+                            ${charity.hasChapters}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td colspan="3">
+                        <c:forEach items="${charity.charityPrograms}" var="charityProgram">
+                            ${charityProgram.name} program ${charityProgram.description}<br/>
+                        </c:forEach>
                     </td>
                 </tr>
             </c:forEach>
