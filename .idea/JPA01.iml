@@ -4,7 +4,7 @@
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
-        <setting name="provider-name" value="" />
+        <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="justgive" value="573989e0-0a8b-445d-bd21-73ce38eff2ab" />
         </datasource-mapping>
