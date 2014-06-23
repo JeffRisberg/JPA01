@@ -1,12 +1,12 @@
-package org.justgive.actions.charity;
+package org.justgive.actions.basket;
 
 import org.justgive.action.ActionException;
 import org.justgive.action.ActionURL;
 import org.justgive.action.BaseAction;
 import org.justgive.logger.Logger;
 import org.justgive.logger.LoggerFactory;
-import org.justgive.models.User;
-import org.justgive.services.UserManager;
+import org.justgive.models.Charity;
+import org.justgive.services.CharityManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,17 +14,17 @@ import java.util.List;
 
 public class BrowseCharities extends BaseAction {
     private static Logger jgLog = LoggerFactory.getLogger(BrowseCharities.class);
-    private UserManager userManager;
+    private CharityManager charityManager;
 
     public BrowseCharities() {
-        this.userManager = UserManager.getInstance();
+        this.charityManager = CharityManager.getInstance();
     }
 
     @Override
     protected ActionURL execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
-        List<User> users = userManager.findAll();
-        request.setAttribute("users", users);
+        List<Charity> charities = charityManager.findAll();
+        request.setAttribute("charities", charities);
 
-        return new ActionURL("view.simple.browse");
+        return new ActionURL("view.charity.charities");
     }
 }

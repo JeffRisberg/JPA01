@@ -25,7 +25,6 @@ public class BrowseUsers extends BaseAction {
         List<User> users = userManager.findAll();
         request.setAttribute("users", users);
 
-        jgLog.info("Zigamorph");
         return new ActionURL("view.user.users");
     }
 }

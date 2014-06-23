@@ -18,6 +18,7 @@
 <h2>Example JPA Application</h2>
 
 <a href="basket?acton=browseUsers" class="btn btn-primary">Users</a>
+<a href="basket?acton=browseCharities" class="btn btn-primary">Charities</a>
 
 </body>
 </html>
