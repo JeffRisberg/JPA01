@@ -22,13 +22,15 @@ public class DeleteUser extends BaseAction {
     @Override
     protected ActionURL execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
         String userIdStr = (String) request.getParameter("userId");
-        System.out.println("userIdStr " + userIdStr);
+        System.out.println("delete user: userIdStr " + userIdStr);
 
         long userId = Long.parseLong(userIdStr);
         User user = userManager.findOne(userId);
 
-        request.setAttribute("user", user);
+        if (user != null) {
+            userManager.delete(user);
+        }
 
-        return new ActionURL("view.user");
+        return new BrowseUsers().execute(request, response);
     }
 }

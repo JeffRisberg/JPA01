@@ -41,4 +41,31 @@ public class UserManager {
         User user = em.find(User.class, id);
         return user;
     }
+
+    /**
+     * persist one
+     */
+    public void save(User user) {
+        EntityManager em = DatabaseFilter.ENTITY_MANAGERS.get();
+
+        em.persist(user);
+    }
+
+    /**
+     * merge one
+     */
+    public void update(User user) {
+        EntityManager em = DatabaseFilter.ENTITY_MANAGERS.get();
+
+        em.merge(user);
+    }
+
+    /**
+     * delete one
+     */
+    public void delete(User user) {
+        EntityManager em = DatabaseFilter.ENTITY_MANAGERS.get();
+
+        em.remove(user);
+    }
 }

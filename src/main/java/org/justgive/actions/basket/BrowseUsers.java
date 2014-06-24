@@ -22,6 +22,8 @@ public class BrowseUsers extends BaseAction {
 
     @Override
     protected ActionURL execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
+        System.out.println("browseUsers");
+
         List<User> users = userManager.findAll();
         request.setAttribute("users", users);
 

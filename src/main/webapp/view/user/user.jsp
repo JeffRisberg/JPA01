@@ -18,7 +18,7 @@
 <div class="container">
     <div class="row">
         <div class="span8 offset2">
-            <h1>User Data</h1>
+            <h1>User Details</h1>
 
             <table style="background: #eee">
                 <tr>
@@ -28,6 +28,10 @@
                 <tr>
                     <td>Last Name:</td>
                     <td>${user.lastName}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>${user.email}</td>
                 </tr>
             </table>
             <a href="<c:url value="/" />">Back</a>

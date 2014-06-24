@@ -12,7 +12,8 @@ import javax.persistence.*;
 @Table(name = "charity_programs")
 public class CharityProgram {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "charity_programs_seq_gen")
+    @SequenceGenerator(name = "charity_programs_seq_gen", sequenceName = "charity_programs_id_seq")
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)

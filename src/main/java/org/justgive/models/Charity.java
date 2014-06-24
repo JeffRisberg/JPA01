@@ -14,7 +14,8 @@ import java.util.Set;
 @Table(name = "charities")
 public class Charity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "charities_seq_gen")
+    @SequenceGenerator(name = "charities_seq_gen", sequenceName = "charities_id_seq")
     private Long id;
 
     @Column(name = "name")

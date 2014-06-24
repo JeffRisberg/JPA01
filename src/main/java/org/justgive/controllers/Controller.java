@@ -49,6 +49,7 @@ public abstract class Controller extends HttpServlet {
     public void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("Controller: service " + request.getRequestURL());
+        System.out.println("Controller: serviceActon " + request.getParameter("acton"));
 
         HttpServletRequest customRequest = customizeRequest(request);
 

@@ -22,7 +22,7 @@ public class BrowseUser extends BaseAction {
     @Override
     protected ActionURL execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
         String userIdStr = (String) request.getParameter("userId");
-        System.out.println("userIdStr " + userIdStr);
+        System.out.println("browseUser: userIdStr " + userIdStr);
 
         long userId = Long.parseLong(userIdStr);
         User user = userManager.findOne(userId);

@@ -24,6 +24,7 @@
 
     <c:if test="${!empty users}">
         <h3>Users</h3>
+        <a class="btn btn-default" href="<c:url value="/basket?acton=createuser" />">Create New User</a>
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
@@ -40,11 +41,8 @@
                     </td>
                     <td>${user.email}</td>
                     <td>
-                        <form action="delete/${user.id}" method="post">
-                            <input type="submit"
-                                   class="btn btn-danger btn-mini"
-                                   value="Delete"/>
-                        </form>
+                        <a class="btn btn-danger" href="/basket?acton=edituser&userId=${user.id}">Edit</a>
+                        <a class="btn btn-danger" href="/basket?acton=deleteuser&userId=${user.id}">Delete</a>
                     </td>
                 </tr>
             </c:forEach>

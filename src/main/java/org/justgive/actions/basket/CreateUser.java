@@ -11,24 +11,23 @@ import org.justgive.services.UserManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class UpdateUser extends BaseAction {
-    private static Logger jgLog = LoggerFactory.getLogger(UpdateUser.class);
+public class CreateUser extends BaseAction {
+    private static Logger jgLog = LoggerFactory.getLogger(CreateUser.class);
     private UserManager userManager;
 
-    public UpdateUser() {
+    public CreateUser() {
         this.userManager = UserManager.getInstance();
     }
 
     @Override
     protected ActionURL execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
-        String userIdStr = (String) request.getParameter("userId");
-        System.out.println("userIdStr " + userIdStr);
 
-        long userId = Long.parseLong(userIdStr);
-        User user = userManager.findOne(userId);
-
+        User user = new User();
+        user.setFirstName("");
+        user.setLastName("");
+        user.setEmail("");
         request.setAttribute("user", user);
 
-        return new ActionURL("view.user");
+        return new ActionURL("view.user.form");
     }
 }
