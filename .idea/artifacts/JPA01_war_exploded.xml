@@ -22,7 +22,6 @@
           <element id="library" level="project" name="Maven: postgresql:postgresql:9.0-801.jdbc3" />
           <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.8.3" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.5" />
-          <element id="library" level="project" name="Maven: commons-collections:commons-collections:2.1" />
           <element id="library" level="project" name="Maven: commons-digester:commons-digester:1.6" />
           <element id="library" level="project" name="Maven: commons-httpclient:commons-httpclient:3.1" />
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.3" />

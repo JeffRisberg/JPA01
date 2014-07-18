@@ -128,8 +128,8 @@ ALTER TABLE public.charity_programs OWNER TO postgres;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT into users (first_name, last_name, email) values ('Han', 'Solo', 'han@falcom.com');
-INSERT into users (first_name, last_name, email) values ('Lando', 'Calrissian', 'lando@falcom.com');
+INSERT into users (first_name, last_name, email) values ('Han', 'Solo', 'han@falcon.com');
+INSERT into users (first_name, last_name, email) values ('Lando', 'Calrissian', 'lando@falcon.com');
 
 
 --
