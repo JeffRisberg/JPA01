@@ -1,13 +1,21 @@
-package org.justgive.session;
+package org.justgive.models;
 
-import org.justgive.logger.Logger;
-import org.justgive.logger.LoggerFactory;
-import org.justgive.properties.JustGiveProperties;
-import org.justgive.properties.PropertyException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Calendar;
 
+/**
+ * The JGSession entity is the main entity used for storing session state, where the session state
+ * consists of the vendor, affiliate, donor, the tracking object, the impressions list, and other information.
+ *
+ * @author various
+ * @since 2007
+ */
+@Entity
+@Table(name = "sessions")
 public class JGSession {
     private static Logger jgLog = LoggerFactory.getLogger(JGSession.class);
 
@@ -16,26 +24,44 @@ public class JGSession {
     private static Integer SESSION_EXPIRED_DAYS = 3;
     private static Integer SESSION_INACTIVE_MINUTES = 30;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq_gen")
+    @SequenceGenerator(name = "users_seq_gen", sequenceName = "users_id_seq")
+    private Long id;
+
+    @Column(name = "jsessionid")
     @NotNull
     private String jSessionId;
+
+    @Column(name = "returnid")
     @NotNull
     private String returnId;
-    private Integer donorId;
-    private Integer affiliateId;
-    private Integer vendorId;
-    private boolean isAuthenticated;
 
-    //private Donor donor;
-    //private Affiliate affiliate;
-    //private Vendor vendor;
+    @Column(name = "donorid")
+    private Integer donorId;
+
+    @Column(name = "affiliateid")
+    private Integer affiliateId;
+
+    @Column(name = "vendorid")
+    private Integer vendorId;
+
+    @Column(name = "is_authenticated")
+    private boolean isAuthenticated;
 
     /**
      * Default null constructor
      */
     public JGSession() {
-        //nada
     }
-    //GETTERS AND SETTERS
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public void setJSessionId(String newValue) {
         jSessionId = newValue;
@@ -85,9 +111,6 @@ public class JGSession {
         this.vendorId = vendorId;
     }
 
-    public void setUserId(org.justgive.models.User user) {
-    }
-
     public void setAuthenticated(boolean isAuthenticated) {
         this.isAuthenticated = isAuthenticated;
     }
@@ -96,10 +119,12 @@ public class JGSession {
         return isAuthenticated;
     }
 
+    @Transient
     public boolean isDonorAuthenticated() {
         return isAuthenticated && getDonorId() != null;
     }
 
+    @Transient
     public boolean isAffiliateAuthenticated() {
         return isAuthenticated && getAffiliateId() != null;
     }
@@ -109,35 +134,15 @@ public class JGSession {
      *
      * @return boolean
      */
+    @Transient
     public boolean isExpired() {
         Calendar now = Calendar.getInstance();
 
         Calendar lastHit = Calendar.getInstance();
         //lastHit.setTime(getLastUpdated());
         int expireDuration;
-        try {
-            expireDuration = JustGiveProperties.getInt("session.expired.minutes");
-            lastHit.add(Calendar.MINUTE, expireDuration);
-            jgLog.debug("JGSession expiration timeout in minutes: " + expireDuration);
-        } catch (PropertyException e) {
-            jgLog.debug(e.getMessage());
-            try {
-                expireDuration = JustGiveProperties.getInt("session.expired.hours");
-                lastHit.add(Calendar.HOUR, expireDuration);
-                jgLog.debug("JGSession expiration timeout in hours: " + expireDuration);
-            } catch (PropertyException e1) {
-                jgLog.debug(e1.getMessage());
-                try {
-                    expireDuration = JustGiveProperties.getInt("session.expired.days");
-                    lastHit.add(Calendar.DATE, expireDuration);
-                    jgLog.debug("JGSession expiration timeout in days: " + expireDuration);
-                } catch (PropertyException e2) {
-                    jgLog.debug(e2.getMessage());
-                    lastHit.add(Calendar.MINUTE, SESSION_EXPIRED_MINUTES);
-                    jgLog.debug("JGSession set to default expiration timeout in days: " + SESSION_EXPIRED_MINUTES);
-                }
-            }
-        }
+        lastHit.add(Calendar.MINUTE, SESSION_EXPIRED_MINUTES);
+
         boolean isExpired = now.after(lastHit);
         jgLog.debug("isExpired? " + isExpired);
         return isExpired;
@@ -148,20 +153,14 @@ public class JGSession {
      *
      * @return boolean
      */
+    @Transient
     public boolean isActive() {
         Calendar now = Calendar.getInstance();
 
         Calendar lastHit = Calendar.getInstance();
         //lastHit.setTime(getLastUpdated());
-        int inactiveDuration;
-        try {
-            inactiveDuration = JustGiveProperties.getInt("session.inactive.minutes");
-            jgLog.debug("JGSession inactivity timeout in minutes: " + inactiveDuration);
-        } catch (PropertyException e) {
-            jgLog.debug(e.getMessage());
-            inactiveDuration = SESSION_INACTIVE_MINUTES;
-            jgLog.debug("JGSession set to default inactivity timeout in minutes: " + inactiveDuration);
-        }
+        int inactiveDuration = SESSION_INACTIVE_MINUTES;
+
         lastHit.add(Calendar.MINUTE, inactiveDuration);
 
         boolean isActive = now.before(lastHit);
@@ -176,6 +175,11 @@ public class JGSession {
      * @param attribute The attribute Object
      */
     public void setAttribute(String name, Object attribute) {
+        if (name == null) {
+            throw new IllegalArgumentException("Null session attribute name");
+        }
+
+        // code deleted here
     }
 
     /**

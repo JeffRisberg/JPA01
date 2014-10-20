@@ -14,13 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Web application filter that opens and closes a database transaction.
- * <p/>
- * Map this filter to all requests in web.xml that require session handling.
- * <p/>
- * User: curtis
- * Date: Feb 8, 2011
- * Time: 10:54:36 AM
+ * Application filter that manages the web session.
+ *
+ * @author Curtis
+ * @since 2011
  */
 public class SessionFilter extends HttpServletFilter {
     private static Logger jgLog = LoggerFactory.getLogger(SessionFilter.class);

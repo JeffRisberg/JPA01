@@ -2,6 +2,7 @@ package org.justgive.session;
 
 import org.justgive.logger.Logger;
 import org.justgive.logger.LoggerFactory;
+import org.justgive.models.JGSession;
 import org.justgive.util.StringUtil;
 
 import javax.servlet.http.Cookie;
@@ -11,17 +12,15 @@ import javax.servlet.http.HttpSession;
 import java.util.Calendar;
 
 /**
- * The WebSessionService is a mediator between a web application and the
- * session handling packages.
+ * The WebSessionService is a mediator between a web application and the session handling packages.
  * <p/>
  * Sessions are propagated in the data store.
  * <p/>
- * Session attributes are also maintained in the data store.  The Object
- * values are serialized.
+ * Session attributes are also maintained in the data store.  The Object values are serialized.
  * <p/>
- * User: curtis
- * Date: Jun 22, 2007
- * Time: 2:40:07 PM
+ *
+ * @author Curtis
+ * @since 2007
  */
 public class WebSessionService {
     private static Logger jgLog = LoggerFactory.getLogger(WebSessionService.class);
@@ -95,7 +94,7 @@ public class WebSessionService {
             jgLog.debug("Returning new JGSession from DB");
         } else {
             // Check for expired session
-            jgLog.debug("Checking JGSsession activity at " + Calendar.getInstance().getTime());
+            jgLog.debug("Checking JGSession activity at " + Calendar.getInstance().getTime());
             if (jgSession.isExpired()) {
                 //logoutUser(request, response, jgSession);
             } else if (jgSession.hasDonorId() && !jgSession.isActive()) {
@@ -122,11 +121,11 @@ public class WebSessionService {
     }
 
     private void setJGSessionInHttpSession(HttpServletRequest request, JGSession jgSession) {
-        // Put the JGSesson on HttpSession
+        // Put the JGSession on HttpSession
         HttpSession httpSession = request.getSession(true);
         httpSession.setAttribute(SESSION_ATTRIBUTE_NAME, jgSession);
 
-        // Put the JGSesson in HttpRequest
+        // Put the JGSession in HttpRequest
         request.setAttribute(SESSION_ATTRIBUTE_NAME, jgSession);
     }
 

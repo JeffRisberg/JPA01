@@ -2,18 +2,24 @@ package org.justgive.session;
 
 import org.justgive.logger.Logger;
 import org.justgive.logger.LoggerFactory;
+import org.justgive.models.JGSession;
+import org.justgive.services.JGSessionManager;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
- * User: curtis
- * Date: Jun 23, 2007
- * Time: 12:24:05 PM
- * <p/>
  * Obtains and creates sessions.  Handles user authentication.
+ * <p/>
+ * This is a subset of the real code.
+ *
+ * @author Curtis
+ * @since 2007
  */
 public class SessionManager {
     private static Logger jgLog = LoggerFactory.getLogger(SessionManager.class);
+
+    private JGSessionManager jgSessionManager = null;
 
     private static SessionManager instance;
 
@@ -34,7 +40,7 @@ public class SessionManager {
     }
 
     private SessionManager() {
-
+        this.jgSessionManager = new JGSessionManager();
     }
 
     public static synchronized SessionManager getInstance() {
@@ -43,6 +49,13 @@ public class SessionManager {
         }
 
         return instance;
+    }
+
+    /**
+     * fetch a list
+     */
+    public List<JGSession> findAll() {
+        return jgSessionManager.findAll();
     }
 
     /**
@@ -61,9 +74,9 @@ public class SessionManager {
         JGSession jgSession = null;
 
         try {
-            jgLog.debug("Loading JGSsession  " + cookieID);
+            jgLog.debug("Loading JGSsession " + cookieID);
             //jgSession = DatabaseItemManager.getSessionInstance().find(JGSession.class, "jSessionId", cookieID);
-            //if (jgSession != null) jgLog.debug("JGSsession loaded " + jgSession.getId());
+            //if (jgSession != null) jgLog.debug("JGSession loaded " + jgSession.getId());
         } catch (Exception e) {
             throw new SessionException(e);
         }
@@ -86,11 +99,11 @@ public class SessionManager {
         jgSession.setAuthenticated(false);
 
         // Save to the database
-        //try {
-        //    DatabaseItemManager.getSessionInstance().create(jgSession);
-        //} catch (DBException e) {
-        //    throw new SessionException(e);
-        //}
+        try {
+            jgSessionManager.save(jgSession);
+        } catch (Exception e) {
+            throw new SessionException(e);
+        }
 
         return jgSession;
     }
@@ -102,6 +115,67 @@ public class SessionManager {
      * @throws SessionException if any exception encountered.
      */
     public void saveSession(JGSession jgSession) throws SessionException {
+        //DBTransaction dbTransaction = null;
+        try {
+            //dbTransaction = DBSessionFactory.getInstance().newTransaction();
+            //dbTransaction.begin();
+
+            // Create or retrieve persisted session depending on id value
+            JGSession persistedSession = null;
+            if (jgSession.getId() == null) {
+                persistedSession = new JGSession();
+                //persistedSession.setDateCreated();
+            } else {
+                persistedSession = jgSessionManager.findOne(jgSession.getId());
+                if (persistedSession == null) {
+                    persistedSession = new JGSession();
+                    //persistedSession.setDateCreated();
+                }
+            }
+
+            // Copy the session values to save over to the persisted session
+            //persistedSession.setLastUpdated();
+
+            persistedSession.setJSessionId(jgSession.getJSessionId());
+            persistedSession.setReturnId(jgSession.getReturnId());
+            persistedSession.setDonorId(jgSession.getDonorId());
+            persistedSession.setAffiliateId(jgSession.getAffiliateId());
+            persistedSession.setAuthenticated(jgSession.isAuthenticated());
+
+            /*
+            Tracking tracking = jgSession.getTracking();
+            if (tracking != null) {
+                persistedSession.setTracking(tracking);
+            } else {
+                persistedSession.setTracking(null);
+            }
+            */
+
+            // Create or update session
+            jgSessionManager.save(persistedSession);
+            /*
+            if (jgSession.getId() == null) {
+                dbTransaction.create(persistedSession);
+            } else {
+                dbTransaction.update(persistedSession);
+            }
+
+            dbTransaction.commit();
+            */
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new SessionException(e);
+        } finally {
+            /*
+            if (dbTransaction != null) {
+                try {
+                    dbTransaction.close();
+                } catch (DBException e1) {
+                    jgLog.warn(e1);
+                }
+            }
+            */
+        }
     }
 
     /**
