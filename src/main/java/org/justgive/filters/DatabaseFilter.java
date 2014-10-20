@@ -45,7 +45,7 @@ public class DatabaseFilter implements Filter {
             ENTITY_MANAGERS.set(em);
 
             tx = em.getTransaction();
-            jgLog.debug("About to begin, open=" + em.isOpen());
+            jgLog.debug("About to begin transaction, open=" + em.isOpen());
             tx.begin();
 
             jgLog.debug(em);
