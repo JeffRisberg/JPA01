@@ -15,15 +15,17 @@
 
 <body>
 
-<h2>Example JPA Application</h2>
+<div style="padding: 10px">
+    <h2>Example JPA Application</h2>
 
-<div>
-    <a href="basket?acton=browseUsers" class="btn btn-primary">Users</a>
-    <a href="charity" class="btn btn-primary">Charities</a>
-</div>
+    <div>
+        <a href="basket?acton=browseUsers" class="btn btn-primary">Users</a>
+        <a href="charity" class="btn btn-primary">Charities</a>
+    </div>
 
-<div>
-    <a href="session">View Sessions</a>
+    <div>
+        <a href="session">View Sessions</a>
+    </div>
 </div>
 
 </body>
