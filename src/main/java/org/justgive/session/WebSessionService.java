@@ -63,7 +63,6 @@ public class WebSessionService {
      */
     public JGSession getSession(HttpServletRequest request, HttpServletResponse response)
             throws SessionException, CookieException {
-        System.out.println("WebSessionService:getSession");
         // If JGSession has already been put on the request then return that
         JGSession jgSession = (JGSession) request.getAttribute(SESSION_ATTRIBUTE_NAME);
 
@@ -75,7 +74,6 @@ public class WebSessionService {
             return jgSession;
         }
 
-        System.out.println("jgSession " + jgSession);
         // Get the cookie and call the session factory to get the session.
         String cookieID = getCookieID(request);
 
@@ -87,7 +85,6 @@ public class WebSessionService {
         // Get the session for the cookie
         jgSession = SessionManager.getInstance().getSession(cookieID);
 
-        System.out.println("jgSession " + jgSession);
         if (jgSession == null) {
             // if it's not found, this is a new session
             jgSession = SessionManager.getInstance().newSession(cookieID);
@@ -106,7 +103,6 @@ public class WebSessionService {
             jgLog.debug("Returning existing JGSession from DB");
         }
 
-        System.out.println("jgSession " + jgSession);
         setJGSessionInHttpSession(request, jgSession);
 
         // Set "affiliate" and "user" attributes, if applicable
@@ -115,7 +111,6 @@ public class WebSessionService {
         //Cart cart = CartSessionManager.getInstance().getCart(request.getSession());
         //jgLog.debug(cart.getNumItems() + " items in Cart");
         //jgLog.trace("cart in session? " + cart.toXmlString());
-        System.out.println("jgSession " + jgSession);
 
         return jgSession;
     }
@@ -127,6 +122,7 @@ public class WebSessionService {
 
         // Put the JGSession in HttpRequest
         request.setAttribute(SESSION_ATTRIBUTE_NAME, jgSession);
+        System.out.println("Setting session attribute to " + jgSession);
     }
 
     /**

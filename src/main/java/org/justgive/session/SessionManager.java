@@ -75,8 +75,8 @@ public class SessionManager {
 
         try {
             jgLog.debug("Loading JGSsession " + cookieID);
-            //jgSession = DatabaseItemManager.getSessionInstance().find(JGSession.class, "jSessionId", cookieID);
-            //if (jgSession != null) jgLog.debug("JGSession loaded " + jgSession.getId());
+            jgSession = jgSessionManager.findOne(cookieID);
+            if (jgSession != null) jgLog.debug("JGSession loaded " + jgSession.getId());
         } catch (Exception e) {
             throw new SessionException(e);
         }

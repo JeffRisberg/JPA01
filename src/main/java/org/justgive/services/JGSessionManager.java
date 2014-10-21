@@ -57,7 +57,7 @@ public class JGSessionManager {
         CriteriaQuery<JGSession> criteria = builder.createQuery(JGSession.class);
         Root<JGSession> root = criteria.from(JGSession.class);
 
-        Path<String> rootjSessionId = root.get("name");
+        Path<String> rootjSessionId = root.get("jSessionId");
         criteria.where(builder.equal(rootjSessionId, jSessionId));
 
         try {

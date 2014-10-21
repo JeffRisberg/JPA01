@@ -25,10 +25,12 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = PUBLIC, pg_catalog;
 
+DROP TABLE IF EXISTS sessions;
 DROP TABLE IF EXISTS charity_programs;
 DROP TABLE IF EXISTS charities;
 DROP TABLE IF EXISTS users;
 
+DROP SEQUENCE IF EXISTS sessions_id_seq;
 DROP SEQUENCE IF EXISTS charity_programs_id_seq;
 DROP SEQUENCE IF EXISTS charities_id_seq;
 DROP SEQUENCE IF EXISTS users_id_seq;
@@ -74,6 +76,20 @@ CACHE 1;
 
 
 ALTER TABLE public.charity_programs_id_seq OWNER TO postgres;
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE sessions_id_seq
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
+
+
+ALTER TABLE public.sessions_id_seq OWNER TO postgres;
 
 SET default_tablespace = '';
 
@@ -122,6 +138,26 @@ CREATE TABLE charity_programs (
 
 
 ALTER TABLE public.charity_programs OWNER TO postgres;
+
+
+--
+-- Name: sessions; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+--
+
+CREATE TABLE sessions (
+	id               INTEGER DEFAULT nextval('sessions_id_seq' :: REGCLASS) NOT NULL,
+	date_created     DATE                                                   NOT NULL DEFAULT NOW(),
+	last_updated     DATE                                                   NULL DEFAULT NOW(),
+	jsessionid       CHARACTER VARYING(255)                                 NOT NULL,
+	returnid         CHARACTER VARYING(255)                                 NOT NULL,
+	donorid          INTEGER                                                NULL,
+	vendorid         INTEGER                                                NULL,
+	affiliateid      INTEGER                                                NULL,
+	is_authenticated Boolean                                                NOT NULL DEFAULT FALSE
+);
+
+
+ALTER TABLE public.sessions OWNER TO postgres;
 
 
 --

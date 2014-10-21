@@ -17,8 +17,14 @@
 
 <h2>Example JPA Application</h2>
 
-<a href="basket?acton=browseUsers" class="btn btn-primary">Users</a>
-<a href="charity" class="btn btn-primary">Charities</a>
+<div>
+    <a href="basket?acton=browseUsers" class="btn btn-primary">Users</a>
+    <a href="charity" class="btn btn-primary">Charities</a>
+</div>
+
+<div>
+    <a href="session">View Sessions</a>
+</div>
 
 </body>
 </html>

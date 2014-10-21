@@ -5,9 +5,7 @@ import org.justgive.action.ActionURL;
 import org.justgive.action.BaseAction;
 import org.justgive.logger.Logger;
 import org.justgive.logger.LoggerFactory;
-import org.justgive.models.Charity;
 import org.justgive.models.JGSession;
-import org.justgive.services.CharityManager;
 import org.justgive.session.SessionManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +28,7 @@ public class SessionAction extends BaseAction {
 
     @Override
     protected ActionURL execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
+        System.out.println("SessionAction execute");
         List<JGSession> sessions = sessionManager.findAll();
         request.setAttribute("sessions", sessions);
 

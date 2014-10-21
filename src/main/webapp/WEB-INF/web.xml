@@ -67,6 +67,11 @@
         <url-pattern>/donor/*</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>path</servlet-name>
+        <url-pattern>/session/*</url-pattern>
+    </servlet-mapping>
+
     <!-- default index page -->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

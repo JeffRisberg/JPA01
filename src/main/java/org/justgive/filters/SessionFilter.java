@@ -37,7 +37,6 @@ public class SessionFilter extends HttpServletFilter {
         try {
             WebSessionService.getInstance().getSession(request, response);
         } catch (SessionException e) {
-            System.out.println("error initializing session");
             jgLog.error("ERROR INITIALIZING SESSION: " + e.getMessage());
             throw new ServletException(e.getMessage());
         } catch (CookieException e) {

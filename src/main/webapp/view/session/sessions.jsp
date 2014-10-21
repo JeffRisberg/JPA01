@@ -29,14 +29,34 @@
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>jSessionId</th>
+                <th>Date</th>
+                <th>jSession Id</th>
+                <th>Return Id</th>
+                <th>Donor Id</th>
+                <th>Vendor Id</th>
+                <th>Affiliate Id</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${sessions}" var="session">
                 <tr>
                     <td>
-                            ${session.jSessionId}
+                            ${session.dateCreated}
+                    </td>
+                    <td>
+                            ${session.JSessionId}
+                    </td>
+                    <td>
+                            ${session.returnId}
+                    </td>
+                    <td>
+                            ${session.donorId}
+                    </td>
+                    <td>
+                            ${session.vendorId}
+                    </td>
+                    <td>
+                            ${session.affiliateId}
                     </td>
                 </tr>
             </c:forEach>

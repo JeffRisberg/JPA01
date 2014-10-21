@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * The JGSession entity is the main entity used for storing session state, where the session state
@@ -25,9 +26,15 @@ public class JGSession {
     private static Integer SESSION_INACTIVE_MINUTES = 30;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq_gen")
-    @SequenceGenerator(name = "users_seq_gen", sequenceName = "users_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sessions_seq_gen")
+    @SequenceGenerator(name = "sessions_seq_gen", sequenceName = "sessions_id_seq")
     private Long id;
+
+    @Column(name = "date_created", columnDefinition="date default now()")
+    protected Date dateCreated = new Date();
+
+    @Column(name = "last_updated", columnDefinition="date default now()")
+    protected Date lastUpdated = new Date();
 
     @Column(name = "jsessionid")
     @NotNull
@@ -63,8 +70,24 @@ public class JGSession {
         this.id = id;
     }
 
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public Date getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
     public void setJSessionId(String newValue) {
-        jSessionId = newValue;
+        this.jSessionId = newValue;
     }
 
     public String getJSessionId() {
