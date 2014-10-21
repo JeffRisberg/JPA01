@@ -146,8 +146,8 @@ ALTER TABLE public.charity_programs OWNER TO postgres;
 
 CREATE TABLE sessions (
 	id               INTEGER DEFAULT nextval('sessions_id_seq' :: REGCLASS) NOT NULL,
-	date_created     DATE                                                   NOT NULL DEFAULT NOW(),
-	last_updated     DATE                                                   NULL DEFAULT NOW(),
+	date_created     TIMESTAMP                                              NOT NULL DEFAULT NOW(),
+	last_updated     TIMESTAMP                                              NULL DEFAULT NOW(),
 	jsessionid       CHARACTER VARYING(255)                                 NOT NULL,
 	returnid         CHARACTER VARYING(255)                                 NOT NULL,
 	donorid          INTEGER                                                NULL,

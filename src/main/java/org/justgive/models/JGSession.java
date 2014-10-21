@@ -30,10 +30,10 @@ public class JGSession {
     @SequenceGenerator(name = "sessions_seq_gen", sequenceName = "sessions_id_seq")
     private Long id;
 
-    @Column(name = "date_created", columnDefinition="date default now()")
+    @Column(name = "date_created", columnDefinition="timestamp default now()")
     protected Date dateCreated = new Date();
 
-    @Column(name = "last_updated", columnDefinition="date default now()")
+    @Column(name = "last_updated", columnDefinition="timestamp default now()")
     protected Date lastUpdated = new Date();
 
     @Column(name = "jsessionid")
