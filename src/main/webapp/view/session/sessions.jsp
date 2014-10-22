@@ -41,7 +41,8 @@
             <c:forEach items="${sessions}" var="session">
                 <tr>
                     <td>
-                            ${session.dateCreated}
+                        <fmt:formatDate type="both" dateStyle="medium" timeStyle="medium"
+                                        value="${session.dateCreated}"/>
                     </td>
                     <td>
                             ${session.JSessionId}
