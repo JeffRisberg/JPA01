@@ -20,7 +20,7 @@
         <div class="span8 offset2">
             <h1>User Details</h1>
 
-            <table style="background: #fff">
+            <table style="background: #ggg">
                 <tr>
                     <td>First Name:</td>
                     <td>${user.firstName}</td>
