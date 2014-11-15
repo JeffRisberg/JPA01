@@ -55,24 +55,18 @@ public class DatabaseFilter implements Filter {
 
             // Commit and cleanup
             jgLog.debug("Committing the database transaction");
-            //sf.getCurrentSession().getTransaction().commit();
             if (tx.isActive()) {
                 tx.commit();
             }
             em.close();
         } catch (Throwable ex) {
-            // Rollback only
             ex.printStackTrace();
-            //try {
-            //    if (sf.getCurrentSession().getTransaction().isActive()) {
-            //        log.debug("Trying to rollback database transaction after exception");
-            //        sf.getCurrentSession().getTransaction().rollback();
-            //    }
-            //} catch (Throwable rbEx) {
-            //    log.error("Could not rollback transaction after exception!", rbEx);
-            //}
 
-            // Let others handle it... maybe another interceptor for exceptions?
+            // Rollback only
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+
             throw new ServletException(ex);
         }
     }
