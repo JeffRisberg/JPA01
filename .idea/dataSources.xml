@@ -5,8 +5,6 @@
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost/jpa01</jdbc-url>
-      <user-name>postgres</user-name>
-      <user-password>df9bdf98df99df9edf9fdf9c</user-password>
       <libraries>
         <library>
           <url>file://$MAVEN_REPOSITORY$/postgresql/postgresql/9.0-801.jdbc3/postgresql-9.0-801.jdbc3.jar</url>
@@ -15,4 +13,3 @@
     </data-source>
   </component>
 </project>
-
