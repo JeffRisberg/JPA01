@@ -5,7 +5,7 @@ import org.justgive.action.ActionURL;
 import org.justgive.action.BaseAction;
 import org.justgive.logger.Logger;
 import org.justgive.logger.LoggerFactory;
-import org.justgive.models.User;
+import org.justgive.model.Donor;
 import org.justgive.services.UserManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,11 +22,11 @@ public class CreateUser extends BaseAction {
     @Override
     protected ActionURL execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
 
-        User user = new User();
-        user.setFirstName("");
-        user.setLastName("");
-        user.setEmail("");
-        request.setAttribute("user", user);
+        Donor donor = new Donor();
+        donor.setFirstName("");
+        donor.setLastName("");
+        donor.setLogin("");
+        request.setAttribute("donor", donor);
 
         return new ActionURL("view.user.form");
     }

@@ -11,7 +11,7 @@ import java.util.*;
  * properties files.  Internally, JustGiveProperties uses ResourceBundle.  Properties files
  * are assumed to be in the classpath as is standard.
  * <p/>
- * User: curtis
+ * Donor: curtis
  * Date: Aug 14, 2007
  * Time: 2:33:16 PM
  */

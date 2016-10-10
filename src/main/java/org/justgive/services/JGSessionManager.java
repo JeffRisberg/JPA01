@@ -1,7 +1,7 @@
 package org.justgive.services;
 
 import org.justgive.filters.DatabaseFilter;
-import org.justgive.models.JGSession;
+import org.justgive.model.JGSession;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;

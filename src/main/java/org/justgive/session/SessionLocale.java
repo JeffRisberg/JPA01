@@ -10,7 +10,7 @@ import java.util.Locale;
 
 /**
  * Created by IntelliJ IDEA.
- * User: bdan
+ * Donor: bdan
  * Date: 2013.01.07
  * Time: 14:59
  * To change this template use File | Settings | File Templates.

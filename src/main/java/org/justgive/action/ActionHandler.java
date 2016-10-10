@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Created by IntelliJ IDEA.
- * User: peter
+ * Donor: peter
  * Date: 4/1/13
  * Time: 12:26 PM
  */

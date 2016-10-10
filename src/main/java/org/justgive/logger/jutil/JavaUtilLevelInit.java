@@ -5,7 +5,7 @@ import org.justgive.logger.LevelInit;
 
 /**
  * Created by IntelliJ IDEA.
- * User: peter c
+ * Donor: peter c
  * Date: Jan 25, 2008
  * Time: 1:15:05 PM
  */

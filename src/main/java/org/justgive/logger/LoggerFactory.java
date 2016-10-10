@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 /**
  * Created by IntelliJ IDEA.
- * User: peter c
+ * Donor: peter c
  * Date: Jan 14, 2008
  * Time: 4:22:13 PM
  */

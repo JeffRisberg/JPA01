@@ -6,7 +6,7 @@ import org.justgive.properties.JustGiveProperties;
 
 /**
  * Created by IntelliJ IDEA.
- * User: peter
+ * Donor: peter
  * Date: 5/15/13
  * Time: 3:37 PM
  */

@@ -3,7 +3,7 @@ package org.justgive.exceptions;
 /**
  * The abstract superclass of all JustGive-defined unchecked exceptions.
  *
- * User: curtis
+ * Donor: curtis
  * Date: Aug 14, 2007
  * Time: 12:42:54 PM
  */

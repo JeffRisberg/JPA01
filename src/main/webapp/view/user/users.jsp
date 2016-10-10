@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <c:if test="${!empty users}">
+    <c:if test="${!empty donors}">
         <h3>Users</h3>
         <a class="btn btn-default" href="<c:url value="/basket?acton=createuser" />">Create New User</a>
         <table class="table table-bordered table-striped">
@@ -34,15 +34,15 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${users}" var="user">
+            <c:forEach items="${donors}" var="donor">
                 <tr>
                     <td>
-                        <a href="<c:url value="/basket?acton=browseuser&userId=${user.id}" />">${user.lastName}, ${user.firstName}</a>
+                        <a href="<c:url value="/basket?acton=browseuser&userId=${donor.id}" />">${donor.lastName}, ${donor.firstName}</a>
                     </td>
-                    <td>${user.email}</td>
+                    <td>${donor.email}</td>
                     <td>
-                        <a class="btn btn-danger" href="/basket?acton=edituser&userId=${user.id}">Edit</a>
-                        <a class="btn btn-danger" href="/basket?acton=deleteuser&userId=${user.id}">Delete</a>
+                        <a class="btn btn-danger" href="/basket?acton=edituser&userId=${donor.id}">Edit</a>
+                        <a class="btn btn-danger" href="/basket?acton=deleteuser&userId=${donor.id}">Delete</a>
                     </td>
                 </tr>
             </c:forEach>

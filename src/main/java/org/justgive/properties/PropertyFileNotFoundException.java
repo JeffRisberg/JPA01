@@ -6,7 +6,7 @@ import org.justgive.exceptions.JustGiveRuntimeException;
  * Runtime exception called when an attempt is made to load a properties file that
  * isn't found.
  * 
- * User: curtis
+ * Donor: curtis
  * Date: Aug 14, 2007
  * Time: 3:06:06 PM
  */

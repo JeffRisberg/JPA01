@@ -9,7 +9,7 @@ import org.justgive.logger.log4j.Log4jLogger;
 
 /**
  * Created by IntelliJ IDEA.
- * User: peter c
+ * Donor: peter c
  * Date: Jan 9, 2008
  * Time: 1:35:54 PM
  */

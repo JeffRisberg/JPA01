@@ -1,4 +1,4 @@
-package org.justgive.models.util;
+package org.justgive.model.util;
 
 /**
  * Utility class for equals and hashcode functions.

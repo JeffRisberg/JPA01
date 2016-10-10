@@ -3,7 +3,7 @@ package org.justgive.session;
 import org.justgive.exceptions.JustGiveException;
 
 /**
- * User: curtis
+ * Donor: curtis
  * Date: Jun 26, 2007
  * Time: 11:44:30 AM
  *

@@ -1,7 +1,7 @@
 package org.justgive.services;
 
 import org.justgive.filters.DatabaseFilter;
-import org.justgive.models.User;
+import org.justgive.model.Donor;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -24,10 +24,10 @@ public class UserManager {
     /**
      * fetch a list
      */
-    public List<User> findAll() {
+    public List<Donor> findAll() {
         EntityManager em = DatabaseFilter.ENTITY_MANAGERS.get();
 
-        List users = em.createQuery("select u from User u").getResultList();
+        List users = em.createQuery("select u from Donor u").getResultList();
 
         return users;
     }
@@ -35,37 +35,37 @@ public class UserManager {
     /**
      * fetch one
      */
-    public User findOne(Long id) {
+    public Donor findOne(Long id) {
         EntityManager em = DatabaseFilter.ENTITY_MANAGERS.get();
 
-        User user = em.find(User.class, id);
-        return user;
+        Donor donor = em.find(Donor.class, id);
+        return donor;
     }
 
     /**
      * persist one
      */
-    public void save(User user) {
+    public void save(Donor donor) {
         EntityManager em = DatabaseFilter.ENTITY_MANAGERS.get();
 
-        em.persist(user);
+        em.persist(donor);
     }
 
     /**
      * merge one
      */
-    public void update(User user) {
+    public void update(Donor donor) {
         EntityManager em = DatabaseFilter.ENTITY_MANAGERS.get();
 
-        em.merge(user);
+        em.merge(donor);
     }
 
     /**
      * delete one
      */
-    public void delete(User user) {
+    public void delete(Donor donor) {
         EntityManager em = DatabaseFilter.ENTITY_MANAGERS.get();
 
-        em.remove(user);
+        em.remove(donor);
     }
 }

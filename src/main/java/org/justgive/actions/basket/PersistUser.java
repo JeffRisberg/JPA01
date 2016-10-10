@@ -5,7 +5,7 @@ import org.justgive.action.ActionURL;
 import org.justgive.action.BaseAction;
 import org.justgive.logger.Logger;
 import org.justgive.logger.LoggerFactory;
-import org.justgive.models.User;
+import org.justgive.model.Donor;
 import org.justgive.services.UserManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,23 +27,23 @@ public class PersistUser extends BaseAction {
         String firstName = (String) request.getParameter("firstName");
         String lastName = (String) request.getParameter("lastName");
         String email = (String) request.getParameter("email");
-        User user;
+        Donor donor;
 
         if (userIdStr != null && userIdStr.length() > 0) {
             long userId = Long.parseLong(userIdStr);
-            user = userManager.findOne(userId);
+            donor = userManager.findOne(userId);
         } else {
-            user = new User();
+            donor = new Donor();
         }
 
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setEmail(email);
+        donor.setFirstName(firstName);
+        donor.setLastName(lastName);
+        donor.setLogin(email);
 
-        if (user.getId() != null) {
-            userManager.update(user); // existing user
+        if (donor.getId() != null) {
+            userManager.update(donor); // existing donor
         } else {
-            userManager.save(user); // new user
+            userManager.save(donor); // new donor
         }
 
         return new BrowseUsers().execute(request, response);

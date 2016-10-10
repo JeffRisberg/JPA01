@@ -3,9 +3,9 @@
 
     <persistence-unit name="justgive" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>org.justgive.models.User</class>
-        <class>org.justgive.models.Charity</class>
-        <class>org.justgive.models.CharityProgram</class>
+        <class>org.justgive.model.Donor</class>
+        <class>org.justgive.model.Charity</class>
+        <class>org.justgive.model.CharityProgram</class>
 
         <properties>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>

@@ -1,6 +1,6 @@
-package org.justgive.models.propertyEditor;
+package org.justgive.model.propertyEditor;
 
-import org.justgive.models.User;
+import org.justgive.model.Donor;
 import org.justgive.services.UserManager;
 
 import java.beans.PropertyEditorSupport;
@@ -21,8 +21,8 @@ public class UserPropertyEditor extends PropertyEditorSupport {
     public String getAsText() {
         Object value = getValue();
 
-        if (value instanceof User) {
-            return String.valueOf(((User) value).getId());
+        if (value instanceof Donor) {
+            return String.valueOf(((Donor) value).getId());
         } else {
             return super.getAsText();
         }

@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 /**
  * Created by IntelliJ IDEA.
- * User: peter c
+ * Donor: peter c
  * Date: Jan 23, 2008
  * Time: 10:17:53 PM
  */

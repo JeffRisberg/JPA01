@@ -5,7 +5,7 @@ import org.justgive.action.ActionURL;
 import org.justgive.action.BaseAction;
 import org.justgive.logger.Logger;
 import org.justgive.logger.LoggerFactory;
-import org.justgive.models.User;
+import org.justgive.model.Donor;
 import org.justgive.services.UserManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,9 +25,9 @@ public class EditUser extends BaseAction {
         System.out.println("editUser:  userIdStr " + userIdStr);
 
         long userId = Long.parseLong(userIdStr);
-        User user = userManager.findOne(userId);
+        Donor donor = userManager.findOne(userId);
 
-        request.setAttribute("user", user);
+        request.setAttribute("donor", donor);
 
         return new ActionURL("view.user.form");
     }

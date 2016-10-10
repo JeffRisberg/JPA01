@@ -2,7 +2,7 @@ package org.justgive.logger;
 
 /**
  * Created by IntelliJ IDEA.
- * User: peter c
+ * Donor: peter c
  * Date: Jan 16, 2008
  * Time: 1:03:07 PM
  */

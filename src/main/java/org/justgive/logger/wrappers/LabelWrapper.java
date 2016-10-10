@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /**
  * Created by IntelliJ IDEA.
- * User: peter c
+ * Donor: peter c
  * Date: Jan 9, 2008
  * Time: 12:40:11 PM
  */

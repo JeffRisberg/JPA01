@@ -5,7 +5,7 @@ import org.justgive.action.ActionURL;
 import org.justgive.action.BaseAction;
 import org.justgive.logger.Logger;
 import org.justgive.logger.LoggerFactory;
-import org.justgive.models.User;
+import org.justgive.model.Donor;
 import org.justgive.services.UserManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +24,8 @@ public class BrowseUsers extends BaseAction {
     protected ActionURL execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
         System.out.println("browseUsers");
 
-        List<User> users = userManager.findAll();
-        request.setAttribute("users", users);
+        List<Donor> donors = userManager.findAll();
+        request.setAttribute("donors", donors);
 
         return new ActionURL("view.user.users");
     }

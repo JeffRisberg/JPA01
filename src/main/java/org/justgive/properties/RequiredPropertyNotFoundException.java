@@ -7,7 +7,7 @@ import org.justgive.exceptions.JustGiveRuntimeException;
  * The author of an application decides when a particular
  * property is required, and so when not found, throws this exception.
  *
- * User: curtis
+ * Donor: curtis
  * Date: Aug 14, 2007
  * Time: 3:19:18 PM
  */

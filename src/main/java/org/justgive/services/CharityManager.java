@@ -1,7 +1,9 @@
 package org.justgive.services;
 
+import org.justgive.database.DBException;
+import org.justgive.database.DatabaseItemManager;
 import org.justgive.filters.DatabaseFilter;
-import org.justgive.models.Charity;
+import org.justgive.model.Charity;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -22,14 +24,16 @@ public class CharityManager {
     }
 
     /**
-     * fetch a list
+     * Get all charities in a range
      */
-    public List<Charity> findAll() {
-        EntityManager em = DatabaseFilter.ENTITY_MANAGERS.get();
+    public List<Charity> getAllCharities(int offset, int limit) throws CharityException {
+        try {
+            List<Charity> charities = DatabaseItemManager.getInstance().findAll(Charity.class, offset, limit);
 
-        List charities = em.createQuery("from Charity").getResultList();
-
-        return charities;
+            return charities;
+        } catch (DBException e) {
+            throw new CharityException(e);
+        }
     }
 
     /**

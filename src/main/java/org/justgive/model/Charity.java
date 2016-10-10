@@ -1,8 +1,9 @@
-package org.justgive.models;
+package org.justgive.model;
+
+import org.justgive.database.DatedDatabaseItem;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Set;
 
 /**
  * The <i>Charity</i> entity stores name, mission, revenue, and programs for a charity.
@@ -12,11 +13,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "charities")
-public class Charity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "charities_seq_gen")
-    @SequenceGenerator(name = "charities_seq_gen", sequenceName = "charities_id_seq")
-    private Long id;
+public class Charity extends DatedDatabaseItem {
 
     @Column(name = "name")
     private String name;
@@ -30,18 +27,7 @@ public class Charity {
     @Column(name = "has_chapters")
     private Boolean hasChapters;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "charity")
-    private Set<CharityProgram> charityPrograms;
-
     public Charity() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -74,14 +60,6 @@ public class Charity {
 
     public void setHasChapters(Boolean hasChapters) {
         this.hasChapters = hasChapters;
-    }
-
-    public Set<CharityProgram> getCharityPrograms() {
-        return charityPrograms;
-    }
-
-    public void setCharityPrograms(Set<CharityProgram> charityPrograms) {
-        this.charityPrograms = charityPrograms;
     }
 
     @Override

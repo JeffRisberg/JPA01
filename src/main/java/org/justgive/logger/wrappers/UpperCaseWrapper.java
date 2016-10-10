@@ -7,7 +7,7 @@ import org.justgive.logger.LoggingException;
 
 /**
  * Created by IntelliJ IDEA.
- * User: peter c
+ * Donor: peter c
  * Date: Jan 14, 2008
  * Time: 4:31:06 PM
  */

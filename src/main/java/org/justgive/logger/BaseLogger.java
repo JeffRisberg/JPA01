@@ -4,7 +4,7 @@ import java.io.Writer;
 
 /**
  * Created by IntelliJ IDEA.
- * User: peter c
+ * Donor: peter c
  * Date: Jan 15, 2008
  * Time: 1:45:06 PM
  */

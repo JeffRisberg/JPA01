@@ -5,7 +5,7 @@ import org.justgive.action.ActionURL;
 import org.justgive.action.BaseAction;
 import org.justgive.logger.Logger;
 import org.justgive.logger.LoggerFactory;
-import org.justgive.models.User;
+import org.justgive.model.Donor;
 import org.justgive.services.UserManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,13 +22,13 @@ public class DeleteUser extends BaseAction {
     @Override
     protected ActionURL execute(HttpServletRequest request, HttpServletResponse response) throws ActionException {
         String userIdStr = (String) request.getParameter("userId");
-        System.out.println("delete user: userIdStr " + userIdStr);
+        System.out.println("delete donor: userIdStr " + userIdStr);
 
         long userId = Long.parseLong(userIdStr);
-        User user = userManager.findOne(userId);
+        Donor donor = userManager.findOne(userId);
 
-        if (user != null) {
-            userManager.delete(user);
+        if (donor != null) {
+            userManager.delete(donor);
         }
 
         return new BrowseUsers().execute(request, response);

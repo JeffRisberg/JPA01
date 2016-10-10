@@ -5,7 +5,7 @@ import org.justgive.action.ActionURL;
 import org.justgive.action.BaseAction;
 import org.justgive.logger.Logger;
 import org.justgive.logger.LoggerFactory;
-import org.justgive.models.JGSession;
+import org.justgive.model.JGSession;
 import org.justgive.session.SessionManager;
 
 import javax.servlet.http.HttpServletRequest;

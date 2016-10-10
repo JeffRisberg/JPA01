@@ -4,7 +4,7 @@ import org.justgive.exceptions.JustGiveException;
 
 /**
  * Created by IntelliJ IDEA.
- * User: peter c
+ * Donor: peter c
  * Date: Jan 16, 2008
  * Time: 12:28:05 PM
  */

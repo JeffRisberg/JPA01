@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  * Created by IntelliJ IDEA.
- * User: peter c
+ * Donor: peter c
  * Date: Oct 8, 2008
  * Time: 10:41:59 AM
  */

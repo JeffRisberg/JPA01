@@ -2,7 +2,7 @@ package org.justgive.session;
 
 import org.justgive.logger.Logger;
 import org.justgive.logger.LoggerFactory;
-import org.justgive.models.JGSession;
+import org.justgive.model.JGSession;
 import org.justgive.services.JGSessionManager;
 
 import java.util.Arrays;

@@ -9,7 +9,7 @@ import java.io.StringWriter;
 
 /**
  * Created by IntelliJ IDEA.
- * User: peter c
+ * Donor: peter c
  * Date: Jan 9, 2008
  * Time: 12:03:38 PM
  */

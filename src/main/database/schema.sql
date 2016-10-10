@@ -28,7 +28,7 @@ SET search_path = PUBLIC, pg_catalog;
 DROP TABLE IF EXISTS sessions;
 DROP TABLE IF EXISTS charity_programs;
 DROP TABLE IF EXISTS charities;
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS donors;
 
 DROP SEQUENCE IF EXISTS sessions_id_seq;
 DROP SEQUENCE IF EXISTS charity_programs_id_seq;
@@ -96,10 +96,10 @@ SET default_tablespace = '';
 SET default_with_oids = FALSE;
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- Name: donors; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
-CREATE TABLE users (
+CREATE TABLE donors (
 	id         INTEGER DEFAULT nextval('users_id_seq' :: REGCLASS) NOT NULL,
 	first_name CHARACTER VARYING(255),
 	last_name  CHARACTER VARYING(255),
@@ -107,7 +107,7 @@ CREATE TABLE users (
 );
 
 
-ALTER TABLE public.users OWNER TO postgres;
+ALTER TABLE public.donors OWNER TO postgres;
 
 --
 -- Name: charities; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
@@ -161,11 +161,11 @@ ALTER TABLE public.sessions OWNER TO postgres;
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: donors; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT into users (first_name, last_name, email) values ('Han', 'Solo', 'han@falcon.com');
-INSERT into users (first_name, last_name, email) values ('Lando', 'Calrissian', 'lando@falcon.com');
+INSERT into donors (first_name, last_name, email) values ('Han', 'Solo', 'han@falcon.com');
+INSERT into donors (first_name, last_name, email) values ('Lando', 'Calrissian', 'lando@falcon.com');
 
 
 --

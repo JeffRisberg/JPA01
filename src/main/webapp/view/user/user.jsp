@@ -23,15 +23,15 @@
             <table style="background: #eee">
                 <tr>
                     <td>First Name:</td>
-                    <td>${user.firstName}</td>
+                    <td>${donor.firstName}</td>
                 </tr>
                 <tr>
                     <td>Last Name:</td>
-                    <td>${user.lastName}</td>
+                    <td>${donor.lastName}</td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td>${user.email}</td>
+                    <td>${donor.email}</td>
                 </tr>
             </table>
             <a href="<c:url value="/" />">Back</a>

@@ -7,7 +7,7 @@ package org.justgive.exceptions;
  * If the property notification.exception.email is set, an email is sent to that email
  * address with the message sent in the constructor argument.
  * <p/>
- * User: curtis
+ * Donor: curtis
  * Date: Aug 15, 2007
  * Time: 9:21:30 AM
  */

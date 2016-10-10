@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by IntelliJ IDEA.
- * User: peter c
+ * Donor: peter c
  * Date: Feb 11, 2008
  * Time: 12:35:13 PM
  */

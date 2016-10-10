@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 /**
  * Static class containing various String utilities.
  * <p/>
- * User: curtis
+ * Donor: curtis
  * Date: Oct 22, 2007
  * Time: 9:57:07 AM
  */

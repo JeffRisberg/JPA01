@@ -8,7 +8,7 @@ import java.io.StringWriter;
 
 /**
  * Created by IntelliJ IDEA.
- * User: peter c
+ * Donor: peter c
  * Date: Jan 25, 2008
  * Time: 1:35:09 PM
  */

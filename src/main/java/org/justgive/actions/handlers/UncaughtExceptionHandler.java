@@ -10,7 +10,7 @@ import java.io.StringWriter;
  * Handles exceptions that are not caught in the servlet environment.
  * <p/>
  * Created by IntelliJ IDEA.
- * User: curtis
+ * Donor: curtis
  * Date: 3/27/14
  * Time: 2:16 PM
  */

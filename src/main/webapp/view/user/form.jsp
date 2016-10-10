@@ -21,19 +21,19 @@
             <h1>User Details</h1>
 
             <form action="/basket?acton=persistuser" method="POST">
-                <input type="hidden" name="userId" value="${user.id}"/>
+                <input type="hidden" name="userId" value="${donor.id}"/>
                 <table style="background: #eee">
                     <tr>
                         <td>First Name:</td>
-                        <td><input name="firstName" value="${user.firstName}"/></td>
+                        <td><input name="firstName" value="${donor.firstName}"/></td>
                     </tr>
                     <tr>
                         <td>Last Name:</td>
-                        <td><input name="lastName" value="${user.lastName}"/></td>
+                        <td><input name="lastName" value="${donor.lastName}"/></td>
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td><input name="email" value="${user.email}"/></td>
+                        <td><input name="email" value="${donor.email}"/></td>
                     </tr>
                 </table>
                 <input type="submit" value="Save"/>
