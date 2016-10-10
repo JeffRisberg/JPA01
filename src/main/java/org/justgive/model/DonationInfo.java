@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * @author jeff
+ * The <i>DonationInfo</i> record holds the fields returned by the reporting query for fetching donation information on
+ * the admin action for Donations.
+ *
+ * @author Jeff Risberg
  * @since 10/9/16
  */
 public class DonationInfo {

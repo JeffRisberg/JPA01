@@ -2,8 +2,10 @@ package org.justgive.model;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.justgive.database.DatedDatabaseItem;
+import org.justgive.util.MoneyMath;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,6 +48,14 @@ public class Order extends DatedDatabaseItem {
     @OrderBy("sortOrder ASC")
     private List<Donation> donations = new ArrayList<>();
 
+    @Column(name = "amount")
+    private BigDecimal amount = MoneyMath.ZERO;
+
+    @Column(name = "amount_charged")
+    private BigDecimal amountCharged = MoneyMath.ZERO;
+
+    @Column(name = "processing_charges")
+    private BigDecimal processingCharges = MoneyMath.ZERO;
     public Order() {
     }
 
@@ -103,5 +113,29 @@ public class Order extends DatedDatabaseItem {
 
     public void setDonations(List<Donation> donations) {
         this.donations = donations;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public BigDecimal getAmountCharged() {
+        return amountCharged;
+    }
+
+    public void setAmountCharged(BigDecimal amountCharged) {
+        this.amountCharged = amountCharged;
+    }
+
+    public BigDecimal getProcessingCharges() {
+        return processingCharges;
+    }
+
+    public void setProcessingCharges(BigDecimal processingCharges) {
+        this.processingCharges = processingCharges;
     }
 }

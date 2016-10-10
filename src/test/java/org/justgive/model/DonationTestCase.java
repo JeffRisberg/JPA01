@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  */
 public class DonationTestCase extends BaseDatabaseTestCase {
 
-    //@Test
+    @Test
     public void basicFetch() {
         try {
             List<Donation> donations = DatabaseItemManager.getInstance().findAll(Donation.class, 0, 5);
@@ -44,7 +44,7 @@ public class DonationTestCase extends BaseDatabaseTestCase {
         }
     }
 
-    //@Test
+    @Test
     public void basicCriteriaFetch() {
         try {
             // Set up the criteria
@@ -77,7 +77,7 @@ public class DonationTestCase extends BaseDatabaseTestCase {
         }
     }
 
-    //@Test
+    @Test
     public void basicCriteriaWithJoinFetch() {
         try {
             // Set up the criteria
