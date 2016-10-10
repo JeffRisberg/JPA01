@@ -13,10 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by IntelliJ IDEA.
- * User: peter
- * Date: 4/1/13
- * Time: 12:02 PM
+ * @uthor Jeff Risberg
+ * @since April 2014
  */
 public class ActionController extends Controller {
     private static Logger jgLog = LoggerFactory.getLogger(ActionController.class);
