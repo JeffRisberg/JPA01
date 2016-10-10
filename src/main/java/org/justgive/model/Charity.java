@@ -3,6 +3,8 @@ package org.justgive.model;
 import org.justgive.database.DatedDatabaseItem;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 /**
@@ -15,9 +17,23 @@ import java.math.BigDecimal;
 @Table(name = "charities")
 public class Charity extends DatedDatabaseItem {
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "source")
+    private CharitySource source;
+
     @Column(name = "charityname")
     private String name;
 
+    @Column(name = "external_id")
+    private String externalId;
+
+    @NotNull
+    @Column(name = "ein")
+    private String ein;
+
+    @NotNull
+    @Size(min = 2, max = 4096, message = "The mission must be at least two chars long.")
     @Column(name = "mission")
     private String mission;
 

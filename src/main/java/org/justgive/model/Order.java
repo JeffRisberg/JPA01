@@ -5,6 +5,7 @@ import org.justgive.database.DatedDatabaseItem;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,6 +18,12 @@ import java.util.List;
 @Table(name = "transactions")
 public class Order extends DatedDatabaseItem {
 
+    @Column(name = "completed_date")
+    private Date completedDate;
+
+    @Column(name = "external_id")
+    private String externalId;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "order_status")
     private OrderStatus orderStatus;
@@ -24,6 +31,11 @@ public class Order extends DatedDatabaseItem {
     @Enumerated(EnumType.STRING)
     @Column(name = "source")
     private OrderSource orderSource;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vendorid")
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "vendors")
+    private Vendor vendor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "donor_id")
@@ -35,6 +47,22 @@ public class Order extends DatedDatabaseItem {
     private List<Donation> donations = new ArrayList<>();
 
     public Order() {
+    }
+
+    public Date getCompletedDate() {
+        return completedDate;
+    }
+
+    public void setCompletedDate(Date completedDate) {
+        this.completedDate = completedDate;
+    }
+
+    public String getExternalId() {
+        return externalId;
+    }
+
+    public void setExternalId(String externalId) {
+        this.externalId = externalId;
     }
 
     public OrderStatus getOrderStatus() {
@@ -51,6 +79,14 @@ public class Order extends DatedDatabaseItem {
 
     public void setOrderSource(OrderSource orderSource) {
         this.orderSource = orderSource;
+    }
+
+    public Vendor getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(Vendor vendor) {
+        this.vendor = vendor;
     }
 
     public Donor getDonor() {

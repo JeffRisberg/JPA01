@@ -8,6 +8,7 @@
         <class>org.justgive.model.Donation</class>
         <class>org.justgive.model.Donor</class>
         <class>org.justgive.model.Order</class>
+        <class>org.justgive.model.Vendor</class>
 
         <properties>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
