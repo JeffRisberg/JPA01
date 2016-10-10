@@ -15,17 +15,11 @@ import java.math.BigDecimal;
 @Table(name = "charities")
 public class Charity extends DatedDatabaseItem {
 
-    @Column(name = "name")
+    @Column(name = "charityname")
     private String name;
 
     @Column(name = "mission")
     private String mission;
-
-    @Column(name = "revenue")
-    private BigDecimal revenue;
-
-    @Column(name = "has_chapters")
-    private Boolean hasChapters;
 
     public Charity() {
     }
@@ -44,22 +38,6 @@ public class Charity extends DatedDatabaseItem {
 
     public void setMission(String mission) {
         this.mission = mission;
-    }
-
-    public BigDecimal getRevenue() {
-        return revenue;
-    }
-
-    public void setRevenue(BigDecimal revenue) {
-        this.revenue = revenue;
-    }
-
-    public Boolean getHasChapters() {
-        return hasChapters;
-    }
-
-    public void setHasChapters(Boolean hasChapters) {
-        this.hasChapters = hasChapters;
     }
 
     @Override
