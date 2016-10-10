@@ -42,6 +42,10 @@ public class Donation extends DatabaseItem {
     @Size(max = 256)
     private String designation;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "gift_id")
+    private Gift gift;
+
     @Column(name = "share_name")
     @NotNull
     private Boolean shareName = false;
@@ -83,6 +87,16 @@ public class Donation extends DatabaseItem {
 
     @Column(name = "sort_order")
     private Integer sortOrder;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "disbursement_approval_id")
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "disbursement_approval")
+    private DisbursementApproval disbursementApproval;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "payment_report_id")
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "payment_reports")
+    private PaymentReport paymentReport;
 
     public Donation() {
     }
@@ -133,6 +147,14 @@ public class Donation extends DatabaseItem {
 
     public void setDesignation(String designation) {
         this.designation = designation;
+    }
+
+    public Gift getGift() {
+        return gift;
+    }
+
+    public void setGift(Gift gift) {
+        this.gift = gift;
     }
 
     public Boolean getShareName() {
@@ -237,5 +259,21 @@ public class Donation extends DatabaseItem {
 
     public void setSortOrder(Integer sortOrder) {
         this.sortOrder = sortOrder;
+    }
+
+    public DisbursementApproval getDisbursementApproval() {
+        return disbursementApproval;
+    }
+
+    public void setDisbursementApproval(DisbursementApproval disbursementApproval) {
+        this.disbursementApproval = disbursementApproval;
+    }
+
+    public PaymentReport getPaymentReport() {
+        return paymentReport;
+    }
+
+    public void setPaymentReport(PaymentReport paymentReport) {
+        this.paymentReport = paymentReport;
     }
 }

@@ -14,7 +14,13 @@ public class OrderInfo {
     Integer orderId;
     Integer vendorId;
     String vendorName;
+    OrderStatus orderStatus;
+    OrderSource orderSource;
     Date completedDate;
+    String referenceCode;
+    String batchReferenceCode;
+    String merchantReferenceCode;
+    String trackingNumber;
     String orderExternalId;
     BigDecimal amount;
     BigDecimal amountCharged;
@@ -24,9 +30,9 @@ public class OrderInfo {
     String donorFirstName;
     String donorLastName;
 
-
     public OrderInfo(Integer orderId,
                      Integer vendorId, String vendorName,
+                     OrderStatus orderStatus, OrderSource orderSource,
                      Date completedDate, String orderExternalId,
                      BigDecimal amount, BigDecimal amountCharged,
                      Integer donorId, Donor.Type donorType, String donorEmailAddress,
@@ -34,7 +40,13 @@ public class OrderInfo {
         this.orderId = orderId;
         this.vendorId = vendorId;
         this.vendorName = vendorName;
+        this.orderStatus = orderStatus;
+        this.orderSource = orderSource;
         this.completedDate = completedDate;
+        this.referenceCode = "R--";
+        this.batchReferenceCode = "B--";
+        this.merchantReferenceCode = "M--";
+        this.trackingNumber = "T--";
         this.orderExternalId = orderExternalId;
         this.amount = amount;
         this.amountCharged = amountCharged;
@@ -69,12 +81,60 @@ public class OrderInfo {
         this.vendorName = vendorName;
     }
 
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public OrderSource getOrderSource() {
+        return orderSource;
+    }
+
+    public void setOrderSource(OrderSource orderSource) {
+        this.orderSource = orderSource;
+    }
+
     public Date getCompletedDate() {
         return completedDate;
     }
 
     public void setCompletedDate(Date completedDate) {
         this.completedDate = completedDate;
+    }
+
+    public String getReferenceCode() {
+        return referenceCode;
+    }
+
+    public void setReferenceCode(String referenceCode) {
+        this.referenceCode = referenceCode;
+    }
+
+    public String getBatchReferenceCode() {
+        return batchReferenceCode;
+    }
+
+    public void setBatchReferenceCode(String batchReferenceCode) {
+        this.batchReferenceCode = batchReferenceCode;
+    }
+
+    public String getMerchantReferenceCode() {
+        return merchantReferenceCode;
+    }
+
+    public void setMerchantReferenceCode(String merchantReferenceCode) {
+        this.merchantReferenceCode = merchantReferenceCode;
+    }
+
+    public String getTrackingNumber() {
+        return trackingNumber;
+    }
+
+    public void setTrackingNumber(String trackingNumber) {
+        this.trackingNumber = trackingNumber;
     }
 
     public String getOrderExternalId() {

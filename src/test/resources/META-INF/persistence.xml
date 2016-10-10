@@ -5,9 +5,12 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
         <class>org.justgive.model.Charity</class>
+        <class>org.justgive.model.DisbursementApproval</class>
         <class>org.justgive.model.Donation</class>
         <class>org.justgive.model.Donor</class>
+        <class>org.justgive.model.Gift</class>
         <class>org.justgive.model.Order</class>
+        <class>org.justgive.model.PaymentReport</class>
         <class>org.justgive.model.Vendor</class>
 
         <properties>

@@ -119,9 +119,6 @@ public class DonationTestCase extends BaseDatabaseTestCase {
     @Test
     public void basicReportFetch() {
         try {
-            System.out.println("begin basicReportFetch");
-
-            // Set up the criteria
             EntityManager em = DatabaseItemManager.getInstance().getDatabase().getEntityManager();
 
             List<Predicate> predList = new ArrayList<Predicate>();
@@ -134,6 +131,8 @@ public class DonationTestCase extends BaseDatabaseTestCase {
             Join donor = order.join("donor", JoinType.LEFT);
             Join vendor = order.join("vendor", JoinType.LEFT);
             Join charity = donation.join("charity", JoinType.INNER);
+            Join gift = donation.join("gift", JoinType.LEFT);
+            Join paymentReport = donation.join("paymentReport", JoinType.INNER);
 
             predList.add(
                     cb.equal(order.get("orderStatus"), OrderStatus.Completed));
@@ -143,15 +142,18 @@ public class DonationTestCase extends BaseDatabaseTestCase {
 
             criteria.multiselect(donation.get("id"),
                     vendor.get("id"), vendor.get("name"),
-                    order.get("id"), order.get("completedDate"), order.get("externalId"),
+                    order.get("id"), order.get("orderStatus"), order.get("completedDate"),
+                    order.get("externalId"),
                     donor.get("id"), donor.get("type"), donor.get("emailAddress"),
                     donor.get("firstName"), donor.get("lastName"),
                     donor.get("city"), donor.get("state"), donor.get("zip"),
                     charity.get("id"), charity.get("name"), charity.get("externalId"),
                     donation.get("amount"), donation.get("designation"),
+                    gift.get("recipientName"), gift.get("memorialName"),
                     donation.get("amountDisbursed"), donation.get("processingCharge"),
                     donation.get("points"), donation.get("pointsWeight"),
-                    donation.get("shareName"), donation.get("shareEmail"), donation.get("shareAddress"));
+                    donation.get("shareName"), donation.get("shareEmail"), donation.get("shareAddress"),
+                    donation.get("certificateID"), paymentReport.get("id"));
 
             criteria.where(predArray);
 
@@ -163,13 +165,11 @@ public class DonationTestCase extends BaseDatabaseTestCase {
             List<DonationInfo> donationInfos = query.getResultList();
 
             for (DonationInfo donationInfo : donationInfos) {
-                System.out.println(donationInfo.getCompletedDate() + ": " +
+                System.out.println(donationInfo.getOrderCompletedDate() + ": " +
                         donationInfo.getDonorFirstName() + " " + donationInfo.getDonorLastName() + " " +
                         donationInfo.getCharityName() + " " + donationInfo.getAmount());
                 assertTrue(donationInfo.getAmount() >= 0.0);
             }
-
-            System.out.println("end basicReportFetch");
         } catch (Exception e) {
             e.printStackTrace();
             fail("basicReportFetch failed");

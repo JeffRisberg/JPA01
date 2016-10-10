@@ -69,9 +69,6 @@ public class OrderTestCase extends BaseDatabaseTestCase {
     @Test
     public void basicReportFetch() {
         try {
-            System.out.println("begin basicReportFetch");
-
-            // Set up the criteria
             EntityManager em = DatabaseItemManager.getInstance().getDatabase().getEntityManager();
 
             List<Predicate> predList = new ArrayList<Predicate>();
@@ -91,6 +88,7 @@ public class OrderTestCase extends BaseDatabaseTestCase {
 
             criteria.multiselect(order.get("id"),
                     vendor.get("id"), vendor.get("name"),
+                    order.get("orderStatus"), order.get("orderSource"),
                     order.get("completedDate"), order.get("externalId"),
                     order.get("amount"), order.get("amountCharged"),
                     donor.get("id"), donor.get("type"), donor.get("emailAddress"),
@@ -108,8 +106,6 @@ public class OrderTestCase extends BaseDatabaseTestCase {
             for (OrderInfo orderInfo : orderInfos) {
                 System.out.println(orderInfo.getCompletedDate() + ": ");
             }
-
-            System.out.println("end basicReportFetch");
         } catch (Exception e) {
             e.printStackTrace();
             fail("basicReportFetch failed");
