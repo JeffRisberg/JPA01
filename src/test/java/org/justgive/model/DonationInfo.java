@@ -15,6 +15,7 @@ public class DonationInfo {
     Date completedDate;
     String orderExternalId;
     Integer donorId;
+    Donor.Type donorType;
     String donorEmailAddress;
     String donorFirstName;
     String donorLastName;
@@ -37,7 +38,7 @@ public class DonationInfo {
     public DonationInfo(Integer donationId,
                         Integer vendorId, String vendorName,
                         Integer orderId, Date completedDate, String orderExternalId,
-                        Integer donorId, String donorEmailAddress, String donorFirstName, String donorLastName,
+                        Integer donorId, Donor.Type donorType, String donorEmailAddress, String donorFirstName, String donorLastName,
                         String donorCity, String donorState, String donorZip,
                         Integer charityId, String charityName, String charityExternalId,
                         Float amount, String designation,
@@ -51,6 +52,7 @@ public class DonationInfo {
         this.completedDate = completedDate;
         this.orderExternalId = orderExternalId;
         this.donorId = donorId;
+        this.donorType = donorType;
         this.donorEmailAddress = donorEmailAddress;
         this.donorFirstName = donorFirstName;
         this.donorLastName = donorLastName;
@@ -125,6 +127,14 @@ public class DonationInfo {
 
     public void setDonorId(Integer donorId) {
         this.donorId = donorId;
+    }
+
+    public Donor.Type getDonorType() {
+        return donorType;
+    }
+
+    public void setDonorType(Donor.Type donorType) {
+        this.donorType = donorType;
     }
 
     public String getDonorEmailAddress() {

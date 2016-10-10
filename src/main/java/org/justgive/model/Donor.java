@@ -1,8 +1,6 @@
 package org.justgive.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -15,6 +13,11 @@ import java.util.Date;
 @Entity
 @Table(name = "donors")
 public class Donor extends AbstractUser {
+
+    public enum Type {
+        Guest,
+        Registered
+    }
 
     @Column(name = "email_address")
     private String emailAddress;
@@ -44,6 +47,10 @@ public class Donor extends AbstractUser {
     @Column(name = "zip")
     @Size(max = 15)
     private String zip = "";
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
+    private Type type;
 
     public Donor() {
 
@@ -111,5 +118,13 @@ public class Donor extends AbstractUser {
 
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 }
