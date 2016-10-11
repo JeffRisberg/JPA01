@@ -62,6 +62,15 @@ public class Order extends DatedDatabaseItem {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     protected Set<GiftCertificateRedemption> giftCertRedemptions = new HashSet<>();
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Fee> fees = new ArrayList<>();
+
+    @Column(name = "reference_code")
+    private String referenceCode;
+
+    @Column(name = "payment_code")
+    private String payPalReferenceCode;
+
     public Order() {
     }
 
@@ -143,5 +152,25 @@ public class Order extends DatedDatabaseItem {
 
     public void setProcessingCharges(BigDecimal processingCharges) {
         this.processingCharges = processingCharges;
+    }
+
+    public List<GiftCertificate> getGiftCertsToBuy() {
+        return giftCertsToBuy;
+    }
+
+    public Set<GiftCertificateRedemption> getGiftCertRedemptions() {
+        return giftCertRedemptions;
+    }
+
+    public List<Fee> getFees() {
+        return fees;
+    }
+
+    public String getReferenceCode() {
+        return referenceCode;
+    }
+
+    public String getPayPalReferenceCode() {
+        return payPalReferenceCode;
     }
 }

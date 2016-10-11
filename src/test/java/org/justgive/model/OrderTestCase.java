@@ -84,6 +84,7 @@ public class OrderTestCase extends BaseDatabaseTestCase {
             Join donations = order.join("donations", JoinType.LEFT);
             Join gcProducts = order.join("giftCertsToBuy", JoinType.LEFT);
             Join gcRedemptions = order.join("giftCertRedemptions", JoinType.LEFT);
+            Join fees = order.join("fees", JoinType.LEFT);
 
             predList.add(
                     cb.equal(order.get("orderStatus"), OrderStatus.Completed));
@@ -94,11 +95,14 @@ public class OrderTestCase extends BaseDatabaseTestCase {
             criteria.multiselect(order.get("id"),
                     vendor.get("id"), vendor.get("name"),
                     order.get("orderStatus"), order.get("orderSource"),
-                    order.get("completedDate"), order.get("externalId"),
+                    order.get("completedDate"),
+                    order.get("referenceCode"), order.get("payPalReferenceCode"),
+                    order.get("externalId"),
                     order.get("amount"), order.get("amountCharged"),
                     cb.sum((Expression<Integer>) donations.get("points")),
                     cb.sum((Expression<BigDecimal>) gcProducts.get("initialAmount")),
                     cb.sum((Expression<BigDecimal>) gcRedemptions.get("amountRedeemed")),
+                    cb.sum((Expression<BigDecimal>) fees.get("amount")),
                     cb.count((Expression<Integer>) donations),
                     donor.get("id"), donor.get("type"), donor.get("emailAddress"),
                     donor.get("firstName"), donor.get("lastName"));
@@ -106,7 +110,9 @@ public class OrderTestCase extends BaseDatabaseTestCase {
             criteria.groupBy(order.get("id"),
                     vendor.get("id"), vendor.get("name"),
                     order.get("orderStatus"), order.get("orderSource"),
-                    order.get("completedDate"), order.get("externalId"),
+                    order.get("completedDate"),
+                    order.get("referenceCode"), order.get("payPalReferenceCode"),
+                    order.get("externalId"),
                     order.get("amount"), order.get("amountCharged"),
                     donor.get("id"), donor.get("type"), donor.get("emailAddress"),
                     donor.get("firstName"), donor.get("lastName"));
@@ -121,9 +127,12 @@ public class OrderTestCase extends BaseDatabaseTestCase {
             List<OrderInfo> orderInfos = query.getResultList();
 
             for (OrderInfo orderInfo : orderInfos) {
-                System.out.println(orderInfo.getCompletedDate() + ": " + orderInfo.getAmount());
-                System.out.println("numDonations " + orderInfo.getNumDonations());
-                System.out.println("totalRedemptions " + orderInfo.getTotalRedemptions());
+                System.out.println(orderInfo.getCompletedDate() + ": id=" + orderInfo.getOrderId());
+                System.out.println("  numDonations " + orderInfo.getNumDonations());
+                System.out.println("  amount " + orderInfo.getAmount());
+                System.out.println("  totalRedemptions " + orderInfo.getTotalRedemptions());
+                System.out.println("  totalFees " + orderInfo.getTotalFees());
+                assertTrue(orderInfo.getNumDonations() >= 0);
                 assertTrue(orderInfo.getAmount().doubleValue() >= 0.0);
             }
         } catch (Exception e) {

@@ -132,7 +132,8 @@ public class DonationTestCase extends BaseDatabaseTestCase {
             Join vendor = order.join("vendor", JoinType.LEFT);
             Join charity = donation.join("charity", JoinType.INNER);
             Join gift = donation.join("gift", JoinType.LEFT);
-            Join paymentReport = donation.join("paymentReport", JoinType.INNER);
+            Join disbursementApproval = donation.join("disbursementApproval", JoinType.LEFT);
+            Join paymentReport = donation.join("paymentReport", JoinType.LEFT);
 
             predList.add(
                     cb.equal(order.get("orderStatus"), OrderStatus.Completed));
@@ -142,8 +143,9 @@ public class DonationTestCase extends BaseDatabaseTestCase {
 
             criteria.multiselect(donation.get("id"),
                     vendor.get("id"), vendor.get("name"),
-                    order.get("id"), order.get("orderStatus"), order.get("completedDate"),
-                    order.get("externalId"),
+                    order.get("id"),
+                    order.get("orderStatus"), order.get("orderSource"),
+                    order.get("completedDate"), order.get("externalId"),
                     donor.get("id"), donor.get("type"), donor.get("emailAddress"),
                     donor.get("firstName"), donor.get("lastName"),
                     donor.get("city"), donor.get("state"), donor.get("zip"),
@@ -153,7 +155,8 @@ public class DonationTestCase extends BaseDatabaseTestCase {
                     donation.get("amountDisbursed"), donation.get("processingCharge"),
                     donation.get("points"), donation.get("pointsWeight"),
                     donation.get("shareName"), donation.get("shareEmail"), donation.get("shareAddress"),
-                    donation.get("certificateID"), paymentReport.get("id"));
+                    donation.get("certificateID"), disbursementApproval.get("isApproved"),
+                    paymentReport.get("id"), paymentReport.get("invoiceNumber"), paymentReport.get("checkNumber"));
 
             criteria.where(predArray);
 

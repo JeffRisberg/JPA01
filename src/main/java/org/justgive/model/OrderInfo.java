@@ -1,5 +1,7 @@
 package org.justgive.model;
 
+import org.justgive.model.Donor;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -18,7 +20,7 @@ public class OrderInfo {
     private OrderSource orderSource;
     private Date completedDate;
     private String referenceCode;
-    private String merchantReferenceCode;
+    private String payPalReferenceCode;
     private String claimCode;
     private String orderExternalId;
     private BigDecimal amount = new BigDecimal(0.0);
@@ -26,6 +28,7 @@ public class OrderInfo {
     private Long totalPoints = 0L;
     private BigDecimal totalGiftCertProducts = new BigDecimal(0.0);
     private BigDecimal totalRedemptions = new BigDecimal(0.0);
+    private BigDecimal totalFees = new BigDecimal(0.0);
     private Long numDonations = 0L;
     private Integer donorId;
     private Donor.Type donorType;
@@ -33,12 +36,17 @@ public class OrderInfo {
     private String donorFirstName;
     private String donorLastName;
 
+    public OrderInfo() { // required for this to be a bean
+    }
+
     public OrderInfo(Integer orderId,
                      Integer vendorId, String vendorName,
                      OrderStatus orderStatus, OrderSource orderSource,
-                     Date completedDate, String orderExternalId,
+                     Date completedDate, String referenceCode, String payPalReferenceCode, String orderExternalId,
                      BigDecimal amount, BigDecimal amountCharged,
-                     Long totalPoints, BigDecimal totalGiftCertProducts, BigDecimal totalRedemptions, Long numDonations,
+                     Long totalPoints,
+                     BigDecimal totalGiftCertProducts, BigDecimal totalRedemptions, BigDecimal totalFees,
+                     Long numDonations,
                      Integer donorId, Donor.Type donorType, String donorEmailAddress,
                      String donorFirstName, String donorLastName) {
         this.orderId = orderId;
@@ -47,8 +55,8 @@ public class OrderInfo {
         this.orderStatus = orderStatus;
         this.orderSource = orderSource;
         this.completedDate = completedDate;
-        this.referenceCode = "R--";
-        this.merchantReferenceCode = "M--";
+        this.referenceCode = referenceCode;
+        this.payPalReferenceCode = payPalReferenceCode;
         this.claimCode = "C--";
         this.orderExternalId = orderExternalId;
         this.amount = amount;
@@ -56,6 +64,7 @@ public class OrderInfo {
         this.totalPoints = totalPoints;
         this.totalGiftCertProducts = totalGiftCertProducts;
         this.totalRedemptions = totalRedemptions;
+        this.totalFees = totalFees;
         this.numDonations = numDonations;
         this.donorId = donorId;
         this.donorType = donorType;
@@ -92,8 +101,8 @@ public class OrderInfo {
         return referenceCode;
     }
 
-    public String getMerchantReferenceCode() {
-        return merchantReferenceCode;
+    public String getPayPalReferenceCode() {
+        return payPalReferenceCode;
     }
 
     public String getClaimCode() {
@@ -122,6 +131,10 @@ public class OrderInfo {
 
     public BigDecimal getTotalRedemptions() {
         return totalRedemptions;
+    }
+
+    public BigDecimal getTotalFees() {
+        return totalFees;
     }
 
     public Long getNumDonations() {

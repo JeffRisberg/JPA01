@@ -1,5 +1,8 @@
 package org.justgive.model;
 
+import org.justgive.model.OrderSource;
+import org.justgive.model.OrderStatus;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -16,6 +19,7 @@ public class DonationInfo {
     private String vendorName;
     private Integer orderId;
     private OrderStatus orderStatus;
+    private OrderSource orderSource;
     private Date orderCompletedDate;
     private String orderReferenceCode;
     private String orderMerchantReferenceCode;
@@ -43,15 +47,18 @@ public class DonationInfo {
     private Boolean shareEmail;
     private Boolean shareAddress;
     private String certificateID;
-    private Integer paymentReportId;
     private Boolean disbursementApproved;
+    private Integer paymentReportId;
     private String invoiceNumber;
     private String checkNumber;
 
+    public DonationInfo() { // required for this to be a bean
+    }
+
     public DonationInfo(Integer donationId,
                         Integer vendorId, String vendorName,
-                        Integer orderId, OrderStatus orderStatus, Date orderCompletedDate,
-                        String orderExternalId,
+                        Integer orderId, OrderStatus orderStatus, OrderSource orderSource,
+                        Date orderCompletedDate, String orderExternalId,
                         Integer donorId, Donor.Type donorType, String donorEmailAddress, String donorFirstName, String donorLastName,
                         String donorCity, String donorState, String donorZip,
                         Integer charityId, String charityName, String charityExternalId,
@@ -60,12 +67,14 @@ public class DonationInfo {
                         Float amountDisbursed, BigDecimal processingCharge,
                         Integer points, Float pointsWeight,
                         Boolean shareName, Boolean shareEmail, Boolean shareAddress,
-                        String certificateID, Integer paymentReportId) {
+                        String certificateID, Boolean disbursementApproved,
+                        Integer paymentReportId, String invoiceNumber, String checkNumber) {
         this.donationId = donationId;
         this.vendorId = vendorId;
         this.vendorName = vendorName;
         this.orderId = orderId;
         this.orderStatus = orderStatus;
+        this.orderSource = orderSource;
         this.orderCompletedDate = orderCompletedDate;
         this.orderReferenceCode = "---";
         this.orderMerchantReferenceCode = "---";
@@ -93,10 +102,10 @@ public class DonationInfo {
         this.shareEmail = shareEmail;
         this.shareAddress = shareAddress;
         this.certificateID = certificateID;
+        this.disbursementApproved = disbursementApproved;
         this.paymentReportId = paymentReportId;
-        this.disbursementApproved = false;
-        this.invoiceNumber = "N/A";
-        this.checkNumber = "N/A";
+        this.invoiceNumber = invoiceNumber;
+        this.checkNumber = checkNumber;
     }
 
     public Integer getDonationId() {
@@ -117,6 +126,10 @@ public class DonationInfo {
 
     public OrderStatus getOrderStatus() {
         return orderStatus;
+    }
+
+    public OrderSource getOrderSource() {
+        return orderSource;
     }
 
     public Date getOrderCompletedDate() {

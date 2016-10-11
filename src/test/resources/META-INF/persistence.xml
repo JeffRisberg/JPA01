@@ -8,6 +8,8 @@
         <class>org.justgive.model.DisbursementApproval</class>
         <class>org.justgive.model.Donation</class>
         <class>org.justgive.model.Donor</class>
+        <class>org.justgive.model.Fee</class>
+        <class>org.justgive.model.FeeType</class>
         <class>org.justgive.model.Gift</class>
         <class>org.justgive.model.GiftCertificate</class>
         <class>org.justgive.model.GiftCertificateRedemption</class>
