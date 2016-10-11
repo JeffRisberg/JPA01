@@ -98,7 +98,8 @@ public class OrderTestCase extends BaseDatabaseTestCase {
                     order.get("completedDate"),
                     order.get("referenceCode"), order.get("payPalReferenceCode"),
                     order.get("externalId"),
-                    order.get("amount"), order.get("amountCharged"),
+                    order.get("amountCharged"),
+                    cb.sum((Expression<BigDecimal>) donations.get("amount")),
                     cb.sum((Expression<Integer>) donations.get("points")),
                     cb.sum((Expression<BigDecimal>) gcProducts.get("initialAmount")),
                     cb.sum((Expression<BigDecimal>) gcRedemptions.get("amountRedeemed")),
@@ -113,7 +114,7 @@ public class OrderTestCase extends BaseDatabaseTestCase {
                     order.get("completedDate"),
                     order.get("referenceCode"), order.get("payPalReferenceCode"),
                     order.get("externalId"),
-                    order.get("amount"), order.get("amountCharged"),
+                    order.get("amountCharged"),
                     donor.get("id"), donor.get("type"), donor.get("emailAddress"),
                     donor.get("firstName"), donor.get("lastName"));
 
@@ -128,12 +129,15 @@ public class OrderTestCase extends BaseDatabaseTestCase {
 
             for (OrderInfo orderInfo : orderInfos) {
                 System.out.println(orderInfo.getCompletedDate() + ": id=" + orderInfo.getOrderId());
+                System.out.println("  amountCharged " + orderInfo.getAmountCharged());
                 System.out.println("  numDonations " + orderInfo.getNumDonations());
-                System.out.println("  amount " + orderInfo.getAmount());
+                System.out.println("  totalDonations " + orderInfo.getTotalDonations());
+                System.out.println("  totalPoints " + orderInfo.getTotalPoints());
                 System.out.println("  totalRedemptions " + orderInfo.getTotalRedemptions());
                 System.out.println("  totalFees " + orderInfo.getTotalFees());
+                assertTrue(orderInfo.getAmountCharged().doubleValue() >= 0.0);
                 assertTrue(orderInfo.getNumDonations() >= 0);
-                assertTrue(orderInfo.getAmount().doubleValue() >= 0.0);
+                assertTrue(orderInfo.getTotalDonations().doubleValue() >= 0.0);
             }
         } catch (Exception e) {
             e.printStackTrace();

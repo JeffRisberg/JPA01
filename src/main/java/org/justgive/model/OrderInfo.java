@@ -23,8 +23,8 @@ public class OrderInfo {
     private String payPalReferenceCode;
     private String claimCode;
     private String orderExternalId;
-    private BigDecimal amount = new BigDecimal(0.0);
     private BigDecimal amountCharged = new BigDecimal(0.0);
+    private Double totalDonations = new Double(0.0);
     private Long totalPoints = 0L;
     private BigDecimal totalGiftCertProducts = new BigDecimal(0.0);
     private BigDecimal totalRedemptions = new BigDecimal(0.0);
@@ -43,8 +43,7 @@ public class OrderInfo {
                      Integer vendorId, String vendorName,
                      OrderStatus orderStatus, OrderSource orderSource,
                      Date completedDate, String referenceCode, String payPalReferenceCode, String orderExternalId,
-                     BigDecimal amount, BigDecimal amountCharged,
-                     Long totalPoints,
+                     BigDecimal amountCharged, Double totalDonations, Long totalPoints,
                      BigDecimal totalGiftCertProducts, BigDecimal totalRedemptions, BigDecimal totalFees,
                      Long numDonations,
                      Integer donorId, Donor.Type donorType, String donorEmailAddress,
@@ -59,8 +58,8 @@ public class OrderInfo {
         this.payPalReferenceCode = payPalReferenceCode;
         this.claimCode = "C--";
         this.orderExternalId = orderExternalId;
-        this.amount = amount;
         this.amountCharged = amountCharged;
+        this.totalDonations = totalDonations;
         this.totalPoints = totalPoints;
         this.totalGiftCertProducts = totalGiftCertProducts;
         this.totalRedemptions = totalRedemptions;
@@ -113,12 +112,12 @@ public class OrderInfo {
         return orderExternalId;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
     public BigDecimal getAmountCharged() {
         return amountCharged;
+    }
+
+    public Double getTotalDonations() {
+        return totalDonations;
     }
 
     public Long getTotalPoints() {
