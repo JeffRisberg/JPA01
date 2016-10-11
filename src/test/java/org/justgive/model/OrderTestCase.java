@@ -7,6 +7,7 @@ import org.justgive.database.DatabaseItemManager;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.criteria.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,6 +80,9 @@ public class OrderTestCase extends BaseDatabaseTestCase {
             Root<Order> order = criteria.from(Order.class);
             Join donor = order.join("donor", JoinType.LEFT);
             Join vendor = order.join("vendor", JoinType.LEFT);
+            Join donations = order.join("donations", JoinType.LEFT);
+            Join gcProducts = order.join("giftCertsToBuy", JoinType.LEFT);
+            Join gcRedemptions = order.join("giftCertRedemptions", JoinType.LEFT);
 
             predList.add(
                     cb.equal(order.get("orderStatus"), OrderStatus.Completed));
@@ -87,6 +91,18 @@ public class OrderTestCase extends BaseDatabaseTestCase {
             predList.toArray(predArray);
 
             criteria.multiselect(order.get("id"),
+                    vendor.get("id"), vendor.get("name"),
+                    order.get("orderStatus"), order.get("orderSource"),
+                    order.get("completedDate"), order.get("externalId"),
+                    order.get("amount"), order.get("amountCharged"),
+                    cb.sum((Expression<Integer>) donations.get("points")),
+                    cb.sum((Expression<BigDecimal>) gcProducts.get("initialAmount")),
+                    cb.sum((Expression<BigDecimal>) gcRedemptions.get("amountRedeemed")),
+                    cb.count((Expression<Integer>) donations),
+                    donor.get("id"), donor.get("type"), donor.get("emailAddress"),
+                    donor.get("firstName"), donor.get("lastName"));
+
+            criteria.groupBy(order.get("id"),
                     vendor.get("id"), vendor.get("name"),
                     order.get("orderStatus"), order.get("orderSource"),
                     order.get("completedDate"), order.get("externalId"),
@@ -104,7 +120,9 @@ public class OrderTestCase extends BaseDatabaseTestCase {
             List<OrderInfo> orderInfos = query.getResultList();
 
             for (OrderInfo orderInfo : orderInfos) {
-                System.out.println(orderInfo.getCompletedDate() + ": ");
+                System.out.println(orderInfo.getCompletedDate() + ": " + orderInfo.getAmount());
+                System.out.println("numDonations " + orderInfo.getNumDonations());
+                System.out.println("totalRedemptions " + orderInfo.getTotalRedemptions());
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -6,9 +6,7 @@ import org.justgive.util.MoneyMath;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * The <i>Order</i> entity.
@@ -56,6 +54,14 @@ public class Order extends DatedDatabaseItem {
 
     @Column(name = "processing_charges")
     private BigDecimal processingCharges = MoneyMath.ZERO;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("initialAmount DESC")
+    private List<GiftCertificate> giftCertsToBuy = new ArrayList<>();
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    protected Set<GiftCertificateRedemption> giftCertRedemptions = new HashSet<>();
+
     public Order() {
     }
 
