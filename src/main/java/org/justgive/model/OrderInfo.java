@@ -21,12 +21,12 @@ public class OrderInfo {
     private String merchantReferenceCode;
     private String claimCode;
     private String orderExternalId;
-    private BigDecimal amount;
-    private BigDecimal amountCharged;
+    private BigDecimal amount = new BigDecimal(0.0);
+    private BigDecimal amountCharged = new BigDecimal(0.0);
     private Long totalPoints = 0L;
     private BigDecimal totalGiftCertProducts = new BigDecimal(0.0);
     private BigDecimal totalRedemptions = new BigDecimal(0.0);
-    private Long numDonations;
+    private Long numDonations = 0L;
     private Integer donorId;
     private Donor.Type donorType;
     private String donorEmailAddress;

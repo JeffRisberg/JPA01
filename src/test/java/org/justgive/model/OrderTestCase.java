@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /**
@@ -123,6 +124,7 @@ public class OrderTestCase extends BaseDatabaseTestCase {
                 System.out.println(orderInfo.getCompletedDate() + ": " + orderInfo.getAmount());
                 System.out.println("numDonations " + orderInfo.getNumDonations());
                 System.out.println("totalRedemptions " + orderInfo.getTotalRedemptions());
+                assertTrue(orderInfo.getAmount().doubleValue() >= 0.0);
             }
         } catch (Exception e) {
             e.printStackTrace();
