@@ -135,9 +135,16 @@ public class OrderTestCase extends BaseDatabaseTestCase {
                 System.out.println("  totalPoints " + orderInfo.getTotalPoints());
                 System.out.println("  totalRedemptions " + orderInfo.getTotalRedemptions());
                 System.out.println("  totalFees " + orderInfo.getTotalFees());
-                assertTrue(orderInfo.getAmountCharged().doubleValue() >= 0.0);
+
                 assertTrue(orderInfo.getNumDonations() >= 0);
-                assertTrue(orderInfo.getTotalDonations().doubleValue() >= 0.0);
+
+                if (orderInfo.getAmountCharged() != null) {
+                    assertTrue(orderInfo.getAmountCharged().doubleValue() >= 0.0);
+                }
+
+                if (orderInfo.getTotalDonations() != null) {
+                    assertTrue(orderInfo.getTotalDonations().doubleValue() >= 0.0);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
