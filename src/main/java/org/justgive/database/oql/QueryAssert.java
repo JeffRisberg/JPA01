@@ -3,10 +3,6 @@ package org.justgive.database.oql;
 import org.justgive.database.DatabaseItem;
 
 /**
- * Created by IntelliJ IDEA.
- * Donor: peter
- * Date: 3/15/13
- * Time: 12:15 PM
  */
 public class QueryAssert<T extends DatabaseItem> extends ClauseAssert {
     QueryAssert(OqlQuery<T> dbItemClause) {

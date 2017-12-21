@@ -7,12 +7,6 @@ import java.util.Map;
 
 /**
  * A wrapper for a Map.
- *
- * Eventually we can add datatyping.
- *
- * Donor: curtis
- * Date: Feb 23, 2009
- * Time: 4:30:50 PM
  */
 public class DBResultRow {
 	// All results are Strings for now

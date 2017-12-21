@@ -37,8 +37,8 @@ import java.util.List;
  *     System.out.println("Name: " + row.get("charityname"));
  * }
  *
- * @author Peter Cowan
- * @since 2011
+ * @author Jeff Risberg
+ * @since 2014
  */
 public class DBQuery<T> {
     protected static Logger jgLog = LoggerFactory.getLogger(DBQuery.class);

@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- * Donor: peter
- * Date: 3/18/13
- * Time: 11:48 AM
  */
 public class QueryAssertAll<T extends DatabaseItem> extends AssertAll<OqlQuery<T>> {
     private boolean whereAll = false;

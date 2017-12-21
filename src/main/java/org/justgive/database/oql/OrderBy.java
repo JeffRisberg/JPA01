@@ -5,10 +5,6 @@ import org.justgive.logger.Logger;
 import org.justgive.logger.LoggerFactory;
 
 /**
- * Created by IntelliJ IDEA.
- * Donor: peter
- * Date: 3/15/13
- * Time: 11:43 AM
  */
 public class OrderBy<T extends DatabaseItem> {
     private static Logger jgLog = LoggerFactory.getLogger(OrderBy.class);

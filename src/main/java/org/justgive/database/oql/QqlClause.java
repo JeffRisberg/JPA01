@@ -8,10 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- * Donor: peter
- * Date: 3/13/13
- * Time: 4:46 PM
  */
 public class QqlClause {
     private static Logger jgLog = LoggerFactory.getLogger(QqlClause.class);

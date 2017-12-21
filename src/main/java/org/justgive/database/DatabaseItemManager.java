@@ -22,8 +22,8 @@ import java.util.List;
  * special occasions where an atomic action or small sequence of actions needs to be
  * executed and committed in a self contained method.
  *
- * @author curtis
- * @since 2008
+ * @author Jeff Risberg
+ * @since 2014
  */
 public class DatabaseItemManager {
     private static Logger jgLog = LoggerFactory.getLogger(DatabaseItemManager.class);

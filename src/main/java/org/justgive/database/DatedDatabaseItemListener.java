@@ -4,7 +4,6 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 /**
- * Created by peter on 1/26/2015.
  */
 public class DatedDatabaseItemListener {
 	@PrePersist

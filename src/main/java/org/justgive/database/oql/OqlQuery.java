@@ -7,10 +7,6 @@ import org.justgive.logger.LoggerFactory;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- * Donor: peter
- * Date: 3/5/13
- * Time: 3:25 PM
  */
 public class OqlQuery<T extends DatabaseItem> extends QqlClause {
     private static Logger jgLog = LoggerFactory.getLogger(OqlQuery.class);

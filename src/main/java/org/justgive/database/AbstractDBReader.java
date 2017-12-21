@@ -7,7 +7,7 @@ import java.util.List;
  * The AbstractDBReader class helps in defining DBReader objects for specific db technologies
  * (such as JPA).
  *
- * @author Jeff, Peter
+ * @author Jeff Risberg
  * @since 10/20/14
  */
 public abstract class AbstractDBReader implements DBReader {
