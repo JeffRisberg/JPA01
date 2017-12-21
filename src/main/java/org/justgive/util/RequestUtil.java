@@ -6,10 +6,6 @@ import org.justgive.logger.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by IntelliJ IDEA.
- * Donor: peter c
- * Date: Feb 11, 2008
- * Time: 12:35:13 PM
  */
 @SuppressWarnings({"deprecation"})
 public class RequestUtil {

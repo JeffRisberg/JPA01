@@ -11,7 +11,7 @@ import java.util.Map;
  * key value can be converted to the primary key of the record.  The reason is that database fetches by primary
  * key are cached by EhCache, which saves a database fetch.
  *
- * @author Jeff Risberg, Peter Cowan
+ * @author Jeff Risberg
  * @since late November 2015
  */
 public class DatabaseItemCache<T extends DatabaseItem> {

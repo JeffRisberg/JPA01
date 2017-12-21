@@ -11,29 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * <!--
- * Copyright 2002 JustGive.org, 312 Sutter st, Suite 410,
- * San Francisco, Ca, 94108, U.S.A.  All Rights Reserved.
- * <p/>
- * This software is the confidential and proprietary information of
- * JustGive.org ("Confidential Information").  You shall not
- * disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with JustGive.
- * <p/>
- * CopyrightVersion 1.0
- * -->
- * <p/>
- * <pre>
- *
  * Takes an ActionURL, or a String to be converted into an ActionURL, and
  * provides mechanism to route the request based on the properties of that
  * object.
  *
  * Action routers are immutable.
- *
- * @author Peter Cowan
- *         </pre>
  */
 public class ActionRouter {
     private static Logger jgLog = LoggerFactory.getLogger(ActionRouter.class);

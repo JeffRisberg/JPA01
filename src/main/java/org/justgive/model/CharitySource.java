@@ -17,9 +17,6 @@ import java.util.Map;
  * 14 | CRA
  * 16 | Private Schools
  * 15 | Public Schools
- *
- * @author Peter Cowan
- * @since probably 2008
  */
 public enum CharitySource {
     Guidestar(2, "Guidestar", true),

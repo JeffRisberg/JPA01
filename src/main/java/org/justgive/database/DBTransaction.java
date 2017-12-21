@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * A DBTransaction is a set of access methods around an entity manager and the current transaction.
  *
- * @author Peter, Jeff
+ * @author Jeff
  * @since late 2014
  */
 public class DBTransaction {

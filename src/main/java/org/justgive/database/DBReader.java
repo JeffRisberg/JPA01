@@ -6,7 +6,7 @@ import java.util.List;
  * The DBReader interface is like DBSession but provides objects for reading, rather than
  * writing back to the database.  Hence, they are detached after being loaded.
  *
- * @author Jeff, Peter
+ * @author Jeff
  * @since 10/20/14
  */
 public interface DBReader {

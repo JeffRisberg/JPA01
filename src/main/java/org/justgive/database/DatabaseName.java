@@ -1,7 +1,6 @@
 package org.justgive.database;
 
 /**
- * Created by petercowan on 2/22/16.
  */
 public class DatabaseName {
     private String name;

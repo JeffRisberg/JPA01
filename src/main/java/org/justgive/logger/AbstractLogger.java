@@ -6,20 +6,6 @@ import java.io.StringWriter;
 import java.io.Writer;
 
 /**
- * Copyright 2011 JustGive.org, 214 Sutter st, Suite #10,
- * San Francisco, Ca, 94808, U.S.A.  All Rights Reserved.
- *
- * This software is the confidential and proprietary information of
- * JustGive.org ("Confidential Information").  You shall not
- * disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with JustGive.
- *
- * CopyrightVersion 1.0
- *
- * -->
- *
- * @author Peter Cowan
  */
 public abstract class AbstractLogger
     implements Logger {

@@ -8,13 +8,8 @@ import org.justgive.logger.LoggingException;
 import java.io.StringWriter;
 
 /**
- * Created by IntelliJ IDEA.
- * Donor: peter c
- * Date: Jan 9, 2008
- * Time: 12:03:38 PM
  */
-public class Log4jLogger
-		extends BaseLogger
+public class Log4jLogger extends BaseLogger
 {
 	private org.apache.log4j.Logger log4jLogger;
 	private static Log4jLevelInit levelInit = new Log4jLevelInit();
