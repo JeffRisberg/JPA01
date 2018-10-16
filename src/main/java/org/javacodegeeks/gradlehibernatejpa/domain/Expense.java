@@ -1,5 +1,6 @@
 package org.javacodegeeks.gradlehibernatejpa.domain;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import java.util.Date;
 
 @Entity
 @DiscriminatorValue("expense")
+@Data
 @Getter
 @Setter
 @NoArgsConstructor

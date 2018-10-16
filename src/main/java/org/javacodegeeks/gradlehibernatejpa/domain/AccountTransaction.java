@@ -10,16 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "account_type")
+@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public abstract class AccountTransaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
