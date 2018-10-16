@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<component name="dataSourceStorage">
-  <data-source source="LOCAL" name="justgive" uuid="573989e0-0a8b-445d-bd21-73ce38eff2ab">
-    <database-info product="PostgreSQL" version="9.3.0" jdbc-version="3.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.0 JDBC3 (build 801)">
-      <identifier-quote-string>&quot;</identifier-quote-string>
-    </database-info>
-    <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact"/>
-  </data-source>
-</component>
