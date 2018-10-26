@@ -5,6 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/gradle-hibernate-jpa.iml" filepath="$PROJECT_DIR$/gradle-hibernate-jpa.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/gradle-hibernate-jpa_main.iml" filepath="$PROJECT_DIR$/.idea/modules/gradle-hibernate-jpa_main.iml" group="gradle-hibernate-jpa" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/gradle-hibernate-jpa_test.iml" filepath="$PROJECT_DIR$/.idea/modules/gradle-hibernate-jpa_test.iml" group="gradle-hibernate-jpa" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jpa01.iml" filepath="$PROJECT_DIR$/.idea/modules/jpa01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jpa01_main.iml" filepath="$PROJECT_DIR$/.idea/modules/jpa01_main.iml" group="jpa01" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jpa01_test.iml" filepath="$PROJECT_DIR$/.idea/modules/jpa01_test.iml" group="jpa01" />
     </modules>
   </component>
 </project>
