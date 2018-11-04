@@ -1,4 +1,4 @@
-package org.javacodegeeks.gradlehibernatejpa.domain;
+package com.company.domain;
 
 import lombok.*;
 

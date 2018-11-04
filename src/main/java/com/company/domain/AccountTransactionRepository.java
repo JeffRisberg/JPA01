@@ -1,4 +1,4 @@
-package org.javacodegeeks.gradlehibernatejpa.domain;
+package com.company.domain;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

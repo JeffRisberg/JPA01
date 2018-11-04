@@ -1,4 +1,4 @@
-package org.javacodegeeks.gradlehibernatejpa.domain;
+package com.company.domain;
 
 import java.util.Date;
 
@@ -11,9 +11,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
