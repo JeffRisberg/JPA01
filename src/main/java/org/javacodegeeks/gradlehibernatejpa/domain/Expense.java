@@ -1,9 +1,6 @@
 package org.javacodegeeks.gradlehibernatejpa.domain;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -12,9 +9,7 @@ import java.util.Date;
 @Entity
 @DiscriminatorValue("expense")
 @Data
-@Getter
-@Setter
-@NoArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 public class Expense extends AccountTransaction {
 
     public Expense(Date date, String description, Double amount) {

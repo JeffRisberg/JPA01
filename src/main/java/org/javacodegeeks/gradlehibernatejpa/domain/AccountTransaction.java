@@ -19,9 +19,6 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "account_type")
 @Data
-@Getter
-@Setter
-@NoArgsConstructor
 public abstract class AccountTransaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

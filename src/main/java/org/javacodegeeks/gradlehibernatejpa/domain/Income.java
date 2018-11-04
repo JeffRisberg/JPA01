@@ -5,17 +5,12 @@ import java.util.Date;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @DiscriminatorValue("income")
 @Data
-@Getter
-@Setter
-@NoArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 public class Income extends AccountTransaction {
 
 	public Income(Date date, String description, Double amount) {
