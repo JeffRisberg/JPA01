@@ -16,7 +16,7 @@ import java.util.List;
 public class Main {
     // Create an EntityManagerFactory when you start the application.
     private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
-            .createEntityManagerFactory("JavaHelps");
+            .createEntityManagerFactory("JPA01");
 
     public static void main(String[] args) {
 
