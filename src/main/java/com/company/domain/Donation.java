@@ -14,6 +14,7 @@ public class Donation {
 
     @Id
     @Column(name = "id", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(name = "created_at", nullable = false)
