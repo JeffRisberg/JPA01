@@ -22,7 +22,7 @@
             <!-- The database password -->
             <property name="javax.persistence.jdbc.password" value="123456" />
 
-            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
         </properties>
     </persistence-unit>
