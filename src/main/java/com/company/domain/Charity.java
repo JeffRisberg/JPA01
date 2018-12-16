@@ -20,5 +20,4 @@ public class Charity {
 
     @Column(name = "ein", nullable = false)
     private String ein;
-
 }
