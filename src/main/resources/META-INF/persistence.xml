@@ -7,7 +7,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- Entity classes -->
-        <class>com.company.domain.Student</class>
+        <class>com.company.domain.Donor</class>
 
         <properties>
             <!-- The JDBC URL to the database instance -->

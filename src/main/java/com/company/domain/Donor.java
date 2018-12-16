@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author Jeff Risberg
@@ -15,17 +16,17 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "student")
+@Table(name = "donors")
 @Data
 @NoArgsConstructor
-public class Student implements Serializable {
+public class Donor implements Serializable {
     @Id
-    @Column(name = "student_id", unique = true)
+    @Column(name = "id", unique = true)
     private int id;
 
-    @Column(name = "student_name", nullable = false)
-    private String name;
+    @Column(name = "created_at", nullable = false)
+    private Date createdAt;
 
-    @Column(name = "student_age", nullable = false)
-    private int age;
+    @Column(name = "name", nullable = false)
+    private String name;
 }

@@ -1,11 +1,12 @@
 package com.company;
 
-import com.company.domain.Student;
+import com.company.domain.Donor;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Create two Students
+        // Create two Donors
         create(1, "Alice", 22); // Alice will get an id 1
         create(2, "Bob", 20); // Bob will get an id 2
         create(3, "Charlie", 25); // Charlie will get an id 3
@@ -31,11 +32,11 @@ public class Main {
         // Delete the Alice from database
         delete(1);
 
-        // Print all the Students
-        List<Student> students = readAll();
-        if (students != null) {
-            for (Student stu : students) {
-                System.out.println(stu);
+        // Print all the Donors
+        List<Donor> donors = readAll();
+        if (donors != null) {
+            for (Donor donor : donors) {
+                System.out.println(donor);
             }
         }
 
@@ -44,7 +45,7 @@ public class Main {
     }
 
     /**
-     * Create a new Student.
+     * Create a new Donor.
      *
      * @param name
      * @param age
@@ -60,14 +61,14 @@ public class Main {
             // Begin the transaction
             transaction.begin();
 
-            // Create a new Student object
-            Student stu = new Student();
-            stu.setId(id);
-            stu.setName(name);
-            stu.setAge(age);
+            // Create a new Donor object
+            Donor donor = new Donor();
+            donor.setId(id);
+            donor.setCreatedAt(new Date());
+            donor.setName(name);
 
-            // Save the student object
-            manager.persist(stu);
+            // Save the donor object
+            manager.persist(donor);
 
             // Commit the transaction
             transaction.commit();
@@ -85,13 +86,13 @@ public class Main {
     }
 
     /**
-     * Read all the Students.
+     * Read all the Donors.
      *
-     * @return a List of Students
+     * @return a List of Donors
      */
-    public static List<Student> readAll() {
+    public static List<Donor> readAll() {
 
-        List<Student> students = null;
+        List<Donor> donors = null;
 
         // Create an EntityManager
         EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
@@ -103,8 +104,8 @@ public class Main {
             // Begin the transaction
             transaction.begin();
 
-            // Get a List of Students
-            students = manager.createQuery("SELECT s FROM Student s", Student.class).getResultList();
+            // Get a List of Donors
+            donors = manager.createQuery("SELECT s FROM Donor s", Donor.class).getResultList();
 
             // Commit the transaction
             transaction.commit();
@@ -119,11 +120,11 @@ public class Main {
             // Close the EntityManager
             manager.close();
         }
-        return students;
+        return donors;
     }
 
     /**
-     * Delete the existing Student.
+     * Delete the existing Donor.
      *
      * @param id
      */
@@ -138,11 +139,11 @@ public class Main {
             // Begin the transaction
             transaction.begin();
 
-            // Get the Student object
-            Student stu = manager.find(Student.class, id);
+            // Get the Donor object
+            Donor donor = manager.find(Donor.class, id);
 
-            // Delete the student
-            manager.remove(stu);
+            // Delete the donor
+            manager.remove(donor);
 
             // Commit the transaction
             transaction.commit();
@@ -160,7 +161,7 @@ public class Main {
     }
 
     /**
-     * Update the existing Student.
+     * Update the existing Donor.
      *
      * @param id
      * @param name
@@ -177,14 +178,13 @@ public class Main {
             // Begin the transaction
             transaction.begin();
 
-            // Get the Student object
-            Student stu = manager.find(Student.class, id);
+            // Get the Donor object
+            Donor stu = manager.find(Donor.class, id);
 
             // Change the values
             stu.setName(name);
-            stu.setAge(age);
 
-            // Update the student
+            // Update the donor
             manager.persist(stu);
 
             // Commit the transaction

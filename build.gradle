@@ -14,7 +14,8 @@ repositories {
 }
 
 dependencies {
-	compile 'org.hibernate:hibernate-entitymanager:5.1.1.Final'
+	compile("org.hibernate:hibernate-entitymanager:5.3.7.Final")
 
-	compileOnly('org.projectlombok:lombok:1.18.0')
+	compileOnly("org.projectlombok:lombok:1.18.0")
+	testCompile ("junit:junit:4.12")
 }
