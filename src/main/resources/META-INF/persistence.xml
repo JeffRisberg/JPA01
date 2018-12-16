@@ -8,6 +8,8 @@
 
         <!-- Entity classes -->
         <class>com.company.domain.Donor</class>
+        <class>com.company.domain.Charity</class>
+        <class>com.company.domain.Donation</class>
 
         <properties>
             <!-- The JDBC URL to the database instance -->
@@ -21,6 +23,7 @@
             <property name="javax.persistence.jdbc.password" value="123456" />
 
             <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
         </properties>
     </persistence-unit>
 </persistence>

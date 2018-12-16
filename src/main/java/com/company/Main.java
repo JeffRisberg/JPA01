@@ -13,7 +13,6 @@ import java.util.List;
  * @author Jeff Risberg
  * @since 11/3/17
  */
-
 public class Main {
     // Create an EntityManagerFactory when you start the application.
     private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
@@ -27,7 +26,7 @@ public class Main {
         create(3, "Charlie", 25); // Charlie will get an id 3
 
         // Update the age of Bob using the id
-        upate(2, "Bob", 25);
+        update(2, "Bob", 25);
 
         // Delete the Alice from database
         delete(1);
@@ -124,6 +123,48 @@ public class Main {
     }
 
     /**
+     * Update the existing Donor.
+     *
+     * @param id
+     * @param name
+     * @param age
+     */
+    public static void update(int id, String name, int age) {
+        // Create an EntityManager
+        EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityTransaction transaction = null;
+
+        try {
+            // Get a transaction
+            transaction = manager.getTransaction();
+            // Begin the transaction
+            transaction.begin();
+
+            // Get the Donor object
+            Donor donor = manager.find(Donor.class, id);
+
+            // Change the values
+            donor.setName(name);
+
+            // Update the donor
+            manager.persist(donor);
+
+            // Commit the transaction
+            transaction.commit();
+        } catch (Exception ex) {
+            // If there are any exceptions, roll back the changes
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            // Print the Exception
+            ex.printStackTrace();
+        } finally {
+            // Close the EntityManager
+            manager.close();
+        }
+    }
+
+    /**
      * Delete the existing Donor.
      *
      * @param id
@@ -144,48 +185,6 @@ public class Main {
 
             // Delete the donor
             manager.remove(donor);
-
-            // Commit the transaction
-            transaction.commit();
-        } catch (Exception ex) {
-            // If there are any exceptions, roll back the changes
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            // Print the Exception
-            ex.printStackTrace();
-        } finally {
-            // Close the EntityManager
-            manager.close();
-        }
-    }
-
-    /**
-     * Update the existing Donor.
-     *
-     * @param id
-     * @param name
-     * @param age
-     */
-    public static void upate(int id, String name, int age) {
-        // Create an EntityManager
-        EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        EntityTransaction transaction = null;
-
-        try {
-            // Get a transaction
-            transaction = manager.getTransaction();
-            // Begin the transaction
-            transaction.begin();
-
-            // Get the Donor object
-            Donor stu = manager.find(Donor.class, id);
-
-            // Change the values
-            stu.setName(name);
-
-            // Update the donor
-            manager.persist(stu);
 
             // Commit the transaction
             transaction.commit();
