@@ -1,9 +1,8 @@
 package com.company.domain;
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -22,6 +21,6 @@ public class Charity {
     @Column(name = "ein", nullable = false)
     private String ein;
 
-    @OneToMany(mappedBy="charity")
+    @OneToMany(mappedBy = "charity")
     private List<Donation> donations;
 }

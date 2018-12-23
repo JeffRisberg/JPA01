@@ -32,6 +32,6 @@ public class Donor implements Serializable {
     @Column(name = "age", nullable = false)
     private int age;
 
-    @OneToMany(mappedBy="donor")
+    @OneToMany(mappedBy = "donor")
     private List<Donation> donations;
 }
