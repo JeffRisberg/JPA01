@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Jeff Risberg
@@ -30,4 +31,7 @@ public class Donor implements Serializable {
 
     @Column(name = "age", nullable = false)
     private int age;
+
+    @OneToMany(mappedBy="donor")
+    private List<Donation> donations;
 }

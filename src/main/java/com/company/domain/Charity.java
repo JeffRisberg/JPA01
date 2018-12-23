@@ -4,9 +4,10 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@DiscriminatorValue("charities")
+@Table(name = "charities")
 @Data
 public class Charity {
 
@@ -20,4 +21,7 @@ public class Charity {
 
     @Column(name = "ein", nullable = false)
     private String ein;
+
+    @OneToMany(mappedBy="charity")
+    private List<Donation> donations;
 }
