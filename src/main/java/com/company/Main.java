@@ -21,15 +21,15 @@ public class Main {
     public static void main(String[] args) {
 
         // Create two Donors
-        create("Alice", 22); // Alice will get an id 1
-        create("Bob", 20); // Bob will get an id 2
-        create("Charlie", 25); // Charlie will get an id 3
+        Donor a = create("Alice", 22); // Alice will get an id 1
+        Donor b = create("Bob", 20); // Bob will get an id 2
+        Donor c = create("Charlie", 25); // Charlie will get an id 3
 
         // Update the age of Bob using the id
-        update("Bob", 25);
+        update(b.getId(), "Bob", 25);
 
-        // Delete the Alice from database
-        delete(1);
+        // Delete Alice from database
+        delete(a.getId());
 
         // Print all the Donors
         List<Donor> donors = readAll();
@@ -39,6 +39,12 @@ public class Main {
             }
         }
 
+        // Delete Bob from the database
+        delete(b.getId());
+
+        // Delete Charlie from the database
+        delete(c.getId());
+        
         // NEVER FORGET TO CLOSE THE ENTITY_MANAGER_FACTORY
         ENTITY_MANAGER_FACTORY.close();
     }
@@ -50,6 +56,11 @@ public class Main {
      * @param age
      */
     public static Donor create(String name, int age) {
+        Donor donor = new Donor();
+        donor.setCreatedAt(new Date());
+        donor.setName(name);
+        donor.setAge(age);
+
         // Create an EntityManager
         EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
@@ -59,11 +70,6 @@ public class Main {
             transaction = manager.getTransaction();
             // Begin the transaction
             transaction.begin();
-
-            // Create a new Donor object
-            Donor donor = new Donor();
-            donor.setCreatedAt(new Date());
-            donor.setName(name);
 
             // Save the donor object
             manager.persist(donor);
@@ -81,6 +87,7 @@ public class Main {
             // Close the EntityManager
             manager.close();
         }
+        return donor;
     }
 
     /**
@@ -128,7 +135,7 @@ public class Main {
      * @param name
      * @param age
      */
-    public static void update(int id, String name, int age) {
+    public static void update(long id, String name, int age) {
         // Create an EntityManager
         EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
@@ -139,11 +146,11 @@ public class Main {
             // Begin the transaction
             transaction.begin();
 
-            // Get the Donor object
             Donor donor = manager.find(Donor.class, id);
 
             // Change the values
             donor.setName(name);
+            donor.setAge(age);
 
             // Update the donor
             manager.persist(donor);
@@ -168,7 +175,7 @@ public class Main {
      *
      * @param id
      */
-    public static void delete(int id) {
+    public static void delete(long id) {
         // Create an EntityManager
         EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;

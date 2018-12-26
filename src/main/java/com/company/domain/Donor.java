@@ -18,15 +18,7 @@ import java.util.List;
 @Table(name = "donors")
 @Data
 @NoArgsConstructor
-public class Donor implements Serializable {
-    @Id
-    @Column(name = "id", unique = true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
-    @Column(name = "created_at", nullable = false)
-    private Date createdAt;
-
+public class Donor extends AbstractItem {
     @Column(name = "name", nullable = false)
     private String name;
 

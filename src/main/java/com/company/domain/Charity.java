@@ -9,12 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "charities")
 @Data
-public class Charity {
-
-    @Id
-    @Column(name = "id", unique = true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+public class Charity extends AbstractItem {
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -29,6 +24,7 @@ public class Charity {
         StringBuilder sb = new StringBuilder();
 
         sb.append("Charity[name=" + name);
+        sb.append(", ein=" + ein);
         sb.append("]");
 
         return sb.toString();
