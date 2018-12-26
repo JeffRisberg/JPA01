@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +33,15 @@ public class Donor implements Serializable {
     @Column(name = "age", nullable = false)
     private int age;
 
-    @OneToMany(mappedBy = "donor")
-    private List<Donation> donations;
+    @OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Donation> donations = new ArrayList<Donation>();
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Donor[name="+name);
+        sb.append("]");
+
+        return sb.toString();
+    }
 }

@@ -3,6 +3,7 @@ package com.company.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,6 +22,15 @@ public class Charity {
     @Column(name = "ein", nullable = false)
     private String ein;
 
-    @OneToMany(mappedBy = "charity")
-    private List<Donation> donations;
+    @OneToMany(mappedBy = "charity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Donation> donations = new ArrayList<Donation>();
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Charity[name=" + name);
+        sb.append("]");
+
+        return sb.toString();
+    }
 }

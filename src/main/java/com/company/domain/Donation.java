@@ -23,11 +23,11 @@ public class Donation {
     @Column(name = "amount", nullable = false)
     private Double amount;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "donor_id")
     private Donor donor;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "charity_id")
     private Charity charity;
 }

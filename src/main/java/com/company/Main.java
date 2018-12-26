@@ -21,12 +21,12 @@ public class Main {
     public static void main(String[] args) {
 
         // Create two Donors
-        create(1, "Alice", 22); // Alice will get an id 1
-        create(2, "Bob", 20); // Bob will get an id 2
-        create(3, "Charlie", 25); // Charlie will get an id 3
+        create("Alice", 22); // Alice will get an id 1
+        create("Bob", 20); // Bob will get an id 2
+        create("Charlie", 25); // Charlie will get an id 3
 
         // Update the age of Bob using the id
-        update(2, "Bob", 25);
+        update("Bob", 25);
 
         // Delete the Alice from database
         delete(1);
@@ -49,7 +49,7 @@ public class Main {
      * @param name
      * @param age
      */
-    public static void create(int id, String name, int age) {
+    public static Donor create(String name, int age) {
         // Create an EntityManager
         EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
@@ -62,7 +62,6 @@ public class Main {
 
             // Create a new Donor object
             Donor donor = new Donor();
-            donor.setId(id);
             donor.setCreatedAt(new Date());
             donor.setName(name);
 
