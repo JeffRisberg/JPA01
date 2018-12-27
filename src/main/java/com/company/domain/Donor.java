@@ -1,5 +1,6 @@
 package com.company.domain;
 
+import jdk.nashorn.internal.objects.annotations.Constructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "donors")
+@NoArgsConstructor
 @Data
 public class Donor extends AbstractItem {
     @Column(name = "name", nullable = false)
@@ -25,7 +27,8 @@ public class Donor extends AbstractItem {
     @OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Donation> donations = new ArrayList<Donation>();
 
-    public Donor(String name, int age) {
+    public Donor(Long id, String name, int age) {
+        this.setId(null);
         this.name = name;
         this.age = age;
     }

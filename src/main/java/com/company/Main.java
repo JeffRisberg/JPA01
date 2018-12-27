@@ -5,9 +5,7 @@ import com.company.services.DAO.DonorDAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,9 +23,9 @@ public class Main {
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
 
         // Create two Donors
-        Donor a = donorDAO.create(new Donor("Alice", 22), em); // Alice will get an id 1
-        Donor b = donorDAO.create(new Donor("Bob", 20), em); // Bob will get an id 2
-        Donor c = donorDAO.create(new Donor("Charlie", 25), em); // Charlie will get an id 3
+        Donor a = donorDAO.create(new Donor(null, "Alice", 22), em); // Alice will get an id 1
+        Donor b = donorDAO.create(new Donor(null, "Bob", 20), em); // Bob will get an id 2
+        Donor c = donorDAO.create(new Donor(null, "Charlie", 25), em); // Charlie will get an id 3
 
         // Update the age of Bob using the id
         b.setAge(25);
