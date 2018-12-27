@@ -1,6 +1,7 @@
 package com.company.domain;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,7 +15,19 @@ public class AbstractItem implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "created_at", nullable = false)
-    private Date createdAt;
+    @Column(name = "date_created", nullable = false)
+    private Date dateCreated;
 
+    @Column(name = "last_updated", nullable = true)
+    private Date lastUpdated;
+
+    @PrePersist
+    protected void onCreate() {
+        dateCreated = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        lastUpdated = new Date();
+    }
 }

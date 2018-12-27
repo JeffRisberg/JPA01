@@ -18,8 +18,7 @@ public class BaseDAOImpl implements BaseDAO {
 
     @Override
     public <T> T create(T obj, Class<T> type, EntityManager em) {
-        long id;
-        em.merge(obj);
+        em.persist(obj);
         return obj;
     }
 
