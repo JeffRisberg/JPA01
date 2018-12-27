@@ -13,8 +13,17 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	slf4jVersion = '1.7.25'
+	projectLombokVersion = '1.16.22'
+}
+
 dependencies {
-	compileOnly("org.projectlombok:lombok:1.18.0")
+	compile "org.slf4j:slf4j-api:$slf4jVersion"
+	runtime "org.slf4j:slf4j-simple:$slf4jVersion"
+
+	compile("org.apache.commons:commons-collections4:4.0")
+	compile("org.projectlombok:lombok:$projectLombokVersion")
 
 	compile("org.hibernate:hibernate-entitymanager:5.3.7.Final")
 	compile("mysql:mysql-connector-java:5.1.34")
