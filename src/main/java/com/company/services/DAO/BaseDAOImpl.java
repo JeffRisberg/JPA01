@@ -89,7 +89,6 @@ public class BaseDAOImpl implements BaseDAO {
             Query query = em.createNativeQuery(sql);
             params.entrySet().stream().forEach(entry -> query.setParameter(entry.getKey(), entry.getValue()));
             int updated = query.executeUpdate();
-            log.info("Updated/Deleted by SQL: {}", updated);
             return updated;
         } catch (Exception e) {
             log.error("updateBySQL:: exception", e);
@@ -164,7 +163,6 @@ public class BaseDAOImpl implements BaseDAO {
     @Override
     public <T> Boolean deleteById(Class<T> type, long id, EntityManager em) {
         if (id != 0) {
-            log.info("Deleting object with Id=" + id);
             T obj = getById(type, id, em);
             if (obj != null) {
                 em.remove(obj);
@@ -180,7 +178,6 @@ public class BaseDAOImpl implements BaseDAO {
     @Override
     public <T> Boolean delete(T obj, Class<T> type, EntityManager em) {
         if (obj != null) {
-            log.info("Deleting object");
             em.remove(obj);
             return true;
         } else {

@@ -24,6 +24,7 @@ dependencies {
 
 	compile("org.apache.commons:commons-collections4:4.0")
 	compile("org.projectlombok:lombok:$projectLombokVersion")
+	compile("com.fasterxml:classmate:1.4.0")
 
 	compile("org.hibernate:hibernate-entitymanager:5.3.7.Final")
 	compile("mysql:mysql-connector-java:5.1.34")

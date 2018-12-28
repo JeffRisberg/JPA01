@@ -1,6 +1,8 @@
 package com.company;
 
+import com.company.domain.Charity;
 import com.company.domain.Donor;
+import com.company.services.DAO.CharityDAO;
 import com.company.services.DAO.DonorDAO;
 
 import javax.persistence.EntityManager;
@@ -18,9 +20,9 @@ public class Main {
             .createEntityManagerFactory("JPA01");
 
     public static void main(String[] args) {
-
-        DonorDAO donorDAO = new DonorDAO();
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        DonorDAO donorDAO = new DonorDAO();
+        CharityDAO charityDAO = new CharityDAO();
 
         // Create two Donors
         Donor a = donorDAO.create(new Donor(null, "Alice", 22), em); // Alice will get an id 1
@@ -36,10 +38,8 @@ public class Main {
 
         // Print all the Donors
         List<Donor> donors = donorDAO.listAll(Donor.class, em);
-        if (donors != null) {
-            for (Donor donor : donors) {
-                System.out.println(donor);
-            }
+        for (Donor donor : donors) {
+            System.out.println(donor);
         }
 
         // Delete Bob from the database
@@ -47,6 +47,23 @@ public class Main {
 
         // Delete Charlie from the database
         donorDAO.delete(c.getId(), em);
+
+        // Create a charity
+        Charity redCross = new Charity();
+        redCross.setName("Red Cross");
+        redCross.setEin("57-4444-22343434");
+
+        redCross = charityDAO.create(redCross, em);
+        System.out.println(redCross.getId());
+
+        // Fetch charities
+        List<Charity> charities = charityDAO.listAll(Charity.class, em);
+        for (Charity charity : charities) {
+            System.out.println(charity);
+        }
+
+        // Delete a charity
+        charityDAO.delete(redCross.getId(), em);
 
         // NEVER FORGET TO CLOSE THE ENTITY_MANAGER_FACTORY
         ENTITY_MANAGER_FACTORY.close();
