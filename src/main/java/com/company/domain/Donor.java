@@ -1,6 +1,5 @@
 package com.company.domain;
 
-import jdk.nashorn.internal.objects.annotations.Constructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -37,6 +36,7 @@ public class Donor extends AbstractItem {
         StringBuilder sb = new StringBuilder();
 
         sb.append("Donor[name=" + name);
+        sb.append(", age=" + age);
         sb.append("]");
 
         return sb.toString();
