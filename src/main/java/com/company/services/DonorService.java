@@ -1,5 +1,6 @@
 package com.company.services;
 
+import com.company.common.FilterDesc;
 import com.company.domain.Donor;
 import com.company.domain.Donor;
 import com.company.services.DAO.DonorDAO;
@@ -24,6 +25,12 @@ public class DonorService extends AbstractService<Donor> {
     public List<Donor> getAll(int limit, int offset) {
         final AtomicReference<List<Donor>> td = new AtomicReference<>();
         doWork(em -> td.set(dao.getAll(Donor.class, limit, offset, em)));
+        return td.get();
+    }
+
+    public List<Donor> getByCriteria(List<FilterDesc> filterDescriptions, int limit, int offset) {
+        final AtomicReference<List<Donor>> td = new AtomicReference<>();
+        doWork(em -> td.set(dao.getByCriteria(Donor.class, filterDescriptions, limit, offset, em)));
         return td.get();
     }
 

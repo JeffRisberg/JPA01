@@ -1,6 +1,8 @@
 package com.company.services;
 
+import com.company.common.FilterDesc;
 import com.company.domain.Donation;
+import com.company.domain.Donor;
 import com.company.services.DAO.DonationDAO;
 
 import javax.persistence.Persistence;
@@ -29,6 +31,12 @@ public class DonationService extends AbstractService<Donation> {
     public List<Donation> getAll(int limit, int offset) {
         final AtomicReference<List<Donation>> td = new AtomicReference<>();
         doWork(em -> td.set(dao.getAll(Donation.class, limit, offset, em)));
+        return td.get();
+    }
+
+    public List<Donor> getByCriteria(List<FilterDesc> filterDescriptions, int limit, int offset) {
+        final AtomicReference<List<Donor>> td = new AtomicReference<>();
+        doWork(em -> td.set(dao.getByCriteria(Donor.class, filterDescriptions, limit, offset, em)));
         return td.get();
     }
 

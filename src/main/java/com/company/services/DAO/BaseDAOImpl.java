@@ -1,12 +1,17 @@
 package com.company.services.DAO;
 
+import com.company.common.FilterDesc;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -102,61 +107,63 @@ public class BaseDAOImpl implements BaseDAO {
     /**
      * Use Criteria Builder to execute a SQL By Parameters.
      * <p>
-     * //@param type
-     * //@param filterDescriptions
-     *
+     * @param type
+     * @param filterDescriptions
      * @param em
      * @param <T>
      * @return List of results
      */
-  /*
-  public <T> List<T> getByCriteria
-  (Class<T> type, List<FilterDesc> filterDescriptions, @NonNull EntityManager em) throws Exception {
-    CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-    CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(type);
-    Root<T> root = criteriaQuery.from(type);
-    criteriaQuery.select(root);
+    public <T> List<T> getByCriteria
+    (Class<T> type, List<FilterDesc> filterDescriptions, int limit, int offset, @NonNull EntityManager em) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(type);
+        Root<T> root = criteriaQuery.from(type);
+        criteriaQuery.select(root);
 
-    Predicate p = criteriaBuilder.conjunction();
+        Predicate p = criteriaBuilder.conjunction();
 
-    for (FilterDesc fd : filterDescriptions) {
-      String key = fd.getField();
-      Object value = fd.getValue();
+        for (FilterDesc fd : filterDescriptions) {
+            String key = fd.getField();
+            Object value = fd.getValue();
 
-      if (value == null)
-        continue;
+            if (value == null)
+                continue;
 
-      switch (fd.getOperator()) {
-        case eq:
-          p = criteriaBuilder.and(p, criteriaBuilder.equal(root.get(key), value));
-          break;
-        case like:
-          p = criteriaBuilder.and(p, criteriaBuilder.like(root.get(key), "%" + (String) value + "%"));
-          break;
-        case gt:
-          p = criteriaBuilder.and(p, criteriaBuilder.greaterThan(root.get(key), (Comparable) value));
-          break;
-        case lt:
-          p = criteriaBuilder.and(p, criteriaBuilder.lessThan(root.get(key), (Comparable) value));
-          break;
-        case gte:
-          p = criteriaBuilder.and(p, criteriaBuilder.greaterThanOrEqualTo(root.get(key), (Comparable) value));
-          break;
-        case lte:
-          p = criteriaBuilder.and(p, criteriaBuilder.lessThanOrEqualTo(root.get(key), (Comparable) value));
-          break;
-        case timestamp_gte:
-          p = criteriaBuilder.and(p, criteriaBuilder.greaterThanOrEqualTo(root.get(key), (Timestamp) value));
-          break;
-        case timestamp_lte:
-          p = criteriaBuilder.and(p, criteriaBuilder.lessThanOrEqualTo(root.get(key), (Timestamp) value));
-          break;
-      }
+            switch (fd.getOperator()) {
+                case eq:
+                    p = criteriaBuilder.and(p, criteriaBuilder.equal(root.get(key), value));
+                    break;
+                case like:
+                    p = criteriaBuilder.and(p, criteriaBuilder.like(root.get(key), "%" + (String) value + "%"));
+                    break;
+                case gt:
+                    p = criteriaBuilder.and(p, criteriaBuilder.greaterThan(root.get(key), (Comparable) value));
+                    break;
+                case lt:
+                    p = criteriaBuilder.and(p, criteriaBuilder.lessThan(root.get(key), (Comparable) value));
+                    break;
+                case gte:
+                    p = criteriaBuilder.and(p, criteriaBuilder.greaterThanOrEqualTo(root.get(key), (Comparable) value));
+                    break;
+                case lte:
+                    p = criteriaBuilder.and(p, criteriaBuilder.lessThanOrEqualTo(root.get(key), (Comparable) value));
+                    break;
+                case timestamp_gte:
+                    p = criteriaBuilder.and(p, criteriaBuilder.greaterThanOrEqualTo(root.get(key), (Timestamp) value));
+                    break;
+                case timestamp_lte:
+                    p = criteriaBuilder.and(p, criteriaBuilder.lessThanOrEqualTo(root.get(key), (Timestamp) value));
+                    break;
+            }
+        }
+        criteriaQuery.where(p);
+
+        Query query = em.createQuery(criteriaQuery);
+        if (limit > 0) query.setMaxResults(limit);
+        if (offset > 0) query.setFirstResult(offset);
+
+        return query.getResultList();
     }
-    criteriaQuery.where(p);
-    return em.createQuery(criteriaQuery).getResultList();
-  }
-  */
 
     @Override
     public <T> Boolean update(T obj, EntityManager em) {

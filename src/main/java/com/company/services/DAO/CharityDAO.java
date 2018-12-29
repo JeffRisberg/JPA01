@@ -34,7 +34,7 @@ public class CharityDAO extends BaseDAOImpl {
         try {
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<Charity> criteria = cb.createQuery(Charity.class);
-            Root root = criteria.from(Donor.class);
+            Root root = criteria.from(Charity.class);
             criteria.where(cb.equal(root.get("name"), name));
             List<Charity> results = em.createQuery(criteria).getResultList();
             return results;
