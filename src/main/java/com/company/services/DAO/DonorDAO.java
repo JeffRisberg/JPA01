@@ -1,5 +1,6 @@
 package com.company.services.DAO;
 
+import com.company.domain.Charity;
 import com.company.domain.Donor;
 import lombok.NonNull;
 
@@ -18,6 +19,11 @@ public class DonorDAO extends BaseDAOImpl {
 
   public Donor getById(Long id, @NonNull EntityManager em) {
     return super.getById(Donor.class, id, em);
+  }
+
+
+  public Donor getByName(String name, @NonNull EntityManager em) {
+    return null;
   }
 
   public Boolean delete(Long id, @NonNull EntityManager em) {

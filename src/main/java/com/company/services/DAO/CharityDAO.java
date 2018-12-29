@@ -20,6 +20,10 @@ public class CharityDAO extends BaseDAOImpl {
         return super.getById(Charity.class, id, em);
     }
 
+    public Charity getByName(String name, @NonNull EntityManager em) {
+        return null;
+    }
+
     public Boolean delete(Long id, @NonNull EntityManager em) {
         return super.deleteById(Charity.class, id, em);
     }

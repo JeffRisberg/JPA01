@@ -15,7 +15,6 @@ import java.util.function.Consumer;
 public class AbstractService {
 
     static public EntityManagerFactory emf;
-    // = Persistence.createEntityManagerFactory("jersey02");
 
     public void doWork(Consumer<EntityManager> consumer) {
         EntityManager em = emf.createEntityManager();
