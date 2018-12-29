@@ -22,9 +22,9 @@ public class CharityService extends AbstractService {
     }
 
     public Charity create(Charity Charity) {
-        final AtomicReference<Charity> CharityId = new AtomicReference<>();
-        doWork(em -> CharityId.set(dao.create(Charity, em)));
-        return CharityId.get();
+        final AtomicReference<Charity> created = new AtomicReference<>();
+        doWork(em -> created.set(dao.create(Charity, em)));
+        return created.get();
     }
 
     public boolean update(Charity updatedEntity) {

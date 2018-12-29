@@ -154,6 +154,7 @@ public class BaseDAOImpl implements BaseDAO {
     return em.createQuery(criteriaQuery).getResultList();
   }
   */
+
     @Override
     public <T> Boolean update(T obj, EntityManager em) {
         em.persist(obj);

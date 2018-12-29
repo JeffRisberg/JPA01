@@ -22,9 +22,9 @@ public class DonorService extends AbstractService {
     }
 
     public Donor create(Donor Donor) {
-        final AtomicReference<Donor> DonorId = new AtomicReference<>();
-        doWork(em -> DonorId.set(dao.create(Donor, em)));
-        return DonorId.get();
+        final AtomicReference<Donor> created = new AtomicReference<>();
+        doWork(em -> created.set(dao.create(Donor, em)));
+        return created.get();
     }
 
     public boolean update(Donor updatedEntity) {
