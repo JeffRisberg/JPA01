@@ -4,27 +4,34 @@ import com.company.domain.Charity;
 import com.company.domain.Donor;
 import com.company.services.DAO.CharityDAO;
 
+import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class CharityService extends AbstractService {
+public class CharityService extends AbstractService<Charity> {
     private static CharityDAO dao = new CharityDAO();
 
     public CharityService() {
         this.emf = Persistence.createEntityManagerFactory("JPA01");
-    }
-    
-    public Charity getById(Long id) {
-        final AtomicReference<Charity> td = new AtomicReference<>();
-        doWork(em -> td.set(dao.getById(id, em)));
-        return td.get();
     }
 
     public Charity create(Charity Charity) {
         final AtomicReference<Charity> created = new AtomicReference<>();
         doWork(em -> created.set(dao.create(Charity, em)));
         return created.get();
+    }
+
+    public Charity getById(Long id) {
+        final AtomicReference<Charity> td = new AtomicReference<>();
+        doWork(em -> td.set(dao.getById(id, em)));
+        return td.get();
+    }
+
+    public List<Charity> getAll(int limit, int offset) {
+        final AtomicReference<List<Charity>> td = new AtomicReference<>();
+        doWork(em -> td.set(dao.getAll(Charity.class, limit, offset, em)));
+        return td.get();
     }
 
     public boolean update(Charity updatedEntity) {
@@ -39,15 +46,9 @@ public class CharityService extends AbstractService {
         return deleted.get();
     }
 
-    public Charity getByName(String CharityName) {
-        final AtomicReference<Charity> td = new AtomicReference<>();
-        doWork(em -> td.set(dao.getByName(CharityName, em)));
-        return td.get();
-    }
-
-    public List<Charity> getCharities(int limit, int offset) {
+    public List<Charity> getByName(String CharityName) {
         final AtomicReference<List<Charity>> td = new AtomicReference<>();
-        doWork(em -> td.set(dao.listAll(Charity.class, em)));
+        doWork(em -> td.set(dao.getByName(CharityName, em)));
         return td.get();
     }
 }

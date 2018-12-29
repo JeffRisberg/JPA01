@@ -37,11 +37,14 @@ public class BaseDAOImpl implements BaseDAO {
     }
 
     @Override
-    public <T> List<T> listAll(Class<T> type, EntityManager em) {
+    public <T> List<T> getAll(Class<T> type, int limit, int offset, EntityManager em) {
         try {
             CriteriaQuery<T> criteria = em.getCriteriaBuilder().createQuery(type);
             criteria.select(criteria.from(type));
-            List<T> objects = em.createQuery(criteria).getResultList();
+            Query query = em.createQuery(criteria);
+            if (limit > 0) query.setMaxResults(limit);
+            if (offset > 0) query.setFirstResult(offset);
+            List<T> objects = query.getResultList();
             return objects;
         } catch (Exception e) {
             return new ArrayList();

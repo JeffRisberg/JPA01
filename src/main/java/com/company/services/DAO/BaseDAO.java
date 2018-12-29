@@ -23,5 +23,5 @@ public interface BaseDAO {
 
     <T> Boolean delete(T obj, Class<T> type, EntityManager em);
 
-    <T> List<T> listAll(Class<T> type, EntityManager em);
+    <T> List<T> getAll(Class<T> type, int limit, int offset, EntityManager em);
 }

@@ -22,7 +22,7 @@ public class BasicTests {
         Charity amCancer = charityService.create(new Charity("American Cancer Soc", "22-8435678"));
 
         // Fetch charities
-        List<Charity> charities1 = charityService.getCharities(999, 0);
+        List<Charity> charities1 = charityService.getAll(999, 0);
         assertTrue(charities1.size() == 2);
 
         // Delete two charities
@@ -30,7 +30,7 @@ public class BasicTests {
         charityService.delete(amCancer.getId());
 
         // Fetch charities
-        List<Charity> charities2 = charityService.getCharities(999, 0);
+        List<Charity> charities2 = charityService.getAll(999, 0);
         assertTrue(charities2.size() == 0);
 
         charityService.close();

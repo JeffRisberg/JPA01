@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import java.util.List;
 import java.util.function.Consumer;
 
 /**
@@ -12,7 +13,7 @@ import java.util.function.Consumer;
  * @since 11/11/17
  */
 @Slf4j
-public class AbstractService {
+public abstract class AbstractService<T> {
 
     static public EntityManagerFactory emf;
 
@@ -38,4 +39,9 @@ public class AbstractService {
     public void close() {
         emf.close();
     }
+
+    public abstract T getById(Long id);
+
+    public abstract List<T> getAll(int limit, int offset);
+
 }

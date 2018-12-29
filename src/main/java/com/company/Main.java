@@ -29,7 +29,7 @@ public class Main {
         donorService.delete(a.getId());
 
         // Print all the Donors
-        List<Donor> donors = donorService.getDonors(999, 0);
+        List<Donor> donors = donorService.getAll(999, 0);
         for (Donor donor : donors) {
             System.out.println(donor);
         }
@@ -45,7 +45,7 @@ public class Main {
         Charity amCancer = charityService.create(new Charity("American Cancer Soc", "22-8435678"));
 
         // Fetch charities
-        List<Charity> charities = charityService.getCharities(999, 0);
+        List<Charity> charities = charityService.getAll(999, 0);
         for (Charity charity : charities) {
             System.out.println(charity);
         }

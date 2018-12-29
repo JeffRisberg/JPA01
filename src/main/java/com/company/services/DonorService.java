@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class DonorService extends AbstractService {
+public class DonorService extends AbstractService<Donor> {
     private static DonorDAO dao = new DonorDAO();
 
     public DonorService() {
@@ -18,6 +18,12 @@ public class DonorService extends AbstractService {
     public Donor getById(Long id) {
         final AtomicReference<Donor> td = new AtomicReference<>();
         doWork(em -> td.set(dao.getById(id, em)));
+        return td.get();
+    }
+
+    public List<Donor> getAll(int limit, int offset) {
+        final AtomicReference<List<Donor>> td = new AtomicReference<>();
+        doWork(em -> td.set(dao.getAll(Donor.class, limit, offset, em)));
         return td.get();
     }
 
@@ -39,15 +45,9 @@ public class DonorService extends AbstractService {
         return deleted.get();
     }
 
-    public Donor getByName(String name) {
-        final AtomicReference<Donor> td = new AtomicReference<>();
-        doWork(em -> td.set(dao.getByName(name, em)));
-        return td.get();
-    }
-
-    public List<Donor> getDonors(int limit, int offset) {
+    public List<Donor> getByName(String name) {
         final AtomicReference<List<Donor>> td = new AtomicReference<>();
-        doWork(em -> td.set(dao.listAll(Donor.class, em)));
+        doWork(em -> td.set(dao.getByName(name, em)));
         return td.get();
     }
 }
