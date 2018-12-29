@@ -157,7 +157,7 @@ public class BaseDAOImpl implements BaseDAO {
 
     @Override
     public <T> Boolean update(T obj, EntityManager em) {
-        em.persist(obj);
+        em.merge(obj);
         return true;
     }
 

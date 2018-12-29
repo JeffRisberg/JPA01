@@ -3,13 +3,8 @@ package com.company;
 import com.company.domain.Charity;
 import com.company.domain.Donor;
 import com.company.services.CharityService;
-import com.company.services.DAO.CharityDAO;
-import com.company.services.DAO.DonorDAO;
 import com.company.services.DonorService;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.List;
 
 /**
@@ -22,9 +17,9 @@ public class Main {
         CharityService charityService = new CharityService();
 
         // Create two Donors
-        Donor a = donorService.create(new Donor(null, "Alice", 22)); // Alice will get an id 1
-        Donor b = donorService.create(new Donor(null, "Bob", 20)); // Bob will get an id 2
-        Donor c = donorService.create(new Donor(null, "Charlie", 25)); // Charlie will get an id 3
+        Donor a = donorService.create(new Donor("Alice", 22)); // Alice will get an id 1
+        Donor b = donorService.create(new Donor("Bob", 20)); // Bob will get an id 2
+        Donor c = donorService.create(new Donor("Charlie", 25)); // Charlie will get an id 3
 
         // Update the age of Bob using the id
         b.setAge(25);
@@ -45,13 +40,9 @@ public class Main {
         // Delete Charlie from the database
         donorService.delete(c.getId());
 
-        // Create a charity
-        Charity redCross = new Charity();
-        redCross.setName("Red Cross");
-        redCross.setEin("57-4444-22343434");
-
-        redCross = charityService.create(redCross);
-        System.out.println(redCross.getId());
+        // Create two charities
+        Charity redCross = charityService.create(new Charity("Red Cross", "54-3254367"));
+        Charity amCancer = charityService.create(new Charity("American Cancer Soc", "22-8435678"));
 
         // Fetch charities
         List<Charity> charities = charityService.getCharities(999, 0);
@@ -59,10 +50,11 @@ public class Main {
             System.out.println(charity);
         }
 
-        // Delete a charity
+        // Delete two charities
         charityService.delete(redCross.getId());
+        charityService.delete(amCancer.getId());
 
-        //charityService.close();
-        //donorService.close();
+        charityService.close();
+        donorService.close();
     }
 }

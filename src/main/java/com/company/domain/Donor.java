@@ -26,7 +26,7 @@ public class Donor extends AbstractItem {
     @OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Donation> donations = new ArrayList<Donation>();
 
-    public Donor(Long id, String name, int age) {
+    public Donor(String name, int age) {
         this.setId(null);
         this.name = name;
         this.age = age;

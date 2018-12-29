@@ -20,6 +20,12 @@ public class Charity extends AbstractItem {
     @OneToMany(mappedBy = "charity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Donation> donations = new ArrayList<Donation>();
 
+    public Charity(String name, String ein) {
+        this.setId(null);
+        this.name = name;
+        this.ein = ein;
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

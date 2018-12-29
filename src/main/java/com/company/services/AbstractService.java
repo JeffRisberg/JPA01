@@ -34,4 +34,8 @@ public class AbstractService {
             em.close();
         }
     }
+
+    public void close() {
+        emf.close();
+    }
 }
