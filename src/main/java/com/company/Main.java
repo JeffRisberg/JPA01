@@ -3,8 +3,10 @@ package com.company;
 import com.company.common.FilterDesc;
 import com.company.common.FilterOperator;
 import com.company.domain.Charity;
+import com.company.domain.Donation;
 import com.company.domain.Donor;
 import com.company.services.CharityService;
+import com.company.services.DonationService;
 import com.company.services.DonorService;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class Main {
     public static void main(String[] args) {
         DonorService donorService = new DonorService();
         CharityService charityService = new CharityService();
+        DonationService donationService = new DonationService();
 
         // Create two Donors
         Donor a = donorService.create(new Donor("Alice", 22)); // Alice will get an id 1
@@ -77,7 +80,39 @@ public class Main {
         charityService.delete(redCross.getId());
         charityService.delete(amCancer.getId());
 
+        // Create a charity
+        Charity charity1 = charityService.create(new Charity("Red Cross", "53-0196605"));
+
+        // Create a donor
+        Donor donor1 = donorService.create(new Donor("Alice", 22));
+
+        // Create a donation
+        Donation donation1 = new Donation(45.67);
+        donation1.setCharity(charity1);
+        donation1.setDonor(donor1);
+
+        donationService.create(donation1);
+
+        // Fetch donations
+        List<Donation> donations1 = donationService.getAll(999, 0);
+        for (Donation donation : donations1) {
+            System.out.println(donation);
+        }
+
+        // Delete a donation
+        donationService.delete(donation1.getId());
+
+        // Fetch donations
+        List<Donation> donations2 = donationService.getAll(999, 0);
+        for (Donation donation : donations2) {
+            System.out.println(donation);
+        }
+
+        donorService.delete(donor1.getId());
+        charityService.delete(charity1.getId());
+
         charityService.close();
         donorService.close();
+        donationService.close();
     }
 }
