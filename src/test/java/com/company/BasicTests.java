@@ -74,7 +74,6 @@ public class BasicTests {
         List<Donation> donations1 = donationService.getAll(999, 0);
         assertTrue(donations1.size() == 1);
 
-        /*
         // Delete a donation
         donationService.delete(donation1.getId());
 
@@ -84,7 +83,7 @@ public class BasicTests {
 
         donorService.delete(a.getId());
         charityService.delete(redCross.getId());
-*/
+
         donationService.close();
         charityService.close();
         donorService.close();

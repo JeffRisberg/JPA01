@@ -1,6 +1,7 @@
 package com.company.domain;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "charities")
+@NoArgsConstructor
 @Data
 public class Charity extends AbstractItem {
 
