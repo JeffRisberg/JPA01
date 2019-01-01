@@ -7,8 +7,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "donations")
-@Data
 @NoArgsConstructor
+@Data
 public class Donation extends AbstractItem {
 
     @Column(name = "amount", nullable = false)
@@ -21,4 +21,19 @@ public class Donation extends AbstractItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "charity_id")
     private Charity charity;
+
+    public Donation(Double amount) {
+        this.setId(null);
+        this.amount = amount;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Donation[date=" + getDateCreated());
+        sb.append(", amount=" + amount);
+        sb.append("]");
+
+        return sb.toString();
+    }
 }
