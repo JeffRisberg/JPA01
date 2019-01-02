@@ -34,9 +34,9 @@ public class DonationService extends AbstractService<Donation> {
         return td.get();
     }
 
-    public List<Donor> getByCriteria(List<FilterDesc> filterDescriptions, int limit, int offset) {
-        final AtomicReference<List<Donor>> td = new AtomicReference<>();
-        doWork(em -> td.set(dao.getByCriteria(Donor.class, filterDescriptions, limit, offset, em)));
+    public List<Donation> getByCriteria(List<FilterDesc> filterDescriptions, int limit, int offset) {
+        final AtomicReference<List<Donation>> td = new AtomicReference<>();
+        doWork(em -> td.set(dao.getByCriteria(Donation.class, filterDescriptions, limit, offset, em)));
         return td.get();
     }
 
