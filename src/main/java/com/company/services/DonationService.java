@@ -16,9 +16,9 @@ public class DonationService extends AbstractService<Donation> {
         this.emf = Persistence.createEntityManagerFactory("JPA01");
     }
 
-    public Donation create(Donation Donation) {
+    public Donation create(Donation donation) {
         final AtomicReference<Donation> created = new AtomicReference<>();
-        doWork(em -> created.set(dao.create(Donation, em)));
+        doWork(em -> created.set(dao.create(donation, em)));
         return created.get();
     }
 

@@ -16,6 +16,12 @@ public class DonorService extends AbstractService<Donor> {
         this.emf = Persistence.createEntityManagerFactory("JPA01");
     }
 
+    public Donor create(Donor Donor) {
+        final AtomicReference<Donor> created = new AtomicReference<>();
+        doWork(em -> created.set(dao.create(Donor, em)));
+        return created.get();
+    }
+
     public Donor getById(Long id) {
         final AtomicReference<Donor> td = new AtomicReference<>();
         doWork(em -> td.set(dao.getById(id, em)));
@@ -32,12 +38,6 @@ public class DonorService extends AbstractService<Donor> {
         final AtomicReference<List<Donor>> td = new AtomicReference<>();
         doWork(em -> td.set(dao.getByCriteria(Donor.class, filterDescriptions, limit, offset, em)));
         return td.get();
-    }
-
-    public Donor create(Donor Donor) {
-        final AtomicReference<Donor> created = new AtomicReference<>();
-        doWork(em -> created.set(dao.create(Donor, em)));
-        return created.get();
     }
 
     public boolean update(Donor updatedEntity) {
