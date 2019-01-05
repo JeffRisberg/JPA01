@@ -27,7 +27,7 @@ dependencies {
 	compile("com.fasterxml:classmate:1.4.0")
 
 	compile("org.hibernate:hibernate-entitymanager:5.3.7.Final")
-	compile("mysql:mysql-connector-java:5.1.34")
+	compile("mysql:mysql-connector-java:5.1.45")
 
 	testCompile ("junit:junit:4.12")
 }
