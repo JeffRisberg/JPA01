@@ -19,6 +19,9 @@ public class Charity extends AbstractItem {
     @Column(name = "ein", nullable = false)
     private String ein;
 
+    @Column(name = "description")
+    private String description;
+
     @OneToMany(mappedBy = "charity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Donation> donations = new ArrayList<Donation>();
 
