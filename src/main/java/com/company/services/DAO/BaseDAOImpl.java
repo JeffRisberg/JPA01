@@ -1,6 +1,6 @@
 package com.company.services.DAO;
 
-import com.company.common.FilterDesc;
+import com.company.common.FilterDescription;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
@@ -114,7 +114,7 @@ public class BaseDAOImpl implements BaseDAO {
      * @return List of results
      */
     public <T> List<T> getByCriteria
-    (Class<T> type, List<FilterDesc> filterDescriptions, int limit, int offset, @NonNull EntityManager em) {
+    (Class<T> type, List<FilterDescription> filterDescriptions, int limit, int offset, @NonNull EntityManager em) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(type);
         Root<T> root = criteriaQuery.from(type);
@@ -122,7 +122,7 @@ public class BaseDAOImpl implements BaseDAO {
 
         Predicate p = criteriaBuilder.conjunction();
 
-        for (FilterDesc fd : filterDescriptions) {
+        for (FilterDescription fd : filterDescriptions) {
             String key = fd.getField();
             Object value = fd.getValue();
 

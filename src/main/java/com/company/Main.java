@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.common.FilterDesc;
+import com.company.common.FilterDescription;
 import com.company.common.FilterOperator;
 import com.company.domain.Charity;
 import com.company.domain.Donation;
@@ -45,8 +45,8 @@ public class Main {
         System.out.println(dList.get(0));
 
         // Fetch donors by criteria
-        List<FilterDesc> dFilterDescs = new ArrayList<FilterDesc>();
-        dFilterDescs.add(new FilterDesc("age", FilterOperator.gte, 35));
+        List<FilterDescription> dFilterDescs = new ArrayList<FilterDescription>();
+        dFilterDescs.add(new FilterDescription("age", FilterOperator.gte, 35));
         List<Donor> dListCriteria = donorService.getByCriteria(dFilterDescs, 0, 0);
         System.out.println(dListCriteria.get(0));
 
@@ -71,8 +71,8 @@ public class Main {
         System.out.println(cList.get(0));
 
         // Fetch charities by criteria
-        List<FilterDesc> cFilterDescs = new ArrayList<FilterDesc>();
-        cFilterDescs.add(new FilterDesc("name", FilterOperator.like, "Red%"));
+        List<FilterDescription> cFilterDescs = new ArrayList<FilterDescription>();
+        cFilterDescs.add(new FilterDescription("name", FilterOperator.like, "Red%"));
         List<Charity> cListCriteria = charityService.getByCriteria(cFilterDescs, 0, 0);
         System.out.println(cListCriteria.get(0));
 

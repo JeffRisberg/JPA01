@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.common.FilterDesc;
+import com.company.common.FilterDescription;
 import com.company.common.FilterOperator;
 import com.company.domain.Charity;
 import com.company.domain.Donation;
@@ -35,8 +35,8 @@ public class BasicTests {
         assertTrue(cList.size() == 1);
 
         // Fetch charities by criteria
-        List<FilterDesc> cFilterDescs = new ArrayList<FilterDesc>();
-        cFilterDescs.add(new FilterDesc("name", FilterOperator.like, "Red%"));
+        List<FilterDescription> cFilterDescs = new ArrayList<FilterDescription>();
+        cFilterDescs.add(new FilterDescription("name", FilterOperator.like, "Red%"));
         List<Charity> cListCriteria = charityService.getByCriteria(cFilterDescs, 0, 0);
         assertTrue(cListCriteria.size() == 1);
 
