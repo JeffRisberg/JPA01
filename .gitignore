@@ -5,6 +5,7 @@
 ### IntelliJ IDEA ###
 .idea/workspace.xml
 .idea/tasks.xml
+.idea/emacs.xml
 .idea/libraries
 .idea/codeStyles
 .idea/inspectionProfiles/
@@ -13,4 +14,3 @@
 *.ipr
 /out/
 target/
-/.idea/emacs.xml

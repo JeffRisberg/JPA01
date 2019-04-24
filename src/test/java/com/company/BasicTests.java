@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class BasicTests {
@@ -31,8 +32,8 @@ public class BasicTests {
         assertEquals(2, charities1.size());
 
         // Fetch charity by name
-        List<Charity> cList = charityService.getByName("Red Cross");
-        assertTrue(cList.size() == 1);
+        Charity charity = charityService.getByName("Red Cross");
+        assertNotNull(charity);
 
         // Fetch charities by criteria
         List<FilterDescription> cFilterDescs = new ArrayList<FilterDescription>();

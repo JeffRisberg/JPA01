@@ -1,27 +1,26 @@
 package com.company.services.DAO;
 
+import com.company.domain.Charity;
 import com.company.domain.Donation;
 import lombok.NonNull;
 
 import javax.persistence.EntityManager;
 
-public class DonationDAO extends BaseDAOImpl {
+public class DonationDAO extends BaseTemplateDAOImpl<Donation> {
 
-    @Override
-    public <T> T create(T obj, Class<T> type, EntityManager em) {
-        return super.create(obj, type, em);
+    public DonationDAO() {
+        super(Donation.class);
     }
 
     public Donation create(Donation obj, @NonNull EntityManager em) {
-        return super.create(obj, Donation.class, em);
+        return super.create(obj, em);
     }
 
     public Donation getById(Long id, @NonNull EntityManager em) {
-        return super.getById(Donation.class, id, em);
+        return super.getById(id, em);
     }
 
     public Boolean delete(Long id, @NonNull EntityManager em) {
-        return super.deleteById(Donation.class, id, em);
+        return super.deleteById(id, em);
     }
 }
-

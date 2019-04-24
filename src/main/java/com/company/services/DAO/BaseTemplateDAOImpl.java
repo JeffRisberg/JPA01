@@ -1,6 +1,7 @@
 package com.company.services.DAO;
 
 import com.company.common.FilterDescription;
+import com.company.common.FilterOperator;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
@@ -11,6 +12,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,30 +21,36 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
-public class BaseDAOImpl implements BaseDAO {
+public class BaseTemplateDAOImpl<T> implements BaseTemplateDAO<T> {
+
+    private Class<T> type;
+
+    public BaseTemplateDAOImpl(Class<T> type) {
+        this.type = type;
+    }
 
     @Override
-    public <T> T create(T obj, Class<T> type, EntityManager em) {
+    public T create(T obj, @NonNull EntityManager em) {
         em.persist(obj);
         return obj;
     }
 
     @Override
-    public <T> T getById(Class<T> type, long id, EntityManager em) {
+    public T getById(Serializable id, @NonNull EntityManager em) {
         AtomicReference<T> reference = new AtomicReference<>();
         reference.set(em.find(type, id));
         return reference.get();
     }
 
     @Override
-    public <T> T getById(Class<T> type, String id, EntityManager em) {
+    public T getById(String id, @NonNull EntityManager em) {
         AtomicReference<T> reference = new AtomicReference<>();
         reference.set(em.find(type, id));
         return reference.get();
     }
 
     @Override
-    public <T> List<T> getAll(Class<T> type, int limit, int offset, EntityManager em) {
+    public List<T> listAll(Class<T> type, int limit, int offset, @NonNull EntityManager em) {
         try {
             CriteriaQuery<T> criteria = em.getCriteriaBuilder().createQuery(type);
             criteria.select(criteria.from(type));
@@ -58,17 +66,9 @@ public class BaseDAOImpl implements BaseDAO {
 
     /**
      * Execute Custom SQL with Map of parameters
-     *
-     * @param type
-     * @param sql
-     * @param params
-     * @param em
-     * @param <T>
-     * @return Result
      */
-    public <T> List<T> getBySQL(Class<T> type, @NonNull String
-            sql, @NonNull Map<String, Object> params, EntityManager em) {
-
+    @Override
+    public List<T> getBySQL(@NonNull String sql, @NonNull Map<String, Object> params, @NonNull EntityManager em) {
         try {
             Query query = em.createNativeQuery(sql);
             params.entrySet().stream().forEach(entry -> query.setParameter(entry.getKey(), entry.getValue()));
@@ -86,17 +86,14 @@ public class BaseDAOImpl implements BaseDAO {
 
     /**
      * Execute Custom SQL with Map of parameters
-     *
-     * @param sql
-     * @param params
-     * @param em
-     * @return Result
      */
-    public int updateBySQL(@NonNull String sql, @NonNull Map<String, Object> params, EntityManager em) {
+    @Override
+    public int updateBySQL(@NonNull String sql, @NonNull Map<String, Object> params, @NonNull EntityManager em) {
         try {
             Query query = em.createNativeQuery(sql);
             params.entrySet().stream().forEach(entry -> query.setParameter(entry.getKey(), entry.getValue()));
             int updated = query.executeUpdate();
+            log.info("Updated/Deleted by SQL: {}", updated);
             return updated;
         } catch (Exception e) {
             log.error("updateBySQL:: exception", e);
@@ -106,29 +103,21 @@ public class BaseDAOImpl implements BaseDAO {
 
     /**
      * Use Criteria Builder to execute a SQL By Parameters.
-     * <p>
-     * @param type
-     * @param filterDescriptions
-     * @param em
-     * @param <T>
+     *
      * @return List of results
      */
-    public <T> List<T> getByCriteria
-    (Class<T> type, List<FilterDescription> filterDescriptions, int limit, int offset, @NonNull EntityManager em) {
+    @Override
+    public List<T> getByCriteria(List<FilterDescription> filterDescriptions, int limit, int offset, @NonNull EntityManager em) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(type);
         Root<T> root = criteriaQuery.from(type);
         criteriaQuery.select(root);
-
         Predicate p = criteriaBuilder.conjunction();
-
         for (FilterDescription fd : filterDescriptions) {
             String key = fd.getField();
             Object value = fd.getValue();
-
             if (value == null)
                 continue;
-
             switch (fd.getOperator()) {
                 case eq:
                     p = criteriaBuilder.and(p, criteriaBuilder.equal(root.get(key), value));
@@ -157,24 +146,46 @@ public class BaseDAOImpl implements BaseDAO {
             }
         }
         criteriaQuery.where(p);
+        return em.createQuery(criteriaQuery).getResultList();
+    }
 
-        Query query = em.createQuery(criteriaQuery);
-        if (limit > 0) query.setMaxResults(limit);
-        if (offset > 0) query.setFirstResult(offset);
-
-        return query.getResultList();
+    /**
+     * Use Criteria Builder to execute a SQL By Parameters.
+     *
+     * @param params
+     * @param em
+     * @return List of results
+     */
+    @Override
+    public List<T> getByCriteria(@NonNull Map<String, Object> params, EntityManager em) {
+        try {
+            CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+            CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(type);
+            Root<T> root = criteriaQuery.from(type);
+            criteriaQuery.select(root);
+            AtomicReference<Predicate> p = new AtomicReference<>(criteriaBuilder.conjunction());
+            params.entrySet().stream().forEach(entry -> {
+                p.set(criteriaBuilder.and(p.get(), criteriaBuilder.equal(root.get(entry.getKey()), entry.getValue())));
+            });
+            criteriaQuery.where(p.get());
+            return em.createQuery(criteriaQuery).getResultList();
+        } catch (Exception e) {
+            log.error("getByCriteria:: exception", e);
+            return null;
+        }
     }
 
     @Override
-    public <T> Boolean update(T obj, EntityManager em) {
+    public Boolean update(T obj, @NonNull EntityManager em) {
         em.merge(obj);
         return true;
     }
 
     @Override
-    public <T> Boolean deleteById(Class<T> type, long id, EntityManager em) {
-        if (id != 0) {
-            T obj = getById(type, id, em);
+    public Boolean deleteById(Serializable id, @NonNull EntityManager em) {
+        if (id != null) {
+            log.info("Deleting object with Id=" + id);
+            T obj = getById(id, em);
             if (obj != null) {
                 em.remove(obj);
                 return true;
@@ -187,8 +198,39 @@ public class BaseDAOImpl implements BaseDAO {
     }
 
     @Override
-    public <T> Boolean delete(T obj, Class<T> type, EntityManager em) {
+    public T getByName(String name, @NonNull EntityManager em) {
+        final AtomicReference<T> ref = new AtomicReference<>();
+        List<FilterDescription> descriptions = new ArrayList<>();
+        descriptions.add(new FilterDescription("name", FilterOperator.eq, name));
+        List<T> list = getByCriteria(descriptions, 0, 0, em);
+        if (list.isEmpty()) {
+            ref.set(null);
+        } else {
+            ref.set(list.get(0));
+        }
+        return ref.get();
+    }
+
+    @Override
+    public Boolean deleteById(String id, @NonNull EntityManager em) {
+        if (id != null) {
+            log.info("Deleting object with Id: {}" + id);
+            T obj = getById(id, em);
+            if (obj != null) {
+                em.remove(obj);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public Boolean delete(T obj, @NonNull EntityManager em) {
         if (obj != null) {
+            log.info("Deleting object");
             em.remove(obj);
             return true;
         } else {

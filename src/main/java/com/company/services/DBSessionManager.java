@@ -1,6 +1,5 @@
 package com.company.services;
 
-//import com.company.common.config.CommonConfig;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

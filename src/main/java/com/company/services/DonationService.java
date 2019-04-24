@@ -29,13 +29,13 @@ public class DonationService extends AbstractService<Donation> {
 
     public List<Donation> getAll(int limit, int offset) {
         final AtomicReference<List<Donation>> td = new AtomicReference<>();
-        doWork(em -> td.set(dao.getAll(Donation.class, limit, offset, em)));
+        doWork(em -> td.set(dao.listAll(Donation.class, limit, offset, em)));
         return td.get();
     }
 
     public List<Donation> getByCriteria(List<FilterDescription> filterDescriptions, int limit, int offset) {
         final AtomicReference<List<Donation>> td = new AtomicReference<>();
-        doWork(em -> td.set(dao.getByCriteria(Donation.class, filterDescriptions, limit, offset, em)));
+        doWork(em -> td.set(dao.getByCriteria(filterDescriptions, limit, offset, em)));
         return td.get();
     }
 
@@ -49,6 +49,10 @@ public class DonationService extends AbstractService<Donation> {
         final AtomicReference<Boolean> deleted = new AtomicReference<>();
         doWork(em -> deleted.set(dao.delete(id, em)));
         return deleted.get();
+    }
+
+    public Donation getByName(String name) {
+        return null;
     }
 }
 

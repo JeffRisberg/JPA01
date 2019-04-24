@@ -41,8 +41,8 @@ public class Main {
         }
 
         // Fetch donor by name
-        List<Donor> dList = donorService.getByName("Bob");
-        System.out.println(dList.get(0));
+        Donor donor = donorService.getByName("Bob");
+        System.out.println(donor);
 
         // Fetch donors by criteria
         List<FilterDescription> dFilterDescs = new ArrayList<FilterDescription>();
@@ -67,8 +67,8 @@ public class Main {
         }
 
         // Fetch charity by name
-        List<Charity> cList = charityService.getByName("Red Cross");
-        System.out.println(cList.get(0));
+        Charity charity = charityService.getByName("Red Cross");
+        System.out.println(charity);
 
         // Fetch charities by criteria
         List<FilterDescription> cFilterDescs = new ArrayList<FilterDescription>();

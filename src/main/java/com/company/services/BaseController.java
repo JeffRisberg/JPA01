@@ -1,83 +1,81 @@
 package com.company.services;
 
 import com.company.common.FilterDescription;
+import com.company.common.ValueReference;
+import com.company.services.DAO.BaseTemplateDAO;
+import com.company.services.DAO.BaseTemplateDAOImpl;
 import org.hibernate.cfg.Configuration;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
-public class BaseController {
+public class BaseController<T> {
     protected final DBSessionManager sessionManager;
 
-    private DefaultDAO dao;
+    private final BaseTemplateDAO<T> dao;
 
-    protected DefaultDAO getDao() {
-        return dao;
+    public BaseController(Configuration configuration, boolean isTenantDB, Class<T> daoClass) {
+        this.sessionManager = DBSessionManager.getInstance(configuration, isTenantDB);
+        this.dao = new BaseTemplateDAOImpl<>(daoClass);
     }
 
-    public BaseController(Configuration configuration, boolean isTenantDB, Class forClass) {
-        sessionManager = DBSessionManager.getInstance(configuration, isTenantDB);
-        dao = new DefaultDAOImpl(forClass);
-    }
-
-    public List listAll(String namespace) {
-        final AtomicReference<List> ref = new AtomicReference<>();
-        this.sessionManager.useSession(namespace, session -> ref.set(getDao().listAll(session)));
+    public List<T> listAll(String namespace, Class<T> type) {
+        final ValueReference<List<T>> ref = new ValueReference<>();
+        this.sessionManager.useSession(namespace, session -> ref.set(this.dao.listAll(type, 0, 0, session)));
         return ref.get();
     }
 
-    public List listAll() {
-        return listAll(null);
-    }
-
-    public Object getById(String namespace, Serializable id) {
-        final AtomicReference ref = new AtomicReference();
-        this.sessionManager.useSession(namespace, session -> ref.set(getDao().getById(id, session)));
+    public T getById(String namespace, Serializable id) {
+        final ValueReference<T> ref = new ValueReference<>();
+        this.sessionManager.useSession(namespace, session -> ref.set(this.dao.getById(id, session)));
         return ref.get();
     }
 
-    public Object getById(Serializable id) {
-        return getById(null, id);
+    public T getById(Serializable id) {
+        return this.getById(null, id);
     }
 
-    public Object create(String namespace, Object obj) {
-        final AtomicReference ref = new AtomicReference();
-        this.sessionManager.useSession(namespace, session -> ref.set(getDao().create(obj, session)));
+    public T create(String namespace, T obj) {
+        final ValueReference<T> ref = new ValueReference<>();
+        this.sessionManager.useSession(namespace, session -> ref.set(this.dao.create(obj, session)));
         return ref.get();
     }
 
-    public Object create(Object obj) {
+    public T create(T obj) {
         return create(null, obj);
     }
 
-    public boolean update(String namespace, Object updatedEntity) {
-        final AtomicReference<Boolean> updated = new AtomicReference<>();
-        this.sessionManager.useSession(namespace, session -> updated.set(getDao().update(updatedEntity, session)));
-        return updated.get();
+    public boolean update(String namespace, T updatedEntity) {
+        final ValueReference<Boolean> updated = new ValueReference<>();
+        this.sessionManager.useSession(namespace, session -> updated.set(this.dao.update(updatedEntity, session)));
+        return updated.get().booleanValue();
     }
 
-    public boolean update(Object updatedEntity) {
-        return update(null, updatedEntity);
+    public boolean update(T updatedEntity) {
+        return this.update(null, updatedEntity);
     }
 
     public boolean delete(String namespace, Serializable id) {
-        final AtomicReference<Boolean> deleted = new AtomicReference<>();
-        this.sessionManager.useSession(namespace, session -> deleted.set(getDao().deleteById(id, session)));
-        return deleted.get();
+        final ValueReference<Boolean> deleted = new ValueReference<>();
+        this.sessionManager.useSession(namespace, session -> deleted.set(this.dao.deleteById(id, session)));
+        return deleted.get().booleanValue();
     }
 
     public boolean delete(Serializable id) {
-        return delete(null, id);
+        return this.delete(null, id);
     }
 
-    public List getByCriteria(String namespace, List<FilterDescription> filterDescriptions) {
-        final AtomicReference<List> ref = new AtomicReference<>();
-        this.sessionManager.useSession(namespace, session -> ref.set(getDao().getByCriteria(filterDescriptions, session)));
+    public List<T> getByCriteria(String namespace, List<FilterDescription> filterDescriptions) {
+        final ValueReference<List<T>> ref = new ValueReference<>();
+        this.sessionManager.useSession(namespace, session -> ref.set(this.dao.getByCriteria(filterDescriptions, 0, 0, session)));
         return ref.get();
     }
 
-    public List getByCriteria(List<FilterDescription> filterDescriptions) {
+    public List<T> getByCriteria(List<FilterDescription> filterDescriptions) {
         return getByCriteria(null, filterDescriptions);
+    }
+
+    protected BaseTemplateDAO<T> getDao() {
+        return this.dao;
     }
 }

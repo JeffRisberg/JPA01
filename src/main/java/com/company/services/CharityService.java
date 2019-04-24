@@ -29,13 +29,13 @@ public class CharityService extends AbstractService<Charity> {
 
     public List<Charity> getAll(int limit, int offset) {
         final AtomicReference<List<Charity>> td = new AtomicReference<>();
-        doWork(em -> td.set(dao.getAll(Charity.class, limit, offset, em)));
+        doWork(em -> td.set(dao.listAll(Charity.class, limit, offset, em)));
         return td.get();
     }
 
     public List<Charity> getByCriteria(List<FilterDescription> filterDescriptions, int limit, int offset) {
         final AtomicReference<List<Charity>> td = new AtomicReference<>();
-        doWork(em -> td.set(dao.getByCriteria(Charity.class, filterDescriptions, limit, offset, em)));
+        doWork(em -> td.set(dao.getByCriteria(filterDescriptions, limit, offset, em)));
         return td.get();
     }
 
@@ -51,8 +51,8 @@ public class CharityService extends AbstractService<Charity> {
         return deleted.get();
     }
 
-    public List<Charity> getByName(String name) {
-        final AtomicReference<List<Charity>> td = new AtomicReference<>();
+    public Charity getByName(String name) {
+        final AtomicReference<Charity> td = new AtomicReference<>();
         doWork(em -> td.set(dao.getByName(name, em)));
         return td.get();
     }
