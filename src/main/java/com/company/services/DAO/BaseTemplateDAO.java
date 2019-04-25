@@ -13,6 +13,10 @@ public interface BaseTemplateDAO<T> {
 
     T getById(Serializable id, @NonNull EntityManager em);
 
+    T getById(String id, @NonNull EntityManager em);
+
+    T getByName(String name, @NonNull EntityManager em);
+
     List<T> listAll(Class<T> type, int limit, int offset, @NonNull EntityManager em);
 
     List<T> getBySQL(@NonNull String sql, @NonNull Map<String, Object> params, @NonNull EntityManager em);
@@ -22,10 +26,6 @@ public interface BaseTemplateDAO<T> {
     List<T> getByCriteria(@NonNull Map<String, Object> params, EntityManager em);
 
     int updateBySQL(@NonNull String sql, @NonNull Map<String, Object> params, @NonNull EntityManager em);
-
-    T getById(String id, @NonNull EntityManager em);
-
-    T getByName(String name, @NonNull EntityManager em);
 
     Boolean update(T obj, @NonNull EntityManager em);
 

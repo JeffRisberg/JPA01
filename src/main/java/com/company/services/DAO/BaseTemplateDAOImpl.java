@@ -50,6 +50,20 @@ public class BaseTemplateDAOImpl<T> implements BaseTemplateDAO<T> {
     }
 
     @Override
+    public T getByName(String name, @NonNull EntityManager em) {
+        final AtomicReference<T> ref = new AtomicReference<>();
+        List<FilterDescription> descriptions = new ArrayList<>();
+        descriptions.add(new FilterDescription("name", FilterOperator.eq, name));
+        List<T> list = getByCriteria(descriptions, 0, 0, em);
+        if (list.isEmpty()) {
+            ref.set(null);
+        } else {
+            ref.set(list.get(0));
+        }
+        return ref.get();
+    }
+
+    @Override
     public List<T> listAll(Class<T> type, int limit, int offset, @NonNull EntityManager em) {
         try {
             CriteriaQuery<T> criteria = em.getCriteriaBuilder().createQuery(type);
@@ -195,20 +209,6 @@ public class BaseTemplateDAOImpl<T> implements BaseTemplateDAO<T> {
         } else {
             return false;
         }
-    }
-
-    @Override
-    public T getByName(String name, @NonNull EntityManager em) {
-        final AtomicReference<T> ref = new AtomicReference<>();
-        List<FilterDescription> descriptions = new ArrayList<>();
-        descriptions.add(new FilterDescription("name", FilterOperator.eq, name));
-        List<T> list = getByCriteria(descriptions, 0, 0, em);
-        if (list.isEmpty()) {
-            ref.set(null);
-        } else {
-            ref.set(list.get(0));
-        }
-        return ref.get();
     }
 
     @Override
