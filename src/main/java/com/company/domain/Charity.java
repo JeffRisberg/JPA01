@@ -1,6 +1,7 @@
 package com.company.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.List;
 @Table(name = "charities")
 @NoArgsConstructor
 @Data
+@EqualsAndHashCode(callSuper=true)
 public class Charity extends AbstractItem {
 
     @Column(name = "name", nullable = false)

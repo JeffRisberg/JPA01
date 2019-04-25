@@ -111,6 +111,7 @@ public class DefaultDAOImpl implements DefaultDAO {
     for (FilterDescription fd : filterDescriptions) {
       String key = fd.getField();
       Object value = fd.getValue();
+
       if (value == null)
         continue;
       switch (fd.getOperator()) {
@@ -179,7 +180,7 @@ public class DefaultDAOImpl implements DefaultDAO {
   @Override
   public Boolean deleteById(Serializable id, @NonNull Session session) {
     if (id != null) {
-      log.info("Deleting object with Id=" + id);
+      log.info("Deleting object with Id {}", id);
       Object obj = getById(id, session);
       if (obj != null) {
         session.delete(obj);
@@ -209,7 +210,7 @@ public class DefaultDAOImpl implements DefaultDAO {
   @Override
   public Boolean deleteById(String id, @NonNull Session session) {
     if (id != null) {
-      log.info("Deleting object with Id: {}" + id);
+      log.info("Deleting object with Id: {}", id);
       Object obj = getById(id, session);
       if (obj != null) {
         session.delete(obj);
