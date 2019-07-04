@@ -16,14 +16,14 @@ repositories {
 ext {
 	slf4jVersion = '1.7.26'
 	projectLombokVersion = '1.16.20'
-	hibernateVersion = '5.3.10.Final'
+	hibernateVersion = '5.4.0.Final'
 }
 
 dependencies {
 	compile "org.slf4j:slf4j-api:$slf4jVersion"
 	runtime "org.slf4j:slf4j-simple:$slf4jVersion"
 
-	compile("org.apache.commons:commons-collections4:4.1")
+	compile("org.apache.commons:commons-collections4:4.2")
 	compile("org.projectlombok:lombok:$projectLombokVersion")
 	compile("com.fasterxml:classmate:1.4.0")
 
