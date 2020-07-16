@@ -16,7 +16,7 @@ repositories {
 ext {
 	slf4jVersion = '1.7.26'
 	projectLombokVersion = '1.16.20'
-	hibernateVersion = '5.4.8.Final'
+	hibernateVersion = '5.4.14.Final'
 }
 
 dependencies {
@@ -30,5 +30,5 @@ dependencies {
 	compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
 	compile("mysql:mysql-connector-java:5.1.47")
 
-	testCompile ("junit:junit:4.12")
+	testCompile ("junit:junit:4.13")
 }
