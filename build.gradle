@@ -30,5 +30,5 @@ dependencies {
 	compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
 	compile("mysql:mysql-connector-java:5.1.47")
 
-	testCompile ("junit:junit:4.13")
+	testCompile ("junit:junit:4.13.2")
 }
