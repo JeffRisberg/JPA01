@@ -16,7 +16,7 @@ repositories {
 ext {
 	slf4jVersion = '1.7.32'
 	projectLombokVersion = '1.16.20'
-	hibernateVersion = '5.4.32.Final'
+	hibernateVersion = '5.6.9.Final'
 }
 
 dependencies {
