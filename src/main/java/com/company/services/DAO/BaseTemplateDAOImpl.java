@@ -74,6 +74,7 @@ public class BaseTemplateDAOImpl<T> implements BaseTemplateDAO<T> {
             List<T> objects = query.getResultList();
             return objects;
         } catch (Exception e) {
+            log.error("listAll:: exception", e);
             return new ArrayList();
         }
     }
