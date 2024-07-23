@@ -14,7 +14,7 @@
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="gradle-hibernate-jpa_main" target="1.8" />
       <module name="gradle-hibernate-jpa_test" target="1.8" />
       <module name="jpa01_main" target="1.8" />

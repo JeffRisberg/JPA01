@@ -69,10 +69,11 @@ public class BaseTemplateDAOImpl<T> implements BaseTemplateDAO<T> {
             CriteriaQuery<T> criteria = em.getCriteriaBuilder().createQuery(type);
             criteria.select(criteria.from(type));
             Query query = em.createQuery(criteria);
+
             if (limit > 0) query.setMaxResults(limit);
             if (offset > 0) query.setFirstResult(offset);
-            List<T> objects = query.getResultList();
-            return objects;
+
+            return query.getResultList();
         } catch (Exception e) {
             log.error("listAll:: exception", e);
             return new ArrayList();
@@ -128,9 +129,11 @@ public class BaseTemplateDAOImpl<T> implements BaseTemplateDAO<T> {
         Root<T> root = criteriaQuery.from(type);
         criteriaQuery.select(root);
         Predicate p = criteriaBuilder.conjunction();
+
         for (FilterDescription fd : filterDescriptions) {
             String key = fd.getField();
             Object value = fd.getValue();
+
             if (value == null)
                 continue;
             switch (fd.getOperator()) {
@@ -161,7 +164,12 @@ public class BaseTemplateDAOImpl<T> implements BaseTemplateDAO<T> {
             }
         }
         criteriaQuery.where(p);
-        return em.createQuery(criteriaQuery).getResultList();
+
+        Query query = em.createQuery(criteriaQuery);
+        if (offset > 0) query.setFirstResult(offset);
+        if (limit > 0) query.setMaxResults(limit);
+
+        return query.getResultList();
     }
 
     /**
