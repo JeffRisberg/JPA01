@@ -1,6 +1,5 @@
 .gradle
 /build/
-!gradle/wrapper/gradle-wrapper.jar
 
 ### IntelliJ IDEA ###
 .idea/workspace.xml
@@ -10,7 +9,9 @@
 .idea/codeStyles
 .idea/inspectionProfiles/
 .idea/modules
+.idea/sonarlint
 *.iws
 *.ipr
+
 /out/
 target/
