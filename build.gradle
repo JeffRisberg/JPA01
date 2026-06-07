@@ -15,20 +15,21 @@ repositories {
 
 ext {
 	slf4jVersion = '1.7.32'
-	projectLombokVersion = '1.16.20'
+	projectLombokVersion = '1.18.30'
 	hibernateVersion = '5.6.9.Final'
 }
 
 dependencies {
-	compile "org.slf4j:slf4j-api:$slf4jVersion"
-	runtime "org.slf4j:slf4j-simple:$slf4jVersion"
+	implementation "org.slf4j:slf4j-api:$slf4jVersion"
+	runtimeOnly "org.slf4j:slf4j-simple:$slf4jVersion"
 
-	compile("org.apache.commons:commons-collections4:4.2")
-	compile("org.projectlombok:lombok:$projectLombokVersion")
-	compile("com.fasterxml:classmate:1.4.0")
+	implementation("org.apache.commons:commons-collections4:4.2")
+	compileOnly("org.projectlombok:lombok:$projectLombokVersion")
+	annotationProcessor("org.projectlombok:lombok:$projectLombokVersion")
+	implementation("com.fasterxml:classmate:1.4.0")
 
-	compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
-	compile("mysql:mysql-connector-java:5.1.47")
+	implementation "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+	implementation("mysql:mysql-connector-java:5.1.47")
 
-	testCompile ("junit:junit:4.13.2")
+	testImplementation ("junit:junit:4.13.2")
 }
